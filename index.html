@@ -166,6 +166,76 @@ header{
 .filter-empty{
   text-align:center;padding:60px 20px;color:#aaa;font-size:.9rem;
 }
+.lesson-no.done{background:var(--ga);color:#fff}
+
+/* ════ READER ════ */
+.reader-overlay{
+  position:fixed;inset:0;background:#f8f7ff;z-index:200;
+  overflow-y:auto;display:none;
+}
+.reader-overlay.open{display:block}
+.reader-top{
+  position:sticky;top:0;z-index:2;
+  background:rgba(255,255,255,.97);backdrop-filter:blur(10px);
+  border-bottom:1px solid #ece8e3;
+}
+.reader-top-in{
+  max-width:760px;margin:0 auto;padding:0 24px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.reader-back{
+  font-size:.85rem;font-weight:700;color:var(--muted);
+  display:flex;align-items:center;gap:6px;flex-shrink:0;
+  background:none;border:none;
+}
+.reader-back:hover{color:var(--pur)}
+.reader-cat-mini{font-size:.78rem;color:#aaa;font-weight:700}
+.reader-body{max-width:760px;margin:0 auto;padding:48px 24px 100px}
+.reader-eyebrow{font-size:.75rem;font-weight:800;letter-spacing:.12em;color:var(--pur);margin-bottom:12px}
+.reader-title{font-size:clamp(1.35rem,3.4vw,1.7rem);font-weight:900;margin-bottom:12px;line-height:1.45}
+.reader-meta{
+  font-size:.82rem;color:#999;margin-bottom:36px;padding-bottom:28px;
+  border-bottom:1px solid var(--line);
+}
+.reader-article h3{font-size:1.1rem;font-weight:900;margin:36px 0 14px;color:#1a1a2e}
+.reader-article h3:first-child{margin-top:0}
+.reader-article p{font-size:.95rem;color:#333;margin-bottom:16px;line-height:1.95}
+.reader-article ul{margin:0 0 18px 0;list-style:none}
+.reader-article ul li{
+  position:relative;padding:9px 0 9px 24px;
+  font-size:.92rem;color:#333;border-bottom:1px solid #f5f3ff;line-height:1.8;
+}
+.reader-article ul li:last-child{border-bottom:none}
+.reader-article ul li::before{
+  content:'';position:absolute;left:2px;top:19px;
+  width:6px;height:6px;border-radius:50%;background:var(--ga);
+}
+.reader-tip{
+  margin:8px 0 8px;background:#f3f0ff;border-radius:16px;padding:22px 24px;
+  font-size:.9rem;color:#463a7a;line-height:1.9;
+}
+.reader-tip strong{
+  color:var(--pur-d);display:block;margin-bottom:8px;
+  font-size:.78rem;letter-spacing:.06em;
+}
+.reader-complete-btn{
+  margin-top:44px;width:100%;text-align:center;
+  background:var(--ga);color:#fff;font-weight:800;font-size:.95rem;
+  padding:17px;border-radius:999px;border:none;
+  transition:filter .2s;
+}
+.reader-complete-btn:hover{filter:brightness(1.06)}
+.reader-complete-btn.done{background:#ecfdf5;color:#059669}
+.reader-nav{display:flex;justify-content:space-between;gap:14px;margin-top:16px}
+.reader-nav-btn{
+  flex:1;text-align:center;font-size:.85rem;font-weight:700;color:var(--pur);
+  padding:13px 16px;border-radius:999px;border:2px solid #ddd6fe;
+}
+.reader-nav-btn:hover{background:#f3f0ff}
+.reader-nav-btn.disabled{opacity:.35;pointer-events:none}
+@media(max-width:680px){
+  .reader-body{padding:32px 20px 80px}
+}
 
 /* カテゴリカラー */
 .c1{background:var(--gc)}
@@ -210,17 +280,125 @@ header{
   <div id="catPanels"></div>
 </div>
 
+<div class="reader-overlay" id="reader">
+  <div class="reader-top">
+    <div class="reader-top-in">
+      <button class="reader-back" id="readerBack" type="button">← 教材一覧へ戻る</button>
+      <div class="reader-cat-mini" id="readerCatMini"></div>
+    </div>
+  </div>
+  <div class="reader-body">
+    <p class="reader-eyebrow" id="readerEyebrow"></p>
+    <h2 class="reader-title" id="readerTitle"></h2>
+    <p class="reader-meta" id="readerMeta"></p>
+    <div class="reader-article" id="readerArticle"></div>
+    <button class="reader-complete-btn" id="readerComplete" type="button"></button>
+    <div class="reader-nav">
+      <button class="reader-nav-btn" id="readerPrev" type="button">← 前の教材</button>
+      <button class="reader-nav-btn" id="readerNext" type="button">次の教材 →</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const CATEGORIES = [
   {
     id:'basic', cls:'c1', icon:'💻', title:'基礎',
     desc:'PC操作から在宅ワークの始め方まで、すべての土台になる章です。',
     lessons:[
-      {t:'PCの基本操作とショートカット', d:'ファイル管理・ショートカットキーなど、これから使い続ける基本操作を整理します。', min:10},
-      {t:'効率化ツールの使い方', d:'クラウドストレージ・拡張機能など、作業を早くする定番ツールを紹介します。', min:12},
-      {t:'在宅ワークの始め方と環境づくり', d:'作業環境の整え方、生活リズムとの両立の考え方をまとめます。', min:8},
-      {t:'仕事の受け方・契約の基本', d:'案件の探し方から契約・請求までの流れを、はじめての人向けに解説します。', min:14},
-      {t:'セキュリティとトラブル対策', d:'パスワード管理や情報漏えい対策など、最低限おさえておきたい知識です。', min:9},
+      {t:'PCの基本操作とショートカット', d:'ファイル管理・ショートカットキーなど、これから使い続ける基本操作を整理します。', min:10,
+        body:[
+          {p:'在宅ワークの多くは、パソコンの中にあるファイルやアプリを使って進んでいきます。難しい専門知識は不要ですが、「よく使う操作」を先に整理しておくと、この先の学習も仕事も驚くほどスムーズになります。今日はその土台づくりです。'},
+          {h:'ファイルとフォルダを整理する'},
+          {p:'まず意識したいのは「どこに何を置いたか、自分がすぐ分かる状態」を作ることです。デスクトップにファイルを置きっぱなしにしていると、後で必ず探す時間が発生します。次のようなルールを最初に決めておきましょう。'},
+          {ul:[
+            '案件・仕事ごとにフォルダを分ける（例：「2026_A社_バナー制作」）',
+            'ファイル名の先頭に日付を入れる（例：「20260706_提案書.docx」）',
+            '「とりあえずフォルダ」を1つだけ作り、迷ったら一旦そこに入れる',
+          ]},
+          {h:'コピー・貼り付け・元に戻すを体に覚えさせる'},
+          {p:'マウスの右クリックだけでも作業はできますが、ショートカットキーを使うと同じ作業が半分以下の時間で終わります。最初は次の5つだけで十分です。'},
+          {ul:[
+            'Ctrl + C／Ctrl + V：コピーと貼り付け',
+            'Ctrl + Z：ひとつ前の操作に戻す（失敗しても慌てなくてOK）',
+            'Ctrl + S：上書き保存（こまめに押す癖をつける）',
+            'Ctrl + A：すべて選択',
+            'Alt + Tab：開いているアプリの切り替え',
+          ]},
+          {h:'文字入力を少し早くする'},
+          {p:'日本語入力では、変換候補が思い通りにならずイライラすることがあります。変換前のひらがな状態で「F7」を押すとカタカナに、「F10」を押すと半角英数字に一発で変換できます。この2つを覚えるだけでも、入力のストレスがかなり減ります。'},
+        ],
+        tip:'今日紹介した操作を、いきなり全部覚える必要はありません。次にパソコンを開いたとき、ひとつだけ意識して使ってみてください。手が覚えるまで繰り返すのが一番の近道です。'
+      },
+      {t:'効率化ツールの使い方', d:'クラウドストレージ・拡張機能など、作業を早くする定番ツールを紹介します。', min:12,
+        body:[
+          {p:'在宅ワークでは「一人で完結する作業」だけでなく、クライアントとファイルをやり取りしたり、複数の仕事を同時に管理したりする場面が増えます。ここで役立つのが、無料で使える定番の効率化ツールです。'},
+          {h:'クラウドストレージでファイルを共有する'},
+          {p:'Google DriveやDropboxのようなクラウドストレージを使うと、ファイルをメールに添付する必要がなくなり、リンクひとつで共有できます。パソコンが壊れてもデータが消えないという安心感も大きなメリットです。'},
+          {ul:[
+            'Google Drive：Googleアカウントがあればすぐ使える。容量も比較的多い',
+            '共有リンクは「閲覧のみ」「編集可」を必ず確認してから送る',
+            '納品物は専用フォルダにまとめ、リンク1本で渡せるようにしておく',
+          ]},
+          {h:'スケジュールとタスクを管理する'},
+          {p:'複数の案件を抱えるようになると、頭の中だけでの管理は限界が来ます。Googleカレンダーで締切を管理し、NotionやTrelloのようなツールで「やること」を書き出しておくと、抜け漏れがぐっと減ります。'},
+          {h:'パスワードを安全に管理する'},
+          {p:'仕事で使うアカウントが増えるほど、パスワードの管理は重要になります。同じパスワードを使い回さず、1PasswordやBitwardenのようなパスワード管理ツールにまとめて記録しておくのがおすすめです。'},
+        ],
+        tip:'ツールは「使いこなす」ことが目的ではありません。まずはGoogle Driveだけでも導入してみて、ファイルをクラウドに置く習慣をつけることから始めましょう。'
+      },
+      {t:'在宅ワークの始め方と環境づくり', d:'作業環境の整え方、生活リズムとの両立の考え方をまとめます。', min:8,
+        body:[
+          {p:'在宅ワークは「いつでもどこでも働ける」自由さがある一方、環境やリズムを自分で決める必要があります。最初に少し整えておくだけで、続けやすさが大きく変わります。'},
+          {h:'作業スペースをつくる'},
+          {p:'専用の部屋がなくても大丈夫です。ダイニングテーブルの一角でも構わないので、「ここに座ったら仕事モード」という場所を決めましょう。座る場所が定まると、気持ちの切り替えがしやすくなります。'},
+          {h:'生活リズムとの両立'},
+          {p:'家事や育児と両立する場合、まとまった時間を確保しにくいこともあります。「1日◯時間」ではなく「朝の30分」「子どもが昼寝している間」のように、生活の中にすでにある時間の枠を仕事にあてる考え方がおすすめです。'},
+          {h:'集中力を保つ工夫'},
+          {p:'25分作業して5分休む「ポモドーロ・テクニック」のように、短い時間で区切ると集中力を保ちやすくなります。スマートフォンのタイマー機能だけでも十分に実践できます。'},
+          {h:'家族の理解を得る'},
+          {p:'家族と同じ空間で作業する場合、「この時間は仕事に集中したい」とあらかじめ伝えておくだけで、お互いのストレスが減ります。無理に完璧を目指さず、少しずつ協力してもらえる形を探していきましょう。'},
+        ],
+        tip:'最初から完璧な環境やリズムを作る必要はありません。1週間試してみて、うまくいかなかった部分だけ少しずつ調整していく、くらいの気持ちで大丈夫です。'
+      },
+      {t:'仕事の受け方・契約の基本', d:'案件の探し方から契約・請求までの流れを、はじめての人向けに解説します。', min:14,
+        body:[
+          {p:'スキルが身についてきたら、次は実際に仕事を受けるステップに進みます。ここでは、案件の探し方から契約・請求までの基本的な流れを押さえておきましょう。'},
+          {h:'案件の探し方'},
+          {ul:[
+            'クラウドソーシングサイト：案件数が多く、実績作りの第一歩に向いている',
+            'SNS：日頃の発信を見た企業から声がかかることもある',
+            '知人からの紹介：信頼関係があるため、条件面の相談もしやすい',
+          ]},
+          {h:'提案文の書き方'},
+          {p:'応募が集まりやすい案件では、提案文の質が結果を左右します。「何ができるか」だけでなく、「その案件の課題をどう理解し、どう解決できるか」を一言添えるだけで、印象は大きく変わります。'},
+          {h:'契約前に確認すべきこと'},
+          {p:'金額だけで判断せず、契約前に次の点を必ず確認しましょう。あとから「言った・言わない」のトラブルになるのを防げます。'},
+          {ul:[
+            '業務の範囲（どこからどこまでを担当するか）',
+            '納期と修正回数の上限',
+            '報酬の金額・支払いタイミング',
+            '著作権・二次利用の扱い',
+          ]},
+          {h:'請求と入金管理'},
+          {p:'納品が終わったら、請求書を発行し、入金予定日をメモしておきましょう。案件が増えてくると、どこからいくら入金予定かが分からなくなりがちなので、簡単な一覧表を作っておくと安心です。'},
+        ],
+        tip:'最初の案件は、金額よりも「実績とやり取りの経験を積むこと」を優先すると、その後の提案がぐっと通りやすくなります。'
+      },
+      {t:'セキュリティとトラブル対策', d:'パスワード管理や情報漏えい対策など、最低限おさえておきたい知識です。', min:9,
+        body:[
+          {p:'在宅ワークでは、自分自身で情報を守る意識が欠かせません。難しい専門知識は不要ですが、最低限のセキュリティ習慣を身につけておくことで、多くのトラブルは未然に防げます。'},
+          {h:'パスワードを使い回さない'},
+          {p:'複数のサービスで同じパスワードを使っていると、どこか1つが漏えいしただけで、他のアカウントにも被害が広がってしまいます。サービスごとに異なるパスワードを設定し、可能であれば二段階認証も有効にしておきましょう。'},
+          {h:'怪しいメール・リンクを見分ける'},
+          {p:'「至急ご確認ください」といった急かす件名や、送信元のアドレスが不自然なメールには注意が必要です。リンクをクリックする前に、送信元と内容をもう一度確認する癖をつけましょう。'},
+          {h:'データのバックアップ'},
+          {p:'パソコンの故障やファイルの誤削除は、誰にでも起こり得ます。仕事のデータはクラウドストレージにも保存しておき、「1か所にしかない状態」を避けることが大切です。'},
+          {h:'トラブルが起きたときの対応'},
+          {p:'万が一、クライアントとの間で認識のズレやトラブルが起きた場合は、感情的にならず、まずはやり取りの記録（メッセージやメール）を整理しましょう。事実関係を落ち着いて共有することが、解決への一番の近道です。'},
+        ],
+        tip:'完璧なセキュリティ対策よりも、「怪しいと思ったら一呼吸置いて確認する」習慣のほうが、実際のトラブル防止には効果的です。'
+      },
     ]
   },
   {
@@ -280,19 +458,24 @@ const CATEGORIES = [
   },
 ];
 
-// はじめの数件を公開中として扱う（デモ用の状態。教材が用意でき次第、順次公開に切り替え）
-const LIVE_COUNT = { basic:2, design:1, sns:0, sales:0, writing:1, ai:1 };
+// 本文（body）が用意できたレッスンは公開中として扱う。他カテゴリは教材が用意でき次第、順次公開に切り替え
+const LIVE_COUNT = { basic:5, design:1, sns:0, sales:0, writing:1, ai:1 };
 
 const catNav = document.getElementById('catNav');
 const catPanels = document.getElementById('catPanels');
 const STORE_KEY = 'hsa_bookmarks';
+const DONE_KEY = 'hsa_completed';
 const bookmarks = new Set(JSON.parse(localStorage.getItem(STORE_KEY) || '[]'));
+const completed = new Set(JSON.parse(localStorage.getItem(DONE_KEY) || '[]'));
 let bmOnly = false;
 
 function lessonId(catId, idx){ return catId + '-' + idx; }
 
 function saveBookmarks(){
   localStorage.setItem(STORE_KEY, JSON.stringify([...bookmarks]));
+}
+function saveCompleted(){
+  localStorage.setItem(DONE_KEY, JSON.stringify([...completed]));
 }
 
 function render(){
@@ -318,10 +501,12 @@ function render(){
           const id = lessonId(c.id, idx);
           const isLive = idx < (LIVE_COUNT[c.id]||0);
           const isBm = bookmarks.has(id);
+          const isDone = completed.has(id);
+          const hasBody = !!l.body;
           return `
           <div class="lesson" data-id="${id}" data-bm="${isBm?'1':'0'}">
-            <div class="lesson-head" data-toggle="${id}">
-              <div class="lesson-no">${String(idx+1).padStart(2,'0')}</div>
+            <div class="lesson-head" data-open="${hasBody ? id : ''}" data-toggle="${hasBody ? '' : id}">
+              <div class="lesson-no ${isDone?'done':''}">${isDone ? '✓' : String(idx+1).padStart(2,'0')}</div>
               <div class="lesson-main">
                 <div class="lesson-title">
                   ${l.t}
@@ -330,7 +515,7 @@ function render(){
                 <div class="lesson-meta">目安 ${l.min}分</div>
               </div>
               <button class="lesson-star ${isBm?'on':''}" data-star="${id}" type="button" aria-label="ブックマーク">★</button>
-              <div class="lesson-chev">▾</div>
+              <div class="lesson-chev">${hasBody ? '→' : '▾'}</div>
             </div>
             <div class="lesson-body">
               <div class="lesson-body-in">
@@ -396,8 +581,14 @@ catPanels.addEventListener('click', e => {
     applyFilter();
     return;
   }
+  const opener = e.target.closest('[data-open]');
+  if(opener && opener.dataset.open){
+    const [catId, idxStr] = opener.dataset.open.split('-');
+    openReader(catId, Number(idxStr));
+    return;
+  }
   const head = e.target.closest('[data-toggle]');
-  if(head){
+  if(head && head.dataset.toggle){
     head.closest('.lesson').classList.toggle('open');
   }
 });
@@ -406,6 +597,76 @@ document.getElementById('bmToggle').addEventListener('click', () => {
   bmOnly = !bmOnly;
   document.getElementById('bmToggle').classList.toggle('on', bmOnly);
   applyFilter();
+});
+
+/* ── Reader ── */
+const reader = document.getElementById('reader');
+let readerCat = null, readerIdx = null;
+
+function renderArticle(body){
+  return body.map(block => {
+    if(block.h) return `<h3>${block.h}</h3>`;
+    if(block.p) return `<p>${block.p}</p>`;
+    if(block.ul) return `<ul>${block.ul.map(li=>`<li>${li}</li>`).join('')}</ul>`;
+    return '';
+  }).join('');
+}
+
+function openReader(catId, idx){
+  const cat = CATEGORIES.find(c => c.id === catId);
+  const lesson = cat.lessons[idx];
+  if(!lesson || !lesson.body) return;
+  readerCat = catId; readerIdx = idx;
+  const id = lessonId(catId, idx);
+
+  document.getElementById('readerCatMini').textContent = `${cat.title} / ${idx+1} of ${cat.lessons.length}`;
+  document.getElementById('readerEyebrow').textContent = cat.title.toUpperCase();
+  document.getElementById('readerTitle').textContent = lesson.t;
+  document.getElementById('readerMeta').textContent = `目安 ${lesson.min}分`;
+  document.getElementById('readerArticle').innerHTML =
+    renderArticle(lesson.body) +
+    (lesson.tip ? `<div class="reader-tip"><strong>POINT</strong>${lesson.tip}</div>` : '');
+
+  updateCompleteBtn(id);
+
+  const prevBtn = document.getElementById('readerPrev');
+  const nextBtn = document.getElementById('readerNext');
+  const prevOk = idx > 0 && cat.lessons[idx-1].body;
+  const nextOk = idx < cat.lessons.length-1 && cat.lessons[idx+1].body;
+  prevBtn.classList.toggle('disabled', !prevOk);
+  nextBtn.classList.toggle('disabled', !nextOk);
+
+  reader.classList.add('open');
+  reader.scrollTop = 0;
+}
+
+function updateCompleteBtn(id){
+  const btn = document.getElementById('readerComplete');
+  const isDone = completed.has(id);
+  btn.textContent = isDone ? '✓ 読み終えました' : 'この教材を読み終えたらチェック';
+  btn.classList.toggle('done', isDone);
+}
+
+function closeReader(){
+  reader.classList.remove('open');
+  render();
+}
+
+document.getElementById('readerBack').addEventListener('click', closeReader);
+
+document.getElementById('readerComplete').addEventListener('click', () => {
+  const id = lessonId(readerCat, readerIdx);
+  if(completed.has(id)){ completed.delete(id); } else { completed.add(id); }
+  saveCompleted();
+  updateCompleteBtn(id);
+});
+
+document.getElementById('readerPrev').addEventListener('click', () => {
+  if(readerIdx > 0) openReader(readerCat, readerIdx - 1);
+});
+document.getElementById('readerNext').addEventListener('click', () => {
+  const cat = CATEGORIES.find(c => c.id === readerCat);
+  if(readerIdx < cat.lessons.length-1) openReader(readerCat, readerIdx + 1);
 });
 
 render();
