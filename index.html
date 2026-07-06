@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教材一覧｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN','Hiragino Sans',sans-serif;
+  color:#1a1a2e;line-height:1.8;background:#f8f7ff;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font:inherit;cursor:pointer}
+
+:root{
+  --pur:#7c3aed;--pur-l:#a78bfa;--pur-d:#5b21b6;
+  --ora:#f97316;--ora-d:#ea580c;
+  --blu:#3b82f6;--teal:#06b6d4;
+  --dark:#0f0e17;--dark2:#1a1a2e;
+  --muted:#6b7280;--line:#e5e7eb;
+  --ga:linear-gradient(135deg,#7c3aed,#3b82f6);
+  --gb:linear-gradient(135deg,#f97316,#ec4899);
+  --gc:linear-gradient(135deg,#06b6d4,#7c3aed);
+  --gd:linear-gradient(135deg,#10b981,#3b82f6);
+  --ge:linear-gradient(135deg,#ec4899,#7c3aed);
+  --gf:linear-gradient(135deg,#6366f1,#06b6d4);
+}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ════ HEADER ════ */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #ece8e3;
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo img{height:36px;width:auto}
+.nav-right{display:flex;align-items:center;gap:18px}
+.nav-back{font-size:.85rem;font-weight:700;color:var(--muted)}
+.nav-back:hover{color:var(--pur)}
+.nav-user{font-size:.85rem;font-weight:700;color:#1a1a2e}
+.nav-user span{color:var(--pur)}
+
+/* ════ PAGE HEAD ════ */
+.page-head{padding:44px 0 28px}
+.page-eyebrow{font-size:.75rem;font-weight:800;letter-spacing:.16em;color:var(--pur);margin-bottom:10px}
+.page-title{font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:900;margin-bottom:10px}
+.page-lead{color:var(--muted);font-size:.95rem;max-width:640px}
+
+/* ── 全体進捗 ── */
+.progress-card{
+  margin-top:28px;background:#fff;border-radius:20px;
+  padding:24px 28px;box-shadow:0 8px 30px rgba(124,58,237,.08);
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+}
+.progress-num{font-size:2rem;font-weight:900;background:var(--ga);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0}
+.progress-num span{font-size:1.1rem}
+.progress-bar-wrap{flex:1;min-width:200px}
+.progress-label{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);font-weight:700;margin-bottom:8px}
+.progress-bar{height:10px;border-radius:999px;background:#ede9fe;overflow:hidden}
+.progress-fill{height:100%;background:var(--ga);border-radius:999px;transition:width .4s ease;width:0%}
+.bm-toggle{
+  flex-shrink:0;font-size:.82rem;font-weight:700;
+  border:2px solid #ddd6fe;color:var(--pur);
+  padding:10px 18px;border-radius:999px;
+  background:#fff;transition:background .2s,color .2s;
+  display:flex;align-items:center;gap:6px;
+}
+.bm-toggle.on{background:var(--ga);color:#fff;border-color:transparent}
+
+/* ════ LAYOUT ════ */
+.board{display:grid;grid-template-columns:240px 1fr;gap:36px;padding:36px 0 100px;align-items:start}
+
+/* ── カテゴリタブ（サイドバー） ── */
+.cat-nav{position:sticky;top:88px;display:flex;flex-direction:column;gap:6px}
+.cat-btn{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 16px;border-radius:14px;
+  font-size:.9rem;font-weight:700;color:#555;
+  border:1px solid transparent;text-align:left;background:transparent;width:100%;
+  transition:background .15s,color .15s;
+}
+.cat-btn:hover{background:#fff}
+.cat-btn.active{background:#fff;color:#1a1a2e;box-shadow:0 4px 18px rgba(124,58,237,.1);border-color:#ede9fe}
+.cat-ic{
+  width:34px;height:34px;border-radius:10px;flex-shrink:0;
+  display:grid;place-items:center;font-size:1.05rem;color:#fff;
+}
+.cat-count{margin-left:auto;font-size:.72rem;color:#aaa;font-weight:700}
+.cat-btn.active .cat-count{color:var(--pur)}
+
+@media(max-width:860px){
+  .board{grid-template-columns:1fr;gap:20px}
+  .cat-nav{
+    position:sticky;top:68px;z-index:20;
+    flex-direction:row;gap:8px;overflow-x:auto;
+    background:#f8f7ff;padding:10px 0;margin:0 -24px;padding-left:24px;padding-right:24px;
+    border-bottom:1px solid #ece4ff;
+  }
+  .cat-btn{flex-shrink:0;padding:10px 14px}
+  .cat-count{display:none}
+}
+
+/* ── カテゴリパネル ── */
+.cat-panel{display:none}
+.cat-panel.active{display:block}
+.cat-panel-head{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.cat-panel-ic{
+  width:52px;height:52px;border-radius:16px;flex-shrink:0;
+  display:grid;place-items:center;font-size:1.5rem;color:#fff;
+}
+.cat-panel-title{font-size:1.3rem;font-weight:900}
+.cat-panel-desc{font-size:.87rem;color:var(--muted);margin-top:2px}
+
+/* ── レッスンカード ── */
+.lesson{
+  background:#fff;border-radius:18px;margin-bottom:14px;
+  box-shadow:0 2px 14px rgba(0,0,0,.04);border:1px solid #f0edff;
+  overflow:hidden;
+}
+.lesson-head{
+  display:flex;align-items:center;gap:16px;
+  padding:18px 22px;cursor:pointer;
+}
+.lesson-no{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:#f3f0ff;color:var(--pur);
+  font-size:.85rem;font-weight:900;
+  display:grid;place-items:center;
+}
+.lesson-main{flex:1;min-width:0}
+.lesson-title{font-size:.98rem;font-weight:800;color:#1a1a2e;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lesson-meta{font-size:.78rem;color:#999;margin-top:3px}
+.badge{
+  font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:999px;
+  letter-spacing:.03em;flex-shrink:0;
+}
+.badge-soon{background:#f3f0ff;color:var(--pur)}
+.badge-live{background:#ecfdf5;color:#059669}
+.lesson-star{
+  flex-shrink:0;width:36px;height:36px;border-radius:50%;
+  display:grid;place-items:center;font-size:1rem;color:#ccc;
+  background:transparent;border:none;
+}
+.lesson-star.on{color:var(--ora)}
+.lesson-chev{flex-shrink:0;color:#bbb;font-size:.8rem;transition:transform .2s}
+.lesson.open .lesson-chev{transform:rotate(180deg)}
+.lesson-body{max-height:0;overflow:hidden;transition:max-height .25s ease}
+.lesson.open .lesson-body{max-height:200px}
+.lesson-body-in{padding:0 22px 22px 72px;font-size:.88rem;color:#555;line-height:1.85}
+.lesson-soon-note{
+  margin-top:12px;display:inline-flex;align-items:center;gap:6px;
+  font-size:.78rem;color:#999;background:#f8f7ff;padding:6px 12px;border-radius:999px;
+}
+
+.filter-empty{
+  text-align:center;padding:60px 20px;color:#aaa;font-size:.9rem;
+}
+
+/* カテゴリカラー */
+.c1{background:var(--gc)}
+.c2{background:var(--gb)}
+.c3{background:var(--ge)}
+.c4{background:var(--gd)}
+.c5{background:var(--ga)}
+.c6{background:var(--gf)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="../home.success.academy/index.html">
+      <img src="images/logo.png" alt="Home Success Academy">
+    </a>
+    <div class="nav-right">
+      <a class="nav-back" href="../home.success.academy/index.html">サイトトップへ</a>
+      <div class="nav-user">ようこそ、<span>受講生</span>さん</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap page-head">
+  <p class="page-eyebrow">MATERIALS</p>
+  <h1 class="page-title">教材一覧</h1>
+  <p class="page-lead">6つのカテゴリに分かれています。気になるところから、自分のペースで進めてください。教材は順次公開していきます。</p>
+
+  <div class="progress-card">
+    <div class="progress-num" id="progressNum">0<span>%</span></div>
+    <div class="progress-bar-wrap">
+      <div class="progress-label"><span>全体の公開状況</span><span id="progressCount">0 / 0 教材が公開中</span></div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <button class="bm-toggle" id="bmToggle" type="button">★ ブックマークのみ表示</button>
+  </div>
+</div>
+
+<div class="wrap board">
+  <nav class="cat-nav" id="catNav"></nav>
+  <div id="catPanels"></div>
+</div>
+
+<script>
+const CATEGORIES = [
+  {
+    id:'basic', cls:'c1', icon:'💻', title:'基礎',
+    desc:'PC操作から在宅ワークの始め方まで、すべての土台になる章です。',
+    lessons:[
+      {t:'PCの基本操作とショートカット', d:'ファイル管理・ショートカットキーなど、これから使い続ける基本操作を整理します。', min:10},
+      {t:'効率化ツールの使い方', d:'クラウドストレージ・拡張機能など、作業を早くする定番ツールを紹介します。', min:12},
+      {t:'在宅ワークの始め方と環境づくり', d:'作業環境の整え方、生活リズムとの両立の考え方をまとめます。', min:8},
+      {t:'仕事の受け方・契約の基本', d:'案件の探し方から契約・請求までの流れを、はじめての人向けに解説します。', min:14},
+      {t:'セキュリティとトラブル対策', d:'パスワード管理や情報漏えい対策など、最低限おさえておきたい知識です。', min:9},
+    ]
+  },
+  {
+    id:'design', cls:'c2', icon:'🎨', title:'デザイン',
+    desc:'バナーからLPまで、「伝わる」を形にするスキルを学びます。',
+    lessons:[
+      {t:'Canvaの基本操作', d:'テンプレートの使い方から書き出しまで、Canvaの基本を一通り学びます。', min:15},
+      {t:'バナーデザインの基礎', d:'配色・余白・文字の優先順位など、見やすいバナーの作り方の原則です。', min:12},
+      {t:'LPデザインの考え方', d:'ユーザーの視線誘導を意識した、成果の出るLP構成の考え方を解説します。', min:16},
+      {t:'ノーコードでのサイト制作', d:'コードを書かずにサイトを組み立てる、ノーコードツールの使い方です。', min:18},
+      {t:'配色・フォントの選び方', d:'印象を左右する配色とフォント選びの基本ルールをまとめます。', min:10},
+    ]
+  },
+  {
+    id:'sns', cls:'c3', icon:'📱', title:'SNS',
+    desc:'Instagram・TikTokの運用と、集客につながる設計を学びます。',
+    lessons:[
+      {t:'Instagram運用の基本設計', d:'アカウントのコンセプト設計から、運用の全体像を整理します。', min:13},
+      {t:'投稿ネタの作り方', d:'ネタ切れしないための企画の考え方・ストックの作り方です。', min:11},
+      {t:'リール・ショート動画の作り方', d:'伸びやすい構成の型と、簡単な編集の流れを解説します。', min:17},
+      {t:'集客につながるプロフィール設計', d:'プロフィール欄で興味を引き、フォローにつなげる書き方です。', min:8},
+      {t:'運用代行としての動き方', d:'代行案件を受ける際の進め方・クライアントとのやり取りの基本です。', min:12},
+    ]
+  },
+  {
+    id:'sales', cls:'c4', icon:'💰', title:'コンテンツ販売',
+    desc:'商品設計から販売の仕組みづくりまで、稼ぐ導線を作ります。',
+    lessons:[
+      {t:'売れる商品・サービスの設計', d:'自分の得意なことを、価値として届けられる形に整理します。', min:15},
+      {t:'価格設定の考え方', d:'安売りにならない、納得感のある価格の決め方を解説します。', min:9},
+      {t:'販売ページ（LP）の作り方', d:'商品の魅力を伝え、購入まで導く販売ページの構成です。', min:16},
+      {t:'決済・自動化の仕組み', d:'決済ツールの導入や、販売〜提供までの自動化の考え方です。', min:11},
+      {t:'リピート・紹介につなげる導線', d:'一度きりで終わらせない、継続購入・紹介の仕組み作りです。', min:10},
+    ]
+  },
+  {
+    id:'writing', cls:'c5', icon:'✍️', title:'ライティング',
+    desc:'記事作成からセールス文章まで、文章で稼ぐ力を身につけます。',
+    lessons:[
+      {t:'記事構成の基本', d:'読まれる記事の型、見出しの作り方の基礎を学びます。', min:12},
+      {t:'SEOライティングの基礎', d:'検索から読まれるための、キーワード選定と書き方の基本です。', min:14},
+      {t:'セールスライティングの型', d:'読み手の心を動かし、行動につなげる文章の型を解説します。', min:15},
+      {t:'取材・インタビューのコツ', d:'相手の魅力を引き出す質問の仕方、まとめ方のコツです。', min:9},
+      {t:'読まれる文章のリライト術', d:'書いた文章を「もっと伝わる」形に磨き直す方法です。', min:10},
+    ]
+  },
+  {
+    id:'ai', cls:'c6', icon:'🤖', title:'AI',
+    desc:'ChatGPTをはじめとしたAIを、日々の仕事に活かす方法を学びます。',
+    lessons:[
+      {t:'ChatGPTの基本的な使い方', d:'アカウント作成から基本的な使い方まで、はじめの一歩です。', min:10},
+      {t:'プロンプト設計のコツ', d:'欲しい回答を引き出すための、質問・指示の組み立て方です。', min:13},
+      {t:'AIで画像・素材を作る', d:'画像生成AIを使って、バナーや素材のたたき台を作る方法です。', min:14},
+      {t:'AIによる業務効率化', d:'調べもの・要約・整理など、日々の作業を時短する使い方です。', min:11},
+      {t:'AIライティングとの付き合い方', d:'AIに書かせた文章を、自分の言葉として整えるための考え方です。', min:9},
+    ]
+  },
+];
+
+// はじめの数件を公開中として扱う（デモ用の状態。教材が用意でき次第、順次公開に切り替え）
+const LIVE_COUNT = { basic:2, design:1, sns:0, sales:0, writing:1, ai:1 };
+
+const catNav = document.getElementById('catNav');
+const catPanels = document.getElementById('catPanels');
+const STORE_KEY = 'hsa_bookmarks';
+const bookmarks = new Set(JSON.parse(localStorage.getItem(STORE_KEY) || '[]'));
+let bmOnly = false;
+
+function lessonId(catId, idx){ return catId + '-' + idx; }
+
+function saveBookmarks(){
+  localStorage.setItem(STORE_KEY, JSON.stringify([...bookmarks]));
+}
+
+function render(){
+  catNav.innerHTML = CATEGORIES.map((c,i) => `
+    <button class="cat-btn ${i===0?'active':''}" data-cat="${c.id}">
+      <span class="cat-ic ${c.cls}">${c.icon}</span>
+      ${c.title}
+      <span class="cat-count">${c.lessons.length}</span>
+    </button>
+  `).join('');
+
+  catPanels.innerHTML = CATEGORIES.map((c,i) => `
+    <div class="cat-panel ${i===0?'active':''}" data-cat="${c.id}">
+      <div class="cat-panel-head">
+        <span class="cat-panel-ic ${c.cls}">${c.icon}</span>
+        <div>
+          <div class="cat-panel-title">${c.title}</div>
+          <div class="cat-panel-desc">${c.desc}</div>
+        </div>
+      </div>
+      <div class="lesson-list">
+        ${c.lessons.map((l, idx) => {
+          const id = lessonId(c.id, idx);
+          const isLive = idx < (LIVE_COUNT[c.id]||0);
+          const isBm = bookmarks.has(id);
+          return `
+          <div class="lesson" data-id="${id}" data-bm="${isBm?'1':'0'}">
+            <div class="lesson-head" data-toggle="${id}">
+              <div class="lesson-no">${String(idx+1).padStart(2,'0')}</div>
+              <div class="lesson-main">
+                <div class="lesson-title">
+                  ${l.t}
+                  <span class="badge ${isLive?'badge-live':'badge-soon'}">${isLive?'公開中':'準備中'}</span>
+                </div>
+                <div class="lesson-meta">目安 ${l.min}分</div>
+              </div>
+              <button class="lesson-star ${isBm?'on':''}" data-star="${id}" type="button" aria-label="ブックマーク">★</button>
+              <div class="lesson-chev">▾</div>
+            </div>
+            <div class="lesson-body">
+              <div class="lesson-body-in">
+                ${l.d}
+                ${isLive ? '' : '<div class="lesson-soon-note">🔒 本文教材は準備中です。公開までしばらくお待ちください。</div>'}
+              </div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  updateProgress();
+  applyFilter();
+}
+
+function updateProgress(){
+  const total = CATEGORIES.reduce((s,c)=>s+c.lessons.length,0);
+  const live = CATEGORIES.reduce((s,c)=>s+(LIVE_COUNT[c.id]||0),0);
+  const pct = total ? Math.round(live/total*100) : 0;
+  document.getElementById('progressNum').innerHTML = pct + '<span>%</span>';
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = `${live} / ${total} 教材が公開中`;
+}
+
+function applyFilter(){
+  document.querySelectorAll('.lesson').forEach(el => {
+    const show = !bmOnly || el.dataset.bm === '1';
+    el.style.display = show ? '' : 'none';
+  });
+  document.querySelectorAll('.cat-panel').forEach(panel => {
+    const visible = [...panel.querySelectorAll('.lesson')].some(el => el.style.display !== 'none');
+    let empty = panel.querySelector('.filter-empty');
+    if(bmOnly && !visible){
+      if(!empty){
+        empty = document.createElement('div');
+        empty.className = 'filter-empty';
+        empty.textContent = 'ブックマークした教材はまだありません。';
+        panel.appendChild(empty);
+      }
+    } else if(empty){
+      empty.remove();
+    }
+  });
+}
+
+catNav.addEventListener('click', e => {
+  const btn = e.target.closest('.cat-btn');
+  if(!btn) return;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.toggle('active', b===btn));
+  document.querySelectorAll('.cat-panel').forEach(p=>p.classList.toggle('active', p.dataset.cat===btn.dataset.cat));
+});
+
+catPanels.addEventListener('click', e => {
+  const star = e.target.closest('[data-star]');
+  if(star){
+    const id = star.dataset.star;
+    if(bookmarks.has(id)){ bookmarks.delete(id); } else { bookmarks.add(id); }
+    saveBookmarks();
+    star.classList.toggle('on');
+    star.closest('.lesson').dataset.bm = bookmarks.has(id) ? '1' : '0';
+    applyFilter();
+    return;
+  }
+  const head = e.target.closest('[data-toggle]');
+  if(head){
+    head.closest('.lesson').classList.toggle('open');
+  }
+});
+
+document.getElementById('bmToggle').addEventListener('click', () => {
+  bmOnly = !bmOnly;
+  document.getElementById('bmToggle').classList.toggle('on', bmOnly);
+  applyFilter();
+});
+
+render();
+</script>
+</body>
+</html>
