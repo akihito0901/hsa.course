@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理ページ｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN','Hiragino Sans',sans-serif;color:#1a1a2e;line-height:1.7;background:#f8f7ff;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+:root{
+  --pur:#7c3aed;--pur-d:#5b21b6;--ora-d:#ea580c;--muted:#6b7280;--line:#e5e7eb;
+  --ga:linear-gradient(135deg,#7c3aed,#3b82f6);--gb:linear-gradient(135deg,#f97316,#ec4899);
+}
+header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #ece8e3}
+.nav{max-width:1120px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-weight:900;font-size:1.05rem;display:flex;align-items:center;gap:10px}
+.brand .mark{width:30px;height:30px;border-radius:8px;background:var(--gb);display:grid;place-items:center;color:#fff;font-size:.85rem}
+.nav-link{font-size:.85rem;font-weight:700;color:var(--muted)}
+.nav-link:hover{color:var(--pur)}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.head{padding:40px 0 24px}
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.16em;color:var(--ora-d);margin-bottom:10px}
+.h1{font-size:clamp(1.5rem,3.2vw,2rem);font-weight:900;margin-bottom:10px}
+.lead{color:var(--muted);font-size:.92rem;max-width:720px}
+
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;font-weight:800;padding:13px 22px;border-radius:999px;border:none}
+.btn-primary{background:var(--gb);color:#fff}
+.btn-primary:hover{filter:brightness(1.06)}
+.btn-ghost{background:#fff;color:var(--pur);border:2px solid #ddd6fe}
+.btn-ghost:hover{background:#f3f0ff}
+
+.stats{display:flex;gap:14px;flex-wrap:wrap;margin:24px 0 8px}
+.stat{background:#fff;border-radius:16px;padding:16px 22px;box-shadow:0 6px 24px rgba(124,58,237,.07);min-width:130px}
+.stat-num{font-size:1.6rem;font-weight:900;background:var(--ga);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1}
+.stat-label{font-size:.74rem;color:var(--muted);font-weight:700;margin-top:2px}
+
+.cat-block{margin:36px 0}
+.cat-title{font-size:1.15rem;font-weight:900;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.cat-dot{width:12px;height:12px;border-radius:50%}
+.cat-desc{font-size:.82rem;color:var(--muted);margin-bottom:16px}
+
+.table-scroll{overflow-x:auto;background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.05)}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{text-align:left;padding:14px 18px;font-size:.88rem;border-bottom:1px solid #f0edff;vertical-align:middle}
+th{font-size:.72rem;font-weight:800;color:var(--muted);letter-spacing:.05em;background:#faf9ff}
+tr:last-child td{border-bottom:none}
+.t-no{width:44px;color:#aaa;font-weight:800}
+.t-title{font-weight:700}
+.t-min{color:#999;font-size:.8rem}
+.pill{display:inline-block;font-size:.72rem;font-weight:800;padding:4px 11px;border-radius:999px;white-space:nowrap}
+.pill-live{background:#ecfdf5;color:#059669}
+.pill-soon{background:#f3f0ff;color:var(--pur)}
+.pill-free{background:#eff6ff;color:#2563eb}
+.pill-week{background:#fff7ed;color:var(--ora-d)}
+.open-link{font-size:.82rem;font-weight:800;color:var(--pur)}
+.open-link:hover{text-decoration:underline}
+.no-page{font-size:.8rem;color:#bbb}
+.note{font-size:.78rem;color:#aaa;margin:40px 0 80px;line-height:1.8}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><span class="mark">HSA</span>管理ページ</div>
+    <a class="nav-link" href="index.html">受講生ページ →</a>
+  </div>
+</header>
+
+<div class="wrap head">
+  <p class="eyebrow">ADMIN</p>
+  <h1 class="h1">教材 管理ページ</h1>
+  <p class="lead">全教材の公開状況と、各ページへの直リンクを一覧できます。受講生の週次解放に関係なく、ここから公開済みの教材をいつでも確認できます。</p>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="index.html?admin=1">👁 受講生プレビューを開く（全解放）</a>
+    <a class="btn btn-ghost" href="index.html">通常の受講生ページを見る</a>
+  </div>
+</div>
+
+<div class="wrap" id="board"></div>
+
+<div class="wrap">
+  <p class="note">
+    ・「公開済み」＝固定ページが用意できている教材です。行の「開く」からいつでも中身を確認できます。<br>
+    ・「準備中」＝まだ本文ページが未作成の教材です（コンテンツ販売など）。<br>
+    ・解放タイミングは受講生から見た公開条件です（基礎＝常に無料／スキル系＝第1章無料・以降は入会から毎週1章）。<br>
+    ・教材の内容を修正するには、対応する lessons/◯◯-◯.html を編集します。項目の増減は assets/data.js を編集します。
+  </p>
+</div>
+
+<script src="assets/data.js"></script>
+<script>
+const DOT = { basic:'#06b6d4', design:'#f97316', sns:'#ec4899', sales:'#10b981', writing:'#7c3aed', ai:'#6366f1' };
+
+function accessLabel(cat, idx, lesson){
+  if(!lesson.url) return {cls:'pill-soon', text:'準備中'};
+  if(cat.id === 'basic') return {cls:'pill-free', text:'無料（常時）'};
+  if(idx === 0) return {cls:'pill-free', text:'第1章・無料'};
+  return {cls:'pill-week', text:`第${idx+1}週で解放`};
+}
+
+// 集計
+let total=0, ready=0;
+CATEGORIES.forEach(c => c.lessons.forEach(l => { total++; if(l.url) ready++; }));
+const pct = total ? Math.round(ready/total*100) : 0;
+document.getElementById('stats').innerHTML = `
+  <div class="stat"><div class="stat-num">${total}</div><div class="stat-label">教材の総数</div></div>
+  <div class="stat"><div class="stat-num">${ready}</div><div class="stat-label">公開済み（ページあり）</div></div>
+  <div class="stat"><div class="stat-num">${total-ready}</div><div class="stat-label">準備中</div></div>
+  <div class="stat"><div class="stat-num">${pct}<span style="font-size:1rem">%</span></div><div class="stat-label">公開率</div></div>
+`;
+
+// カテゴリごとのテーブル
+document.getElementById('board').innerHTML = CATEGORIES.map(c => `
+  <section class="cat-block">
+    <div class="cat-title"><span class="cat-dot" style="background:${DOT[c.id]||'#999'}"></span>${c.title}
+      <span style="font-size:.75rem;color:#bbb;font-weight:700">（${c.lessons.length}教材）</span></div>
+    <div class="cat-desc">${c.desc}</div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>No</th><th>教材タイトル</th><th>目安</th><th>状態</th><th>受講生の解放条件</th><th>確認</th></tr>
+        </thead>
+        <tbody>
+          ${c.lessons.map((l, idx) => {
+            const status = l.url ? '<span class="pill pill-live">公開済み</span>' : '<span class="pill pill-soon">準備中</span>';
+            const acc = accessLabel(c, idx, l);
+            const openCell = l.url
+              ? `<a class="open-link" href="${l.url}" target="_blank" rel="noopener">開く ↗</a>`
+              : `<span class="no-page">—</span>`;
+            return `
+            <tr>
+              <td class="t-no">${String(idx+1).padStart(2,'0')}</td>
+              <td class="t-title">${l.t}<div class="t-min" style="color:#aaa;font-weight:400;margin-top:2px">${l.d||''}</div></td>
+              <td class="t-min">${l.min}分</td>
+              <td>${status}</td>
+              <td><span class="pill ${acc.cls}">${acc.text}</span></td>
+              <td>${openCell}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  </section>
+`).join('');
+</script>
+</body>
+</html>
