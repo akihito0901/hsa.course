@@ -78,6 +78,29 @@ header{
 }
 .bm-toggle.on{background:var(--ga);color:#fff;border-color:transparent}
 
+/* ── 会員ステータス ── */
+.member-card{
+  margin-top:28px;background:#fff;border-radius:20px;
+  padding:24px 28px;box-shadow:0 8px 30px rgba(124,58,237,.08);
+}
+.member-row{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.member-status{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.member-pill{font-size:.78rem;font-weight:800;padding:6px 14px;border-radius:999px;flex-shrink:0}
+.member-pill.free{background:#f3f0ff;color:var(--pur)}
+.member-pill.pro{background:var(--ga);color:#fff}
+.member-detail{font-size:.85rem;color:var(--muted);line-height:1.7}
+.member-detail strong{color:#1a1a2e}
+.member-actions{display:flex;gap:10px;flex-wrap:wrap}
+.member-btn{
+  font-size:.82rem;font-weight:700;padding:10px 18px;border-radius:999px;
+  border:2px solid #ddd6fe;color:var(--pur);background:#fff;
+}
+.member-btn:hover{background:#f8f7ff}
+.member-btn.primary{background:var(--ga);color:#fff;border-color:transparent}
+.member-btn.primary:hover{filter:brightness(1.06);background:var(--ga)}
+.member-btn.ghost{border-color:var(--line);color:var(--muted)}
+.member-note{font-size:.76rem;color:#bbb;margin-top:16px}
+
 /* ════ LAYOUT ════ */
 .board{display:grid;grid-template-columns:240px 1fr;gap:36px;padding:36px 0 100px;align-items:start}
 
@@ -162,6 +185,11 @@ header{
   margin-top:12px;display:inline-flex;align-items:center;gap:6px;
   font-size:.78rem;color:#999;background:#f8f7ff;padding:6px 12px;border-radius:999px;
 }
+.lesson-lock-note{
+  margin-top:12px;font-size:.83rem;color:#888;background:#f8f7ff;
+  padding:12px 16px;border-radius:12px;line-height:1.7;
+}
+.lesson-lock-note .member-btn{margin-top:10px}
 
 .filter-empty{
   text-align:center;padding:60px 20px;color:#aaa;font-size:.9rem;
@@ -263,12 +291,14 @@ header{
 <div class="wrap page-head">
   <p class="page-eyebrow">MATERIALS</p>
   <h1 class="page-title">教材一覧</h1>
-  <p class="page-lead">6つのカテゴリに分かれています。気になるところから、自分のペースで進めてください。教材は順次公開していきます。</p>
+  <p class="page-lead">各コースの第1章はどなたでも無料で読めます。月額会員になると、入会日から1週間ごとに続きの教材が解放されていきます（すべて解放されるまで、目安で約1年のカリキュラムです）。</p>
+
+  <div class="member-card" id="memberCard"></div>
 
   <div class="progress-card">
     <div class="progress-num" id="progressNum">0<span>%</span></div>
     <div class="progress-bar-wrap">
-      <div class="progress-label"><span>全体の公開状況</span><span id="progressCount">0 / 0 教材が公開中</span></div>
+      <div class="progress-label"><span>教材の公開状況（執筆済み）</span><span id="progressCount">0 / 0 教材が執筆済み</span></div>
       <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
     </div>
     <button class="bm-toggle" id="bmToggle" type="button">★ ブックマークのみ表示</button>
@@ -458,16 +488,23 @@ const CATEGORIES = [
   },
 ];
 
-// 本文（body）が用意できたレッスンは公開中として扱う。他カテゴリは教材が用意でき次第、順次公開に切り替え
-const LIVE_COUNT = { basic:5, design:1, sns:0, sales:0, writing:1, ai:1 };
-
 const catNav = document.getElementById('catNav');
 const catPanels = document.getElementById('catPanels');
+const memberCard = document.getElementById('memberCard');
 const STORE_KEY = 'hsa_bookmarks';
 const DONE_KEY = 'hsa_completed';
+const SUB_KEY = 'hsa_subscribed';
+const JOIN_KEY = 'hsa_join_date';
+const OFFSET_KEY = 'hsa_demo_offset';
 const bookmarks = new Set(JSON.parse(localStorage.getItem(STORE_KEY) || '[]'));
 const completed = new Set(JSON.parse(localStorage.getItem(DONE_KEY) || '[]'));
 let bmOnly = false;
+let subscribed = localStorage.getItem(SUB_KEY) === '1';
+let joinDate = Number(localStorage.getItem(JOIN_KEY)) || null;
+let demoOffsetDays = Number(localStorage.getItem(OFFSET_KEY)) || 0;
+
+const DAY_MS = 24*60*60*1000;
+const WEEK_MS = 7*DAY_MS;
 
 function lessonId(catId, idx){ return catId + '-' + idx; }
 
@@ -477,6 +514,89 @@ function saveBookmarks(){
 function saveCompleted(){
   localStorage.setItem(DONE_KEY, JSON.stringify([...completed]));
 }
+
+/* ── 会員・週次アンロック（デモ用シミュレーション） ── */
+function nowMs(){ return Date.now() + demoOffsetDays*DAY_MS; }
+function elapsedDays(){ return joinDate ? Math.floor((nowMs()-joinDate)/DAY_MS) : 0; }
+function elapsedWeeks(){ return joinDate ? Math.floor((nowMs()-joinDate)/WEEK_MS) : 0; }
+
+function subscribe(){
+  subscribed = true;
+  joinDate = Date.now();
+  demoOffsetDays = 0;
+  localStorage.setItem(SUB_KEY,'1');
+  localStorage.setItem(JOIN_KEY, String(joinDate));
+  localStorage.setItem(OFFSET_KEY,'0');
+  render();
+}
+function unsubscribe(){
+  subscribed = false;
+  localStorage.setItem(SUB_KEY,'0');
+  render();
+}
+function advanceWeek(){
+  demoOffsetDays += 7;
+  localStorage.setItem(OFFSET_KEY, String(demoOffsetDays));
+  render();
+}
+function resetDemo(){
+  demoOffsetDays = 0;
+  localStorage.setItem(OFFSET_KEY,'0');
+  render();
+}
+
+// idx===0 は誰でも無料。idx>=1 は「入会日 + idx週」で解放
+function getAccess(lesson, idx){
+  if(!lesson.body) return 'soon';
+  if(idx === 0) return 'free';
+  if(!subscribed) return 'member';
+  return elapsedWeeks() >= idx ? 'live' : 'week';
+}
+function daysUntilUnlock(idx){
+  return Math.max(0, idx*7 - elapsedDays());
+}
+
+function renderMemberCard(){
+  if(!subscribed){
+    memberCard.innerHTML = `
+      <div class="member-row">
+        <div class="member-status">
+          <span class="member-pill free">無料ユーザー</span>
+          <span class="member-detail">各コースの<strong>第1章は無料</strong>で読めます。月額会員になると、入会日から毎週続きが解放されます。</span>
+        </div>
+        <div class="member-actions">
+          <button class="member-btn primary" data-action="subscribe" type="button">［デモ］月額会員になる</button>
+        </div>
+      </div>`;
+    return;
+  }
+  const week = elapsedWeeks();
+  const daysToNext = Math.max(0, (week+1)*7 - elapsedDays());
+  const joinLabel = new Date(joinDate).toLocaleDateString('ja-JP');
+  memberCard.innerHTML = `
+    <div class="member-row">
+      <div class="member-status">
+        <span class="member-pill pro">月額会員</span>
+        <span class="member-detail">入会日：<strong>${joinLabel}</strong>／ 現在 <strong>第${week+1}週</strong>（次の解放まであと${daysToNext}日）</span>
+      </div>
+      <div class="member-actions">
+        <button class="member-btn" data-action="advance" type="button">［デモ］1週間進める</button>
+        <button class="member-btn ghost" data-action="reset" type="button">［デモ］週をリセット</button>
+        <button class="member-btn ghost" data-action="unsubscribe" type="button">解約する（デモ）</button>
+      </div>
+    </div>
+    <div class="member-note">※ 現在はUIプロトタイプです。実際の決済・自動解放は本番の課金システム連携後に有効になります。</div>`;
+}
+
+memberCard.addEventListener('click', e => {
+  const btn = e.target.closest('[data-action]');
+  if(!btn) return;
+  const action = btn.dataset.action;
+  if(action==='subscribe') subscribe();
+  else if(action==='advance') advanceWeek();
+  else if(action==='reset') resetDemo();
+  else if(action==='unsubscribe') unsubscribe();
+});
 
 function render(){
   catNav.innerHTML = CATEGORIES.map((c,i) => `
@@ -499,28 +619,43 @@ function render(){
       <div class="lesson-list">
         ${c.lessons.map((l, idx) => {
           const id = lessonId(c.id, idx);
-          const isLive = idx < (LIVE_COUNT[c.id]||0);
           const isBm = bookmarks.has(id);
           const isDone = completed.has(id);
-          const hasBody = !!l.body;
+          const access = getAccess(l, idx);
+          const clickable = access === 'free' || access === 'live';
+          const BADGE = {
+            free:{cls:'badge-live', text:'無料公開'},
+            live:{cls:'badge-live', text:'公開中'},
+            member:{cls:'badge-soon', text:'🔒 会員限定'},
+            week:{cls:'badge-soon', text:`🔒 第${idx+1}週で解放`},
+            soon:{cls:'badge-soon', text:'準備中'},
+          }[access];
+          let note = '';
+          if(access === 'soon'){
+            note = '<div class="lesson-soon-note">🔒 本文教材は準備中です。公開までしばらくお待ちください。</div>';
+          } else if(access === 'member'){
+            note = '<div class="lesson-lock-note">月額会員になると、入会日から1週間ごとに続きの教材が解放されていきます。<br><button class="member-btn primary" data-action="subscribe" type="button">［デモ］月額会員になる</button></div>';
+          } else if(access === 'week'){
+            note = `<div class="lesson-lock-note">第${idx+1}週（あと${daysUntilUnlock(idx)}日）で解放される予定です。それまでは、上の教材から順番に進めてお待ちください。</div>`;
+          }
           return `
           <div class="lesson" data-id="${id}" data-bm="${isBm?'1':'0'}">
-            <div class="lesson-head" data-open="${hasBody ? id : ''}" data-toggle="${hasBody ? '' : id}">
+            <div class="lesson-head" data-open="${clickable ? id : ''}" data-toggle="${clickable ? '' : id}">
               <div class="lesson-no ${isDone?'done':''}">${isDone ? '✓' : String(idx+1).padStart(2,'0')}</div>
               <div class="lesson-main">
                 <div class="lesson-title">
                   ${l.t}
-                  <span class="badge ${isLive?'badge-live':'badge-soon'}">${isLive?'公開中':'準備中'}</span>
+                  <span class="badge ${BADGE.cls}">${BADGE.text}</span>
                 </div>
                 <div class="lesson-meta">目安 ${l.min}分</div>
               </div>
               <button class="lesson-star ${isBm?'on':''}" data-star="${id}" type="button" aria-label="ブックマーク">★</button>
-              <div class="lesson-chev">${hasBody ? '→' : '▾'}</div>
+              <div class="lesson-chev">${clickable ? '→' : '▾'}</div>
             </div>
             <div class="lesson-body">
               <div class="lesson-body-in">
                 ${l.d}
-                ${isLive ? '' : '<div class="lesson-soon-note">🔒 本文教材は準備中です。公開までしばらくお待ちください。</div>'}
+                ${note}
               </div>
             </div>
           </div>`;
@@ -529,17 +664,18 @@ function render(){
     </div>
   `).join('');
 
+  renderMemberCard();
   updateProgress();
   applyFilter();
 }
 
 function updateProgress(){
   const total = CATEGORIES.reduce((s,c)=>s+c.lessons.length,0);
-  const live = CATEGORIES.reduce((s,c)=>s+(LIVE_COUNT[c.id]||0),0);
-  const pct = total ? Math.round(live/total*100) : 0;
+  const written = CATEGORIES.reduce((s,c)=>s+c.lessons.filter(l=>l.body).length,0);
+  const pct = total ? Math.round(written/total*100) : 0;
   document.getElementById('progressNum').innerHTML = pct + '<span>%</span>';
   document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressCount').textContent = `${live} / ${total} 教材が公開中`;
+  document.getElementById('progressCount').textContent = `${written} / ${total} 教材が執筆済み`;
 }
 
 function applyFilter(){
@@ -571,6 +707,11 @@ catNav.addEventListener('click', e => {
 });
 
 catPanels.addEventListener('click', e => {
+  const subBtn = e.target.closest('[data-action="subscribe"]');
+  if(subBtn){
+    subscribe();
+    return;
+  }
   const star = e.target.closest('[data-star]');
   if(star){
     const id = star.dataset.star;
@@ -612,10 +753,18 @@ function renderArticle(body){
   }).join('');
 }
 
+function isAccessible(catId, idx){
+  const cat = CATEGORIES.find(c => c.id === catId);
+  const lesson = cat && cat.lessons[idx];
+  if(!lesson) return false;
+  const access = getAccess(lesson, idx);
+  return access === 'free' || access === 'live';
+}
+
 function openReader(catId, idx){
   const cat = CATEGORIES.find(c => c.id === catId);
   const lesson = cat.lessons[idx];
-  if(!lesson || !lesson.body) return;
+  if(!lesson || !isAccessible(catId, idx)) return;
   readerCat = catId; readerIdx = idx;
   const id = lessonId(catId, idx);
 
@@ -631,8 +780,8 @@ function openReader(catId, idx){
 
   const prevBtn = document.getElementById('readerPrev');
   const nextBtn = document.getElementById('readerNext');
-  const prevOk = idx > 0 && cat.lessons[idx-1].body;
-  const nextOk = idx < cat.lessons.length-1 && cat.lessons[idx+1].body;
+  const prevOk = idx > 0 && isAccessible(catId, idx-1);
+  const nextOk = idx < cat.lessons.length-1 && isAccessible(catId, idx+1);
   prevBtn.classList.toggle('disabled', !prevOk);
   nextBtn.classList.toggle('disabled', !nextOk);
 
