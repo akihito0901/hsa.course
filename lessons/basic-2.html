@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>効率化ツールの使い方｜基礎｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:var(--gc)"></span>基礎</div>
+    <h1 class="lesson-h1">効率化ツールの使い方</h1>
+    <div class="lesson-meta">基礎 2 / 5 ・ 目安 12分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>在宅ワークでは「一人で完結する作業」だけでなく、クライアントとファイルをやり取りしたり、複数の仕事を同時に管理したりする場面が増えます。ここで役立つのが、無料で使える定番の効率化ツールです。</p>
+      <h3>クラウドストレージでファイルを共有する</h3>
+      <p>Google DriveやDropboxのようなクラウドストレージを使うと、ファイルをメールに添付する必要がなくなり、リンクひとつで共有できます。パソコンが壊れてもデータが消えないという安心感も大きなメリットです。</p>
+      <ul>
+        <li>Google Drive：Googleアカウントがあればすぐ使える。容量も比較的多い</li>
+        <li>共有リンクは「閲覧のみ」「編集可」を必ず確認してから送る</li>
+        <li>納品物は専用フォルダにまとめ、リンク1本で渡せるようにしておく</li>
+      </ul>
+      <h3>スケジュールとタスクを管理する</h3>
+      <p>複数の案件を抱えるようになると、頭の中だけでの管理は限界が来ます。Googleカレンダーで締切を管理し、NotionやTrelloのようなツールで「やること」を書き出しておくと、抜け漏れがぐっと減ります。</p>
+      <h3>パスワードを安全に管理する</h3>
+      <p>仕事で使うアカウントが増えるほど、パスワードの管理は重要になります。同じパスワードを使い回さず、1PasswordやBitwardenのようなパスワード管理ツールにまとめて記録しておくのがおすすめです。</p>
+      <div class="tip"><strong>POINT</strong>ツールは「使いこなす」ことが目的ではありません。まずはGoogle Driveだけでも導入してみて、ファイルをクラウドに置く習慣をつけることから始めましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="basic-1" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="basic-1.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="basic-3.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

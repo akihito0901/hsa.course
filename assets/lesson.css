@@ -1,0 +1,131 @@
+/* ══ HSA レッスン固定ページ共通スタイル ══ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN','Hiragino Sans',sans-serif;
+  color:#1a1a2e;line-height:1.9;background:#f8f7ff;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,video,iframe{display:block;max-width:100%}
+button{font:inherit;cursor:pointer}
+
+:root{
+  --pur:#7c3aed;--pur-l:#a78bfa;--pur-d:#5b21b6;
+  --ora:#f97316;--ora-d:#ea580c;
+  --blu:#3b82f6;--teal:#06b6d4;
+  --muted:#6b7280;--line:#e5e7eb;
+  --ga:linear-gradient(135deg,#7c3aed,#3b82f6);
+  --gb:linear-gradient(135deg,#f97316,#ec4899);
+  --gc:linear-gradient(135deg,#06b6d4,#7c3aed);
+  --gd:linear-gradient(135deg,#10b981,#3b82f6);
+  --ge:linear-gradient(135deg,#ec4899,#7c3aed);
+  --gf:linear-gradient(135deg,#6366f1,#06b6d4);
+}
+
+/* ── Header ── */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #ece8e3;
+}
+.nav{
+  max-width:900px;margin:0 auto;padding:0 24px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.logo img{height:34px;width:auto}
+.nav-back{font-size:.85rem;font-weight:700;color:var(--muted);flex-shrink:0}
+.nav-back:hover{color:var(--pur)}
+
+/* ── Layout ── */
+.lesson-wrap{max-width:760px;margin:0 auto;padding:0 24px}
+
+/* ── Hero ── */
+.lesson-hero{padding:44px 0 6px}
+.lesson-cat{
+  font-size:.75rem;font-weight:800;letter-spacing:.12em;
+  color:var(--pur);margin-bottom:14px;
+  display:flex;align-items:center;gap:9px;
+}
+.cat-dot{width:11px;height:11px;border-radius:50%;background:var(--gc)}
+.lesson-h1{font-size:clamp(1.4rem,3.6vw,1.95rem);font-weight:900;line-height:1.45;margin-bottom:14px}
+.lesson-meta{
+  font-size:.82rem;color:#999;
+  padding-bottom:28px;margin-bottom:28px;
+  border-bottom:1px solid var(--line);
+}
+
+/* ── 動画エリア ── */
+.video-frame{
+  position:relative;aspect-ratio:16/9;
+  border-radius:20px;overflow:hidden;
+  background:linear-gradient(135deg,#ede9fe,#dbeafe);
+  margin-bottom:44px;
+  box-shadow:0 14px 44px rgba(124,58,237,.14);
+}
+.video-frame video,.video-frame iframe{
+  position:absolute;inset:0;width:100%;height:100%;border:none;object-fit:cover;
+}
+.video-ph{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;gap:10px;
+  align-items:center;justify-content:center;
+  color:#9f67ff;font-weight:700;font-size:.95rem;text-align:center;padding:20px;
+}
+.video-ph .ic{font-size:2.6rem;line-height:1}
+.video-ph small{color:#b7a0e8;font-size:.8rem;font-weight:600}
+
+/* ── 本文 ── */
+.article h3{font-size:1.15rem;font-weight:900;margin:38px 0 14px;color:#1a1a2e}
+.article h3:first-child{margin-top:0}
+.article p{font-size:.98rem;color:#333;margin-bottom:16px;line-height:2.05}
+.article ul{list-style:none;margin:0 0 20px}
+.article ul li{
+  position:relative;padding:9px 0 9px 24px;
+  font-size:.95rem;color:#333;line-height:1.85;
+  border-bottom:1px solid #f0edff;
+}
+.article ul li:last-child{border-bottom:none}
+.article ul li::before{
+  content:'';position:absolute;left:2px;top:19px;
+  width:6px;height:6px;border-radius:50%;background:var(--ga);
+}
+.tip{
+  margin:30px 0 8px;background:#f3f0ff;border-radius:16px;
+  padding:24px 26px;font-size:.92rem;color:#463a7a;line-height:2;
+}
+.tip strong{
+  color:var(--pur-d);display:block;margin-bottom:8px;
+  font-size:.78rem;letter-spacing:.06em;
+}
+
+/* ── 完了ボタン ── */
+.complete-btn{
+  margin-top:44px;width:100%;text-align:center;
+  background:var(--ga);color:#fff;font-weight:800;font-size:.95rem;
+  padding:17px;border-radius:999px;border:none;
+  transition:filter .2s;
+}
+.complete-btn:hover{filter:brightness(1.06)}
+.complete-btn.done{background:#ecfdf5;color:#059669}
+
+/* ── 前後ナビ ── */
+.lesson-foot-nav{display:flex;gap:14px;margin-top:16px}
+.foot-nav-btn{
+  flex:1;text-align:center;font-size:.85rem;font-weight:700;color:var(--pur);
+  padding:14px 12px;border-radius:999px;border:2px solid #ddd6fe;background:#fff;
+  transition:background .2s;
+}
+.foot-nav-btn:hover{background:#f3f0ff}
+.foot-nav-btn.disabled{opacity:.35;pointer-events:none}
+.back-to-list{
+  display:block;text-align:center;margin:22px 0 100px;
+  font-size:.85rem;color:var(--muted);font-weight:700;
+}
+.back-to-list:hover{color:var(--pur)}
+
+@media(max-width:680px){
+  .lesson-hero{padding:32px 0 4px}
+  .article p{font-size:.95rem}
+}

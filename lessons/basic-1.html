@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCの基本操作とショートカット｜基礎｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:var(--gc)"></span>基礎</div>
+    <h1 class="lesson-h1">PCの基本操作とショートカット</h1>
+    <div class="lesson-meta">基礎 1 / 5 ・ 目安 10分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>在宅ワークの多くは、パソコンの中にあるファイルやアプリを使って進んでいきます。難しい専門知識は不要ですが、「よく使う操作」を先に整理しておくと、この先の学習も仕事も驚くほどスムーズになります。今日はその土台づくりです。</p>
+      <h3>ファイルとフォルダを整理する</h3>
+      <p>まず意識したいのは「どこに何を置いたか、自分がすぐ分かる状態」を作ることです。デスクトップにファイルを置きっぱなしにしていると、後で必ず探す時間が発生します。次のようなルールを最初に決めておきましょう。</p>
+      <ul>
+        <li>案件・仕事ごとにフォルダを分ける（例：「2026_A社_バナー制作」）</li>
+        <li>ファイル名の先頭に日付を入れる（例：「20260706_提案書.docx」）</li>
+        <li>「とりあえずフォルダ」を1つだけ作り、迷ったら一旦そこに入れる</li>
+      </ul>
+      <h3>コピー・貼り付け・元に戻すを体に覚えさせる</h3>
+      <p>マウスの右クリックだけでも作業はできますが、ショートカットキーを使うと同じ作業が半分以下の時間で終わります。最初は次の5つだけで十分です。</p>
+      <ul>
+        <li>Ctrl + C／Ctrl + V：コピーと貼り付け</li>
+        <li>Ctrl + Z：ひとつ前の操作に戻す（失敗しても慌てなくてOK）</li>
+        <li>Ctrl + S：上書き保存（こまめに押す癖をつける）</li>
+        <li>Ctrl + A：すべて選択</li>
+        <li>Alt + Tab：開いているアプリの切り替え</li>
+      </ul>
+      <h3>文字入力を少し早くする</h3>
+      <p>日本語入力では、変換候補が思い通りにならずイライラすることがあります。変換前のひらがな状態で「F7」を押すとカタカナに、「F10」を押すと半角英数字に一発で変換できます。この2つを覚えるだけでも、入力のストレスがかなり減ります。</p>
+      <div class="tip"><strong>POINT</strong>今日紹介した操作を、いきなり全部覚える必要はありません。次にパソコンを開いたとき、ひとつだけ意識して使ってみてください。手が覚えるまで繰り返すのが一番の近道です。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="basic-0" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <span class="foot-nav-btn disabled">← 前の教材</span>
+    <a class="foot-nav-btn" href="basic-2.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>
