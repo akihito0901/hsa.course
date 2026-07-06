@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIによる業務効率化｜AI｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:var(--gf)"></span>AI</div>
+    <h1 class="lesson-h1">AIによる業務効率化</h1>
+    <div class="lesson-meta">AI 4 / 5 ・ 目安 11分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>AIの本当の価値は、日々の細かい作業を肩代わりしてくれることにあります。派手な使い方より、地味な時短の積み重ねが、実は一番効いてきます。この章では、明日から使えるAIの実用的な活用法を紹介します。</p>
+      <h3>調べ物・要約を任せる</h3>
+      <p>長い文章を読む時間がないとき、AIに「これを3行で要約して」と頼めば一瞬です。分からない言葉を「小学生にも分かるように説明して」と聞けば、丁寧に噛み砕いてくれます。検索して自分で情報を探すより、AIに聞いて要点だけ受け取る——この習慣だけで、毎日かなりの時間が浮きます。</p>
+      <h3>文章の下書きを作らせる</h3>
+      <p>メールの返信、SNSの投稿文、ブログの下書き——ゼロから書くのは大変ですが、AIにたたき台を作らせれば、あとは直すだけです。「取引先へのお礼メールを丁寧な言葉で書いて」と頼み、出てきた文章を自分の言葉に整える。この「たたき台→修正」の流れが、作業を劇的に速くします。</p>
+      <h3>アイデア出しの相手にする</h3>
+      <p>一人で考え込むと煮詰まりがちですが、AIは何度でも付き合ってくれる壁打ち相手になります。次のような使い方が便利です。</p>
+      <ul>
+        <li>「SNSの投稿ネタを10個出して」とネタ出しを頼む</li>
+        <li>「このタイトル案、他に5つ考えて」と選択肢を広げる</li>
+        <li>「この企画の弱点は？」と客観的な意見をもらう</li>
+      </ul>
+      <h3>自分の判断は手放さない</h3>
+      <p>AIはとても便利ですが、最終的な判断は必ず自分で行いましょう。AIの答えには間違いが混じることもありますし、そのまま使うと「どこか借り物っぽい」文章になりがちです。AIに8割やってもらい、最後の2割で自分らしさと正確さを足す——この役割分担が、AIを味方につけるコツです。</p>
+      <div class="tip"><strong>POINT</strong>まずは「今日の面倒な作業」を1つ、AIに頼んでみましょう。要約でもメール下書きでも構いません。一度その速さを体験すると、もうAIなしには戻れなくなります。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="ai-3" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="ai-3.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="ai-5.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

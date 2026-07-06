@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投稿ネタの作り方｜SNS｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:var(--ge)"></span>SNS</div>
+    <h1 class="lesson-h1">投稿ネタの作り方</h1>
+    <div class="lesson-meta">SNS 2 / 5 ・ 目安 11分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>SNSを始めて多くの人がぶつかる壁が「投稿するネタが思いつかない」問題です。でも、ネタは才能でひねり出すものではなく、仕組みで用意するものです。この章では、ネタ切れを起こさないための考え方と具体的な方法を紹介します。</p>
+      <h3>ネタは「悩みの解決」から生まれる</h3>
+      <p>一番反応が良いのは、見ている人の「悩み」や「知りたい」に応える投稿です。前の章で決めた「誰に届けるか」を思い出しましょう。その人が普段どんなことで困っているか、何を検索しそうか——それがそのままネタになります。自分の言いたいことではなく、相手の知りたいことを起点にするのがコツです。</p>
+      <h3>ネタをストックする習慣をつける</h3>
+      <p>投稿する直前に考えようとするから、ネタが出てこないのです。日常の中で気づいたことを、その場でスマホにメモしておきましょう。前の基礎編で学んだGoogleドキュメントやスマホのメモアプリに、思いついた瞬間に書き溜めておくのがおすすめです。</p>
+      <ul>
+        <li>自分が過去につまずいたこと、乗り越えた方法</li>
+        <li>よく聞かれる質問、友人に説明したこと</li>
+        <li>他の人の投稿を見て「自分ならこう言う」と思ったこと</li>
+      </ul>
+      <h3>伸びている投稿から学ぶ</h3>
+      <p>ゼロから考えるのではなく、同じジャンルで伸びている人の投稿を研究しましょう。どんなテーマが保存されているか、どんな切り口が受けているかが見えてきます。そっくり真似るのはNGですが、「型」を借りて自分の言葉で作り直すのは、上達のための立派な練習です。保存した投稿を分析するだけでも、ネタの引き出しが一気に増えます。</p>
+      <h3>1つのネタを何通りにも使う</h3>
+      <p>ネタは、毎回まったく新しいものを用意する必要はありません。同じテーマでも「初心者向け」「よくある失敗」「具体例つき」など、切り口を変えれば別の投稿になります。1つの得意テーマを、いろんな角度から繰り返し発信することで、そのジャンルの専門家として認識されていきます。</p>
+      <div class="tip"><strong>POINT</strong>ネタ帳を作って、思いついたら即メモ。「投稿するとき」ではなく「思いついたとき」に貯めておくのが、ネタ切れしない人の共通点です。まずは今日、3つメモしてみましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="sns-1" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="sns-1.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="sns-3.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

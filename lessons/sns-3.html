@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リール・ショート動画の作り方｜SNS｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:var(--ge)"></span>SNS</div>
+    <h1 class="lesson-h1">リール・ショート動画の作り方</h1>
+    <div class="lesson-meta">SNS 3 / 5 ・ 目安 16分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>今、SNSでいちばん伸びやすいのが、Instagramのリールやtiktokのような「短い縦動画（ショート動画）」です。新しい人に見つけてもらいやすく、フォロワーを一気に増やすチャンスがあります。この章では、初心者でも伸びやすいショート動画の作り方を解説します。</p>
+      <h3>なぜショート動画が伸びるのか</h3>
+      <p>ショート動画は、まだフォローしていない人にもどんどんおすすめ表示される仕組みになっています。つまり、フォロワーが少ない段階でも「バズる」可能性があるということ。写真の投稿より新規の人に届きやすいので、アカウントを育てる初期には特に力を入れる価値があります。</p>
+      <h3>最初の2秒で心をつかむ</h3>
+      <p>ショート動画で最も大事なのは、出だしの2秒です。ここで「お、なんだろう」と思わせないと、すぐにスワイプされてしまいます。冒頭に、動画の結論やいちばん気になる部分を先に見せましょう。「知らないと損する〇〇」のように、続きが気になる一言から始めるのが定番です。</p>
+      <h3>最後まで見てもらう工夫</h3>
+      <p>前の章で触れたとおり、SNSは「最後まで見られた動画」を高く評価します。飽きさせないために、次のような工夫を入れましょう。</p>
+      <ul>
+        <li>1本を短く（15〜30秒程度）まとめ、テンポよく</li>
+        <li>画面に文字（テロップ）を入れ、音がなくても分かるようにする</li>
+        <li>場面をこまめに切り替えて、単調にしない</li>
+      </ul>
+      <h3>編集は難しく考えない</h3>
+      <p>凝った編集は必要ありません。スマホの無料アプリ（CapCutなど）を使えば、テロップ入れや場面のカットは指先だけで完結します。最初は完璧を目指さず、まず1本作って投稿してみることが大切です。数をこなすうちに、自分なりのテンポやスタイルが見つかっていきます。</p>
+      <h3>同じ動画を両方に投稿する</h3>
+      <p>作ったショート動画は、TikTokとInstagramのリール、両方に投稿しましょう。1本の労力で2つの入り口を作れます。どちらで伸びるかは事前には分からないので、まずは両方に出して反応を見るのが賢いやり方です。</p>
+      <div class="tip"><strong>POINT</strong>ショート動画は「質より量と改善」。最初の数本はうまくいかなくて当たり前です。伸びた動画・伸びなかった動画を見比べて、少しずつ型を掴んでいきましょう。まずは1本、今日撮ってみることから。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="sns-2" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="sns-2.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="sns-4.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

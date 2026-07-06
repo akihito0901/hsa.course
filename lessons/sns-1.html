@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram・TikTokの基本設計｜SNS｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:var(--ge)"></span>SNS</div>
+    <h1 class="lesson-h1">Instagram・TikTokの基本設計</h1>
+    <div class="lesson-meta">SNS 1 / 5 ・ 目安 14分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>SNS運用と聞くと「毎日投稿して大変そう」というイメージがあるかもしれません。でも、始める前の「設計」さえしっかりしておけば、迷わず・ブレずに続けられます。この章では、これから運用していくInstagramとTikTokの土台となる考え方を整理します。</p>
+      <h3>InstagramとTikTok、両方やる理由</h3>
+      <p>今からSNSを伸ばすなら、写真中心のInstagramと、短い動画中心のTikTokの両方を押さえておくのが強力です。とはいえ、それぞれ別物を作る必要はありません。TikTok向けに作ったショート動画を、Instagramのリールにも投稿する——というように、1つの動画を両方で使い回すのが効率的です。まずは「動画を1本作ったら、両方に出す」を基本にしましょう。</p>
+      <h3>メタ（Meta）の考え方を理解する</h3>
+      <p>Instagramを運営しているのは「Meta」という会社です。彼らのSNSは、共通して「ユーザーを長く楽しませてくれる投稿」を評価し、より多くの人におすすめ表示する仕組みになっています。つまり、伸びる投稿の条件はシンプルで「最後まで見られる」「保存される」「また見たくなる」こと。フォロワー数を追いかける前に、まず"見た人が満足する1本"を作ることが、結果的にいちばんの近道です。</p>
+      <h3>誰に・何を届けるかを決める</h3>
+      <p>発信を始める前に、次の2つだけは決めておきましょう。ここが曖昧だと、投稿するたびに内容がブレて、フォロワーも増えません。</p>
+      <ul>
+        <li>誰に届けるか（例：在宅ワークを始めたい30代の主婦）</li>
+        <li>何のアカウントか（例：スキマ時間で学べる在宅ワーク情報）</li>
+      </ul>
+      <h3>まずプロフィールを整える</h3>
+      <p>投稿を頑張る前に、実はプロフィールがいちばん大事です。おすすめ欄などであなたの投稿を見た人は、必ずプロフィールを確認してから「フォローするか」を決めます。ここが整っていないと、せっかくの投稿もフォローにつながりません。プロフィールの具体的な作り込み方は、後の「プロフィール設計」の章でくわしく解説します。</p>
+      <div class="tip"><strong>POINT</strong>SNSは「投稿数」より「方向性」が命です。走り出す前に、誰に何を届けるアカウントなのかを一言で言えるようにしておきましょう。ここが決まれば、投稿ネタ選びもぐっと楽になります。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="sns-0" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <span class="foot-nav-btn disabled">← 前の教材</span>
+    <a class="foot-nav-btn" href="sns-2.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

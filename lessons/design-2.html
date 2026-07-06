@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>バナーデザインの基礎｜デザイン｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:var(--gb)"></span>デザイン</div>
+    <h1 class="lesson-h1">バナーデザインの基礎</h1>
+    <div class="lesson-meta">デザイン 2 / 5 ・ 目安 12分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>バナーとは、広告やSNSで使われる「画像＋短い言葉」の小さな看板のようなものです。案件としても需要が高く、デザインの練習にもぴったり。この章では、見た人の目に留まり、内容がパッと伝わるバナーを作るための基本原則を学びます。</p>
+      <h3>いちばん伝えたいことを1つに絞る</h3>
+      <p>初心者がやりがちな失敗は、情報を詰め込みすぎることです。あれもこれも入れると、結局どれも印象に残りません。バナーは一瞬で見られるもの。「このバナーで何を一番伝えたいか」をまず1つに絞り、それを大きく目立たせましょう。残りの情報は小さく添えるだけで十分です。</p>
+      <h3>文字の優先順位をつける</h3>
+      <p>伝えたい言葉には、必ず「強弱」をつけます。すべて同じ大きさだと、どこを読めばいいのか分かりません。次の3段階を意識するだけで、ぐっと見やすくなります。</p>
+      <ul>
+        <li>主役：一番伝えたいキャッチコピー（大きく・太く）</li>
+        <li>脇役：それを補足する説明（中くらい）</li>
+        <li>案内：日付やボタンの文字など（小さく）</li>
+      </ul>
+      <h3>余白を怖がらない</h3>
+      <p>デザインが「素人っぽく」見える最大の原因は、余白の不足です。要素をぎゅうぎゅうに詰めると窮屈で読みにくくなります。文字や画像のまわりに、意識して空白を作りましょう。余白は「何もない無駄なスペース」ではなく、主役を引き立てるための大事なデザインです。</p>
+      <h3>色は3色までに抑える</h3>
+      <p>色をたくさん使うと、まとまりがなく安っぽく見えてしまいます。「メインの色・文字の色・アクセントの色」の3色くらいに絞ると、それだけで洗練された印象になります。色の選び方は後の章でくわしく扱いますが、まずは「使いすぎない」ことを覚えておきましょう。</p>
+      <div class="tip"><strong>POINT</strong>良いバナーの見分け方は「3秒見て、何の広告か分かるか」。作ったら一度スマホで小さく表示して、パッと見て伝わるかを確認してみましょう。伝わらなければ、情報を減らすサインです。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="design-1" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="design-1.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="design-3.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

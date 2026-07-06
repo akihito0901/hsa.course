@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEOライティングの基礎｜ライティング｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:var(--ga)"></span>ライティング</div>
+    <h1 class="lesson-h1">SEOライティングの基礎</h1>
+    <div class="lesson-meta">ライティング 2 / 5 ・ 目安 14分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>せっかく書いた記事も、読まれなければ意味がありません。GoogleやYahoo!で検索した人に自分の記事を見つけてもらう工夫——それがSEOライティングです。難しそうに聞こえますが、基本はとてもシンプル。この章でその考え方を押さえましょう。</p>
+      <h3>SEOとは「検索から見つけてもらう工夫」</h3>
+      <p>SEOとは、検索結果の上の方に自分の記事を表示させるための取り組みのことです。上位に表示されれば、広告費をかけなくても、興味のある人が自然に記事へ訪れてくれます。この「検索から人が来る流れ」を作れることが、Webライティングの大きな価値です。</p>
+      <h3>まず「検索キーワード」を決める</h3>
+      <p>SEOの出発点は、「読者がどんな言葉で検索するか」を考えることです。これをキーワードと呼びます。たとえば在宅ワークの記事なら「在宅ワーク 初心者 始め方」のように、読者が打ち込みそうな言葉を想像します。この記事は誰のどんな検索に答えるのか——それを最初に決めるのが何より大切です。</p>
+      <h3>キーワードを自然に入れる</h3>
+      <p>決めたキーワードは、次の場所に自然に入れておきましょう。ただし、不自然に詰め込むのは逆効果。あくまで読みやすさが最優先です。</p>
+      <ul>
+        <li>タイトル（いちばん重要）</li>
+        <li>見出し（h2・h3）のいくつか</li>
+        <li>本文の冒頭あたり</li>
+      </ul>
+      <h3>結局は「読者の役に立つ記事」が勝つ</h3>
+      <p>昔はテクニックで順位を上げられた時代もありましたが、今のGoogleはとても賢くなっています。小手先の工夫より、「検索した人の悩みをちゃんと解決しているか」が何よりも重視されます。読者が知りたいことに、過不足なく・分かりやすく答える。この当たり前を丁寧にやることが、結局いちばん強いSEO対策です。</p>
+      <div class="tip"><strong>POINT</strong>キーワードを決めたら、実際にそれで検索して、上位の記事を読んでみましょう。「どんな情報が求められているか」が分かり、自分の記事に何を書くべきかが見えてきます。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="writing-1" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="writing-1.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="writing-3.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

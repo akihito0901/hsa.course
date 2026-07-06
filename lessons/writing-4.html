@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>取材・インタビューのコツ｜ライティング｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:var(--ga)"></span>ライティング</div>
+    <h1 class="lesson-h1">取材・インタビューのコツ</h1>
+    <div class="lesson-meta">ライティング 4 / 5 ・ 目安 9分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>ライティングの仕事の中には、人に話を聞いて記事にする「取材・インタビュー」があります。自分の中に無い情報を引き出して書けるようになると、書けるテーマが一気に広がります。この章では、話を上手に引き出すためのコツを紹介します。</p>
+      <h3>準備が9割</h3>
+      <p>良いインタビューは、始まる前に決まっています。相手のことを事前に調べ、「何を聞きたいか」を質問リストにしておきましょう。準備せずに臨むと、当たり障りのない話で終わってしまいます。相手について調べた上で「あなただから聞きたい」という質問を用意することが、深い話を引き出す第一歩です。</p>
+      <h3>聞き役に徹する</h3>
+      <p>インタビューの主役は相手です。自分が話しすぎないよう注意しましょう。相手が話しやすいように、うなずいたり相づちを打ったりして、「もっと話したくなる空気」を作るのが聞き手の役割です。沈黙を怖がって次々質問を重ねるより、少し待つ方が、相手が本音を語り出すこともあります。</p>
+      <h3>具体的なエピソードを引き出す</h3>
+      <p>記事が面白くなるかどうかは、具体的なエピソードがあるかで決まります。「大変でしたか？」と聞くより、こう聞きましょう。</p>
+      <ul>
+        <li>「一番大変だったのは、具体的にどんな場面でしたか？」</li>
+        <li>「そのとき、どう感じましたか？」</li>
+        <li>「たとえば、どんなことがありましたか？」</li>
+      </ul>
+      <h3>録音と記録を忘れない</h3>
+      <p>話に集中していると、細かい言葉は必ず忘れます。相手の許可を取ったうえで、スマホの録音アプリで記録しておきましょう。後から聞き返せる安心感があると、メモを取ることより「聞くこと」に集中できます。相手の言葉のニュアンスをそのまま記事に活かせるのも、録音の大きなメリットです。</p>
+      <div class="tip"><strong>POINT</strong>良い質問は「はい・いいえ」で終わらない質問です。「どんな」「なぜ」「たとえば」を意識するだけで、相手の話がぐっと深く、具体的になります。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="writing-3" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="writing-3.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="writing-5.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セールスライティングの型｜ライティング｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:var(--ga)"></span>ライティング</div>
+    <h1 class="lesson-h1">セールスライティングの型</h1>
+    <div class="lesson-meta">ライティング 3 / 5 ・ 目安 15分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>セールスライティングとは、読んだ人に「行動してもらう」ための文章術です。商品を買ってもらう、申し込んでもらう、登録してもらう——こうした一押しができる文章は、単価も高く、どんな仕事でも役立ちます。この章では、人の心が動く文章の"型"を学びます。</p>
+      <h3>人は「感情」で動き「理屈」で納得する</h3>
+      <p>セールスの文章で大事なのは、いきなり「買ってください」と言わないことです。人は、まず「ほしい」という感情が動いてから、その気持ちを正当化する理屈を探します。だから、機能やスペックを並べる前に、「それがあると、あなたの生活がどう良くなるか」という未来を見せることが先決です。</p>
+      <h3>ベネフィットを語る</h3>
+      <p>商品の「特徴」ではなく、それによって読者が得られる「良い変化（ベネフィット）」を語りましょう。この違いを意識するだけで、文章の刺さり方が変わります。</p>
+      <ul>
+        <li>特徴：「この講座は動画100本付き」</li>
+        <li>ベネフィット：「スキマ時間に少しずつ、確実にスキルが身につく」</li>
+      </ul>
+      <h3>反応を得やすい文章の流れ</h3>
+      <p>セールス文にも、心が動きやすい定番の順番があります。前のSNSの章やLPの章で出てきた流れと、根っこは同じです。</p>
+      <ul>
+        <li>問題提起：「こんなことで困っていませんか？」</li>
+        <li>共感：「その気持ち、よく分かります」</li>
+        <li>解決策：「実はこうすれば解決できます」</li>
+        <li>証拠：体験談や実績で裏づける</li>
+        <li>行動:「まずはここから始めましょう」と背中を押す</li>
+      </ul>
+      <h3>不安を先に取り除く</h3>
+      <p>人が行動をためらうのは、たいてい「不安」があるからです。「初心者でも大丈夫かな」「失敗したらどうしよう」——こうした心の声を、文章の中で先回りして解消してあげましょう。よくある質問に答えたり、返金保証を伝えたりするのも、この不安取りの一種です。</p>
+      <div class="tip"><strong>POINT</strong>セールスライティングは「売り込み」ではなく「背中を押してあげる」こと。読者の悩みに本気で寄り添えば、押し売り感なく自然と行動につながります。まずは自分が心を動かされた文章を集めて、分析してみましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="writing-2" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="writing-2.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="writing-4.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

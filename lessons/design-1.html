@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvaの基本操作｜デザイン｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:var(--gb)"></span>デザイン</div>
+    <h1 class="lesson-h1">Canvaの基本操作</h1>
+    <div class="lesson-meta">デザイン 1 / 5 ・ 目安 13分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>デザインと聞くと「専門的なソフトが必要で難しそう」と感じるかもしれません。でも今は、Canva（キャンバ）という無料ツールを使えば、初心者でもプロっぽいデザインが作れます。この章では、これから何度も使うことになるCanvaの基本を、一通り押さえていきましょう。</p>
+      <h3>Canvaとは何か</h3>
+      <p>Canvaは、ブラウザやスマホアプリで使えるデザインツールです。あらかじめプロが作った「テンプレート」が大量に用意されていて、そこに自分の文字や写真を入れ替えるだけで、SNS投稿・バナー・チラシ・プレゼン資料などが作れます。ゼロから作る必要がないので、デザインが初めての人でも形になるのが最大の魅力です。無料プランでも十分に実用的で、まずはアカウントを作るところから始めましょう。</p>
+      <h3>テンプレートから作り始める</h3>
+      <p>新しくデザインを作るときは、白紙からではなく「テンプレート検索」から始めるのがコツです。「Instagram投稿」「バナー」など作りたいものを検索し、気に入ったデザインを選んで、文字と写真を差し替えていきます。</p>
+      <ul>
+        <li>作りたいサイズ（Instagram、A4、バナーなど）をまず選ぶ</li>
+        <li>近い雰囲気のテンプレートを選び、丸ごと土台にする</li>
+        <li>文字をクリックして自分の言葉に打ち替える</li>
+        <li>写真はドラッグ&amp;ドロップで自分の画像に入れ替える</li>
+      </ul>
+      <h3>覚えておきたい基本操作</h3>
+      <p>最初のうちは、次の操作さえ分かれば十分に作れます。触りながら覚えていきましょう。</p>
+      <ul>
+        <li>素材：左メニューから図形・イラスト・アイコンを追加</li>
+        <li>テキスト：文字を追加し、フォントや大きさ・色を変更</li>
+        <li>アップロード：自分の写真やロゴを読み込んで使う</li>
+        <li>配置：要素を選んで、揃える・重ねる・グループ化する</li>
+      </ul>
+      <h3>書き出して使う</h3>
+      <p>完成したら、右上の「共有」→「ダウンロード」から画像やPDFとして書き出せます。SNS用ならPNG、印刷用ならPDFを選ぶのが基本です。作ったデザインはCanva内に自動保存されるので、後から何度でも修正できます。まずは1枚、自己紹介の画像でも作ってみると一気に慣れますよ。</p>
+      <div class="tip"><strong>POINT</strong>Canvaは「習うより慣れろ」のツールです。完璧を目指さず、テンプレートをどんどん触って、気に入ったデザインを真似することから始めましょう。手を動かした分だけ上達します。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="design-0" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <span class="foot-nav-btn disabled">← 前の教材</span>
+    <a class="foot-nav-btn" href="design-2.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

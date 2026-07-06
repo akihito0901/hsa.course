@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>読まれる文章のリライト術｜ライティング｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:var(--ga)"></span>ライティング</div>
+    <h1 class="lesson-h1">読まれる文章のリライト術</h1>
+    <div class="lesson-meta">ライティング 5 / 5 ・ 目安 10分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>文章は、一度書いて終わりではありません。むしろ、書いたあとの「見直し（リライト）」で質が決まります。プロほど、書くことより直すことに時間をかけます。この章では、自分の文章を「もっと伝わる」形に磨き直すコツを紹介します。</p>
+      <h3>書いた直後は直さない</h3>
+      <p>書き終えた直後は、頭が熱くなっていて客観的に読めません。可能なら一晩、少なくとも数十分は時間を空けてから読み返しましょう。「他人が書いた文章」を読むつもりで見直すと、不自然な部分や分かりにくい箇所に気づきやすくなります。</p>
+      <h3>まず「削る」ことを考える</h3>
+      <p>文章がうまくなる一番の近道は、足すことより「削ること」です。なくても意味が通じる言葉は、思い切って消しましょう。特に次のような表現は、削るだけで文章が締まります。</p>
+      <ul>
+        <li>「〜という」「〜のような」などのぼかし言葉</li>
+        <li>「とても」「非常に」などの過剰な強調</li>
+        <li>同じ意味の繰り返し、回りくどい前置き</li>
+      </ul>
+      <h3>一文を短くする</h3>
+      <p>読みにくい文章の多くは、一文が長すぎます。一つの文に情報を詰め込みすぎると、読者は途中で迷子になります。「、」でつなげて長くなった文は、思い切って「。」で区切りましょう。一文一意——ひとつの文には、ひとつのことだけ。これだけで、驚くほど読みやすくなります。</p>
+      <h3>声に出して読んでみる</h3>
+      <p>仕上げに、文章を声に出して読んでみましょう。息継ぎに困るところ、つっかえるところは、読者もつまずく場所です。耳で聞いて自然に流れる文章は、目で読んでもスラスラ読めます。地味ですが、これがプロも実践する最も効果的な見直し法です。</p>
+      <div class="tip"><strong>POINT</strong>リライトのコツは「読者になりきる」こと。書いた自分ではなく、初めて読む人の目線で「これで伝わるか？」を問い直しましょう。削って・短くして・声に出す。この3つだけで文章は見違えます。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="writing-4" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="writing-4.html">← 前の教材</a>
+    <span class="foot-nav-btn disabled">次の教材 →</span>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>
