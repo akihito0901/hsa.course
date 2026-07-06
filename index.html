@@ -291,7 +291,7 @@ header{
 <div class="wrap page-head">
   <p class="page-eyebrow">MATERIALS</p>
   <h1 class="page-title">教材一覧</h1>
-  <p class="page-lead">各コースの第1章はどなたでも無料で読めます。月額会員になると、入会日から1週間ごとに続きの教材が解放されていきます（すべて解放されるまで、目安で約1年のカリキュラムです）。</p>
+  <p class="page-lead">「基礎」コースはどなたでもすべて無料で読めます。デザイン・SNSなどのスキル系コースは第1章が無料で、月額会員になると入会日から1週間ごとに続きの教材が解放されていきます（すべて解放されるまで、目安で約1年のカリキュラムです）。</p>
 
   <div class="member-card" id="memberCard"></div>
 
@@ -545,9 +545,11 @@ function resetDemo(){
   render();
 }
 
-// idx===0 は誰でも無料。idx>=1 は「入会日 + idx週」で解放
-function getAccess(lesson, idx){
+// 基礎カテゴリは常に全開放（無料）。
+// スキル系カテゴリは idx===0 が無料、idx>=1 は「入会日 + idx週」で解放
+function getAccess(catId, lesson, idx){
   if(!lesson.body) return 'soon';
+  if(catId === 'basic') return 'free';
   if(idx === 0) return 'free';
   if(!subscribed) return 'member';
   return elapsedWeeks() >= idx ? 'live' : 'week';
@@ -562,7 +564,7 @@ function renderMemberCard(){
       <div class="member-row">
         <div class="member-status">
           <span class="member-pill free">無料ユーザー</span>
-          <span class="member-detail">各コースの<strong>第1章は無料</strong>で読めます。月額会員になると、入会日から毎週続きが解放されます。</span>
+          <span class="member-detail"><strong>基礎コースはすべて無料</strong>、スキル系コースは<strong>第1章まで無料</strong>で読めます。月額会員になると、入会日から毎週続きが解放されます。</span>
         </div>
         <div class="member-actions">
           <button class="member-btn primary" data-action="subscribe" type="button">［デモ］月額会員になる</button>
@@ -621,7 +623,7 @@ function render(){
           const id = lessonId(c.id, idx);
           const isBm = bookmarks.has(id);
           const isDone = completed.has(id);
-          const access = getAccess(l, idx);
+          const access = getAccess(c.id, l, idx);
           const clickable = access === 'free' || access === 'live';
           const BADGE = {
             free:{cls:'badge-live', text:'無料公開'},
@@ -757,7 +759,7 @@ function isAccessible(catId, idx){
   const cat = CATEGORIES.find(c => c.id === catId);
   const lesson = cat && cat.lessons[idx];
   if(!lesson) return false;
-  const access = getAccess(lesson, idx);
+  const access = getAccess(catId, lesson, idx);
   return access === 'free' || access === 'live';
 }
 
