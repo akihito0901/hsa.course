@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テンプレートから作ってみよう｜画像編集｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#f97316,#ec4899)"></span>画像編集</div>
+    <h1 class="lesson-h1">テンプレートから作ってみよう</h1>
+    <div class="lesson-meta">画像編集 4 / 10 ・ 目安 10分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>Canvaの最大の強みが「テンプレート」です。プロが作ったデザインの型に、自分の文字や写真を入れ替えるだけで、あっという間にそれっぽい作品ができます。白紙から作るより、断然かんたんで早いです。</p>
+      <h3>テンプレートを検索する</h3>
+      <p>編集画面の左メニューにある「テンプレート」から、作りたいものを検索します。「セール バナー」「カフェ Instagram」のように、目的や雰囲気の言葉で探すと、たくさんの候補が出てきます。</p>
+      <h3>気に入った1枚を土台にする</h3>
+      <p>ピンときたテンプレートをクリックすると、そのまま作業スペースに反映されます。あとは、次のステップで文字や写真を自分のものに差し替えていくだけです。</p>
+      <ul>
+        <li>まず「近い雰囲気」のテンプレートを選ぶ（完璧でなくてOK）</li>
+        <li>色違い・レイアウト違いも用意されていることが多い</li>
+        <li>複数ページのテンプレートもある（SNSの連続投稿などに便利）</li>
+      </ul>
+      <h3>真似ることは悪くない</h3>
+      <p>「テンプレートを使うのはズルでは？」と思う必要はまったくありません。プロもテンプレートを土台にします。良いデザインの型を借りて、自分の内容を乗せる——これが上達の一番の近道です。</p>
+      <div class="tip"><strong>POINT</strong>まずは1つ、自己紹介の画像でもいいので、テンプレートを選んで完成させてみましょう。「作り切る」体験が、自信と上達につながります。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="image-3" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="image-3.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="image-5.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

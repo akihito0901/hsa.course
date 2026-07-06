@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIを使った記事作成の実践（下書き→リライト）｜ライティング｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#7c3aed,#3b82f6)"></span>ライティング</div>
+    <h1 class="lesson-h1">AIを使った記事作成の実践（下書き→リライト）</h1>
+    <div class="lesson-meta">ライティング 8 / 10 ・ 目安 12分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>ここまで学んだことを、AIと組み合わせて実践します。今の時代、記事はゼロから手書きするより「AIで下書き→自分でリライト」の流れが圧倒的に速く、質も安定します。プロも使うこのやり方を身につけましょう。</p>
+      <h3>AIに下書きを作らせる</h3>
+      <p>まず、決めたキーワードと構成をAIに伝えて、下書きを作ってもらいます。「〇〇というキーワードで、この構成に沿って記事を書いて。読者は初心者、やさしい言葉で」と頼めば、たたき台が一気にできます。</p>
+      <h3>ここからが本番：リライト</h3>
+      <p>AIの下書きは、そのままでは使えません。「どこか無難で、誰が書いても同じ」印象だからです。ここに、あなたの価値を足していきます。</p>
+      <ul>
+        <li>自分の体験や具体例を足す（AIには書けない部分）</li>
+        <li>一文を短く、読みやすく整える</li>
+        <li>事実や数字は、必ず自分で確認する</li>
+      </ul>
+      <h3>AIは8割、自分は2割</h3>
+      <p>AIに8割の作業をやってもらい、最後の2割で自分らしさと正確さを足す——この分担が、速さと質を両立させるコツです。特に「自分の体験」は、AIには絶対に書けないあなただけの武器。そこを厚くすれば、AI時代でも読まれる記事になります。</p>
+      <div class="tip"><strong>POINT</strong>AIが書いた文章をそのまま納品するのは厳禁です。必ず自分の目と手を通すこと。事実確認と体験の追加、この2つがあなたの信頼を守ります。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="writing-7" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="writing-7.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="writing-9.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

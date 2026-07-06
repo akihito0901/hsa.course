@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>デザインを整える（配色・余白）｜HP・LP制作｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)"></span>HP・LP制作</div>
+    <h1 class="lesson-h1">デザインを整える（配色・余白）</h1>
+    <div class="lesson-meta">HP・LP制作 7 / 10 ・ 目安 9分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>中身が入ったら、次は見た目を整える仕上げの段階です。画像編集コースで学んだ「配色」と、もう一つ大事な「余白」を意識するだけで、素人っぽさが消えて、ぐっとプロっぽくなります。</p>
+      <h3>色は絞る</h3>
+      <p>ページ全体で使う色は、画像編集で学んだ「3色ルール」を思い出しましょう。ベースの色・メインの色・アクセントの色。色を絞るだけで、統一感のある洗練された印象になります。ボタンの色は、アクセントカラーで目立たせます。</p>
+      <h3>余白を怖がらない</h3>
+      <p>デザインが「窮屈」に見える最大の原因は、余白の不足です。要素をぎゅうぎゅうに詰めず、文字や画像のまわりにゆったりと空白をとりましょう。余白は「無駄なスペース」ではなく、内容を引き立てる大事なデザインです。</p>
+      <h3>そろえる・繰り返す</h3>
+      <p>見た目を整える簡単なコツが「そろえる」と「繰り返す」です。文字の位置を左端でそろえる、同じ種類のブロックは同じ見た目にする——これだけで、まとまりのある美しいページになります。</p>
+      <div class="tip"><strong>POINT</strong>デザインに迷ったら「引き算」を意識しましょう。飾りを足すより、要素を減らして余白を増やす方が、たいてい洗練されて見えます。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="web-6" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="web-6.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="web-8.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

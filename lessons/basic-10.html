@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在宅ワークの環境づくり（スペース・早起き・集中）｜基礎｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#06b6d4,#7c3aed)"></span>基礎</div>
+    <h1 class="lesson-h1">在宅ワークの環境づくり（スペース・早起き・集中）</h1>
+    <div class="lesson-meta">基礎 10 / 11 ・ 目安 11分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>在宅ワークは「いつでもどこでも働ける」自由さがある一方、環境やリズムを自分で決める必要があります。ここを最初に整えておくと、無理なく続けられるようになります。</p>
+      <h3>作業スペースをつくる</h3>
+      <p>専用の部屋がなくても大丈夫です。ダイニングテーブルの一角でも構わないので、「ここに座ったら仕事モード」という場所を決めましょう。座る場所が定まると、脳が自然と切り替わります。ベッドやソファでの作業は集中しづらいので避けるのがおすすめです。</p>
+      <h3>朝の30分がいちばん効く</h3>
+      <p>家事や育児と両立するなら、「朝の30分」を使うのが圧倒的におすすめです。家族がまだ寝ている早朝は、邪魔が入らず、頭も一日でいちばんクリアな時間帯。同じ30分でも、疲れた夜とは進む量も質もまるで違います。夜ふかしして頑張るより、30分早く寝て30分早く起きる方が、結果的にずっと前に進めます。</p>
+      <h3>コツコツ小さく進める</h3>
+      <p>「今日はまとめて3時間やるぞ」と意気込むと、かえって腰が重くなります。大切なのは、小さく区切って進めること。「1本の記事」ではなく「見出しを1つ書く」まで、とゴールを小さくしましょう。ゼロの日を作らず、毎日ほんの少しでも触ることが、いちばん遠くまで行く近道です。</p>
+      <div class="tip"><strong>POINT</strong>まずは「明日、いつもより30分早く起きてみる」——それだけで十分です。朝の静かな時間の気持ちよさを、一度体験してみてください。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="basic-9" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="basic-9.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="basic-11.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

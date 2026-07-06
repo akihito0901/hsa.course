@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>素材・イラスト・アイコンを使おう｜画像編集｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#f97316,#ec4899)"></span>画像編集</div>
+    <h1 class="lesson-h1">素材・イラスト・アイコンを使おう</h1>
+    <div class="lesson-meta">画像編集 7 / 10 ・ 目安 8分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>Canvaには、写真だけでなく、イラストやアイコン、図形といった「素材」も豊富に用意されています。これらを上手に使うと、デザインが一段とプロっぽく、分かりやすくなります。</p>
+      <h3>素材の探し方</h3>
+      <p>左メニューの「素材」から、キーワードで検索します。「矢印」「チェックマーク」「吹き出し」など、欲しいパーツを言葉で探せば、すぐに見つかります。クリックするだけでデザインに追加されます。</p>
+      <h3>よく使う素材</h3>
+      <ul>
+        <li>図形（四角・丸）：文字の背景や区切りに使う</li>
+        <li>アイコン：内容を一目で伝える小さな絵</li>
+        <li>線・矢印：視線を誘導したいときに</li>
+      </ul>
+      <h3>使いすぎに注意</h3>
+      <p>素材は便利ですが、あれこれ詰め込むと、かえってごちゃごちゃします。「これは本当に必要か？」と考えて、必要なものだけを使いましょう。シンプルさが、見やすいデザインの基本です。</p>
+      <div class="tip"><strong>POINT</strong>素材選びに迷ったら、テンプレートで使われている素材を参考にしましょう。プロがどんなパーツをどう配置しているか観察するのが、上達のヒントになります。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="image-6" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="image-6.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="image-8.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

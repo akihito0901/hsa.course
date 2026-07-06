@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Googleドライブでファイルを管理する｜基礎｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#06b6d4,#7c3aed)"></span>基礎</div>
+    <h1 class="lesson-h1">Googleドライブでファイルを管理する</h1>
+    <div class="lesson-meta">基礎 7 / 11 ・ 目安 9分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>ファイルの保存先は、パソコン本体だけでなく「Googleドライブ」を使うのがおすすめです。インターネット上（クラウド）に保存できるので、パソコンが壊れてもデータが消えず、他の人ともかんたんに共有できます。</p>
+      <h3>Googleドライブとは</h3>
+      <p>Googleドライブは、無料で使えるクラウドの保管庫です。前の章で作ったGoogleアカウントがあれば、すぐに使えます。似たサービスにDropboxもありますが、まずは1つに絞った方が迷わないので、Googleドライブから始めましょう。</p>
+      <h3>クラウドに置くメリット</h3>
+      <ul>
+        <li>パソコンが壊れても、データはネット上に残っている</li>
+        <li>スマホからも同じファイルを見られる</li>
+        <li>リンクを送るだけで、相手にファイルを渡せる</li>
+      </ul>
+      <h3>共有リンクの注意点</h3>
+      <p>ファイルを他の人に渡すときは、リンクを作って送ります。このとき「閲覧のみ（見るだけ）」か「編集可（書き換えOK）」かを選べるので、目的に合わせて設定しましょう。納品物などは、案件ごとにフォルダを分けて、リンク1本で渡せるようにしておくとスマートです。</p>
+      <div class="tip"><strong>POINT</strong>まずはGoogleドライブのアプリをスマホにも入れておきましょう。次の章で学ぶ「スマホ連動」の準備になります。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="basic-6" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="basic-6.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="basic-8.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

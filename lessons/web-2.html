@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成果の出るLPの構成（共感→解決→証拠→行動）｜HP・LP制作｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)"></span>HP・LP制作</div>
+    <h1 class="lesson-h1">成果の出るLPの構成（共感→解決→証拠→行動）</h1>
+    <div class="lesson-meta">HP・LP制作 2 / 10 ・ 目安 12分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>LPは、ただ綺麗なだけでは成果が出ません。「読んだ人が思わず申し込みたくなる」流れがあります。ここでは、多くの成果を出しているLPに共通する「型」を学びましょう。この型を知れば、何を書けばいいか迷わなくなります。</p>
+      <h3>人の気持ちが動く順番</h3>
+      <p>成果の出るLPは、人の気持ちが自然に動く順番で組み立てられています。次の流れが基本形です。</p>
+      <ul>
+        <li>ファーストビュー：一番上で「これは何か・誰のためか」を一瞬で伝える</li>
+        <li>共感：「こんなことで悩んでいませんか？」と読み手に寄り添う</li>
+        <li>解決：その悩みをこの商品がどう解決するかを見せる</li>
+        <li>証拠：お客様の声・実績・ビフォーアフターで信頼してもらう</li>
+        <li>行動：申し込みボタンへ。迷わせないよう明確に</li>
+      </ul>
+      <h3>拾い読みでも伝わるように</h3>
+      <p>訪れた人は、じっくり全部は読みません。多くはスクロールしながら、見出しと画像だけを拾い読みします。だから、見出しだけを追っても話の流れが伝わるように作るのが大切です。</p>
+      <h3>ボタンは繰り返し置く</h3>
+      <p>「申し込む」ボタンは、最後に1つだけ、では機会損失です。読み手の気持ちが高まるポイントごとに、何度か繰り返し設置しましょう。ボタンの言葉も「送信」より「無料で相談してみる」のように、押した先が分かる具体的な表現にします。</p>
+      <div class="tip"><strong>POINT</strong>LP作りに迷ったら、自分が「思わず申し込んでしまった」ページを思い出し、その構成を分解してみましょう。良いLPを観察して真似ることが、上達の近道です。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="web-1" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="web-1.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="web-3.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

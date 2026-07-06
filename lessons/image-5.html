@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文字（テキスト）を編集しよう｜画像編集｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#f97316,#ec4899)"></span>画像編集</div>
+    <h1 class="lesson-h1">文字（テキスト）を編集しよう</h1>
+    <div class="lesson-meta">画像編集 5 / 10 ・ 目安 9分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>デザインの印象を大きく左右するのが「文字」です。テンプレートの文字を自分の言葉に打ち替えたり、大きさや色を変えたり——ここが編集の中心作業になります。基本を押さえましょう。</p>
+      <h3>文字を打ち替える</h3>
+      <p>テンプレートの文字をダブルクリックすると、打ち替えられる状態になります。あとは自分の伝えたい言葉に書き換えるだけ。まずはこれだけで、自分だけのデザインになります。</p>
+      <h3>大きさ・色・フォントを変える</h3>
+      <p>文字を選ぶと、上部に設定メニューが出てきます。ここで見た目を調整できます。</p>
+      <ul>
+        <li>大きさ：数字を変える、または四隅をドラッグ</li>
+        <li>色：カラーパレットから選ぶ</li>
+        <li>フォント（書体）：一覧から好きなものを選ぶ</li>
+      </ul>
+      <h3>文字は「強弱」が大事</h3>
+      <p>すべての文字を同じ大きさにすると、どこを読めばいいか分かりません。「一番伝えたい言葉は大きく」「補足は小さく」とメリハリをつけると、ぐっと見やすくなります。この考え方は、後の「配色とフォント」の章でさらにくわしく学びます。</p>
+      <div class="tip"><strong>POINT</strong>文字を変えるだけでも立派な編集です。まずはテンプレートの言葉を、自分の伝えたいメッセージに全部打ち替えてみましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="image-4" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="image-4.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="image-6.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

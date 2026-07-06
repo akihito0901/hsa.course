@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIを相棒にする準備（まず1つ触ってみる）｜基礎｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#06b6d4,#7c3aed)"></span>基礎</div>
+    <h1 class="lesson-h1">AIを相棒にする準備（まず1つ触ってみる）</h1>
+    <div class="lesson-meta">基礎 9 / 11 ・ 目安 9分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>このスクールでは、あらゆる場面でAIを活用していきます。AIは「なんでも聞ける、疲れ知らずのアシスタント」です。まだ触ったことがない人も、ここで一歩を踏み出しておきましょう。難しく考える必要はまったくありません。</p>
+      <h3>AIって何ができるの？</h3>
+      <p>AIに文章で話しかけると、まるで人と会話するように答えが返ってきます。分からないことを質問したり、文章を書いてもらったり、アイデアを出してもらったり——この先の学習でも、仕事でも、強力な相棒になります。</p>
+      <h3>まずは1つ登録してみる</h3>
+      <p>AIツールはいくつかありますが、最初は代表的な「ChatGPT」を選べば十分です。ブラウザで「ChatGPT」と検索し、無料で登録すれば、すぐに使い始められます。くわしい使い分けは、後の「AI」コースでたっぷり学びます。</p>
+      <h3>とにかく話しかけてみる</h3>
+      <p>登録できたら、まずは何でもいいので話しかけてみましょう。使ううちに「こんなこともできるんだ」と分かってきます。次のような質問から試してみてください。</p>
+      <ul>
+        <li>「パソコン初心者におすすめの設定を教えて」</li>
+        <li>「〇〇（分からない言葉）ってどういう意味？」</li>
+        <li>「在宅ワークを始めるコツを3つ教えて」</li>
+      </ul>
+      <div class="tip"><strong>POINT</strong>AIは、間違えることを恐れずどんどん話しかけるのが上達のコツ。「こんな初歩的なこと聞いていいのかな」と遠慮する必要はゼロです。まず今日、1つ質問してみましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="basic-8" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="basic-8.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="basic-10.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

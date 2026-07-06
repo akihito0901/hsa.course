@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Googleドキュメント・カレンダーをスマホと連動｜基礎｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#06b6d4,#7c3aed)"></span>基礎</div>
+    <h1 class="lesson-h1">Googleドキュメント・カレンダーをスマホと連動</h1>
+    <div class="lesson-meta">基礎 8 / 11 ・ 目安 9分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>Googleの便利さは「パソコンとスマホで同じ情報が使える」点にあります。この連動を設定しておくと、外出先でもスマホで作業でき、「パソコンの前にいないと何もできない」状態から抜け出せます。</p>
+      <h3>ドキュメントで文章を書く</h3>
+      <p>Googleドキュメントは、無料で使える文書作成ツールです。書いた内容が自動で保存されるので「保存し忘れて消えた」という事故がありません。WordやExcelの代わりとして、まずはこれに慣れておきましょう。</p>
+      <h3>カレンダーで予定を管理する</h3>
+      <p>Googleカレンダーに「この日までに納品」と登録し、前日にお知らせが届くよう設定しておけば、うっかり忘れを防げます。仕事だけでなく家事や家族の予定も入れておくと、生活全体が見渡せます。</p>
+      <h3>すべてスマホと連動させる</h3>
+      <p>いちばん大事なのがこれです。スマホに同じGoogleアプリを入れて、同じアカウントでログインするだけで、パソコンとスマホの内容が自動でそろいます。思いついたメモをその場でスマホに書き足したり、外出先で予定を確認したり——生活の中に自然にとけこみます。</p>
+      <ul>
+        <li>スマホに Googleドライブ・ドキュメント・カレンダー のアプリを入れる</li>
+        <li>パソコンと同じアカウントでログインする</li>
+        <li>これだけで、両方の内容が自動で同期される</li>
+      </ul>
+      <div class="tip"><strong>POINT</strong>「スマホでもパソコンでも同じ」状態が、在宅ワークの快適さを大きく左右します。今日、スマホにアプリを入れてログインしておきましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="basic-7" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="basic-7.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="basic-9.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

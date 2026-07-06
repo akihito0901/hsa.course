@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>運用代行として仕事にする｜SNS｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#ec4899,#7c3aed)"></span>SNS</div>
+    <h1 class="lesson-h1">運用代行として仕事にする</h1>
+    <div class="lesson-meta">SNS 10 / 10 ・ 目安 11分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>自分のSNSを伸ばせるようになると、その経験はそのまま「仕事」になります。SNS運用を代わりに行う「運用代行」は、在宅で受けやすく需要も高い案件です。仕事にするための動き方を学びましょう。</p>
+      <h3>運用代行とは何をするのか</h3>
+      <p>運用代行とは、企業や個人事業主に代わって、SNSの投稿作成や分析を行う仕事です。「投稿画像を作るだけ」から「投稿・分析・返信まで全部」まで、契約によって範囲はさまざま。自分ができる範囲を決めて受けましょう。</p>
+      <h3>自分のアカウントが最強の名刺</h3>
+      <p>始めたばかりで実績がなくても、心配いりません。自分のアカウントを育てておけば、「自分のアカウントをこう伸ばしました」という実例が、どんな資格よりも説得力のある名刺になります。まず自分で結果を出すことが、案件獲得の近道です。</p>
+      <h3>受ける前に確認すること</h3>
+      <ul>
+        <li>担当する範囲（投稿作成のみ／分析も含む、など）</li>
+        <li>月に何本投稿するか</li>
+        <li>報酬と、成果の測り方（フォロワー数、保存数など）</li>
+      </ul>
+      <h3>報告と提案をセットに</h3>
+      <p>ただ投稿するだけでなく「今月はこの投稿が伸びました。来月はこう改善しましょう」と、報告と提案をセットで伝えると信頼が高まります。一緒に育ててくれるパートナーだと思ってもらえれば、契約は長く続きます。</p>
+      <div class="tip"><strong>POINT</strong>運用代行の第一歩は、自分のアカウントを実績にすること。「人のために運用する前に、まず自分で結果を出す」——これが案件を取るいちばんの近道です。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="sns-9" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="sns-9.html">← 前の教材</a>
+    <span class="foot-nav-btn disabled">次の教材 →</span>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

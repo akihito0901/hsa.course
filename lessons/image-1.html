@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>画像編集とCanvaの全体像｜画像編集｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#f97316,#ec4899)"></span>画像編集</div>
+    <h1 class="lesson-h1">画像編集とCanvaの全体像</h1>
+    <div class="lesson-meta">画像編集 1 / 10 ・ 目安 9分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>バナー、SNSの投稿、チラシ——こうした「画像」を作るのが画像編集のスキルです。「専門ソフトが必要で難しそう」と感じるかもしれませんが、今は Canva（キャンバ）という無料ツールで、初心者でもプロっぽい画像が作れます。まずは全体像をつかみましょう。</p>
+      <h3>画像編集で作れるもの</h3>
+      <p>画像編集ができると、こんなものが自分で作れるようになります。案件としても需要が高く、稼ぎに直結するスキルです。</p>
+      <ul>
+        <li>SNSの投稿画像・サムネイル</li>
+        <li>広告バナー</li>
+        <li>チラシ・メニュー表</li>
+        <li>プレゼン資料・ロゴ</li>
+      </ul>
+      <h3>Canvaが初心者に最適な理由</h3>
+      <p>Canvaには、プロが作った「テンプレート」が大量に用意されています。ゼロから作るのではなく、そこに自分の文字や写真を入れ替えるだけで完成するので、デザインが初めてでも形になります。無料プランでも十分に実用的です。</p>
+      <h3>このコースの進め方</h3>
+      <p>これから、Canvaの登録から始めて、基本操作、文字や写真の編集、そして実際にバナーを作るところまで、一歩ずつ進めていきます。焦らず、手を動かしながら覚えていきましょう。途中でAIを使った画像作りも学びます。</p>
+      <div class="tip"><strong>POINT</strong>画像編集は「習うより慣れろ」の世界です。完璧を目指さず、まずはCanvaに触れてみることが何より大切。次の章で、さっそく登録しましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="image-0" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <span class="foot-nav-btn disabled">← 前の教材</span>
+    <a class="foot-nav-btn" href="image-2.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

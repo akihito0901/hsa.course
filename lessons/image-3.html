@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvaの画面の見方と基本操作｜画像編集｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#f97316,#ec4899)"></span>画像編集</div>
+    <h1 class="lesson-h1">Canvaの画面の見方と基本操作</h1>
+    <div class="lesson-meta">画像編集 3 / 10 ・ 目安 10分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>登録できたら、いよいよCanvaを触っていきます。最初は画面にボタンがたくさんあって戸惑うかもしれませんが、よく使う場所は限られています。ここで基本の地図を頭に入れておきましょう。</p>
+      <h3>まず「デザインを作成」から始める</h3>
+      <p>ログインすると、トップページに「デザインを作成」というボタンがあります。ここから、作りたいサイズ（Instagram投稿、バナー、A4など）を選んで編集画面に入ります。サイズは後から変えられるので、近いものを選べばOKです。</p>
+      <h3>編集画面の主要な場所</h3>
+      <p>編集画面には、大きく分けて次の場所があります。まずはこの3つを覚えましょう。</p>
+      <ul>
+        <li>左メニュー：テンプレート・素材・テキスト・写真を追加する場所</li>
+        <li>中央：実際にデザインを作る作業スペース</li>
+        <li>上部：ダウンロードや共有のボタン</li>
+      </ul>
+      <h3>触って戻せば怖くない</h3>
+      <p>操作を間違えても、基礎コースで習った「Ctrl + Z（ひとつ前に戻す）」で元に戻せます。だから、こわがらずどんどん触ってみましょう。要素をクリックして動かす、大きさを変える——この感覚を、まずは体で覚えるのが一番です。</p>
+      <div class="tip"><strong>POINT</strong>最初は「何を押せばいいか分からない」で当然です。左メニューのボタンを片っ端から押して、何が出るか試してみましょう。それが一番の近道です。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="image-2" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="image-2.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="image-4.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

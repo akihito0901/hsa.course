@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>キーワードの選び方｜ライティング｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#7c3aed,#3b82f6)"></span>ライティング</div>
+    <h1 class="lesson-h1">キーワードの選び方</h1>
+    <div class="lesson-meta">ライティング 7 / 10 ・ 目安 9分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>SEOの出発点は「キーワード選び」です。読者がどんな言葉で検索するかを考え、その言葉に答える記事を書く。この最初の一歩を間違えなければ、記事は読まれやすくなります。</p>
+      <h3>キーワードとは</h3>
+      <p>キーワードとは、読者が検索窓に打ち込む言葉のことです。たとえば在宅ワークの記事なら「在宅ワーク 初心者 始め方」のように、複数の言葉を組み合わせて検索されます。この記事は誰の、どんな検索に答えるのか——それを最初に決めます。</p>
+      <h3>狙いやすいキーワードの特徴</h3>
+      <p>いきなり「在宅ワーク」のような大きな言葉で上位を取るのは困難です。最初は、もう少し絞り込んだ言葉を狙いましょう。</p>
+      <ul>
+        <li>2〜3語の組み合わせ（例：在宅ワーク 主婦 始め方）</li>
+        <li>悩みや疑問がはっきりしている言葉</li>
+        <li>競合（すでにある記事）が少なめのテーマ</li>
+      </ul>
+      <h3>決めたら実際に検索してみる</h3>
+      <p>狙うキーワードが決まったら、実際にそれで検索してみましょう。上位の記事を読めば「どんな情報が求められているか」が分かり、自分の記事に何を書くべきか見えてきます。AIに「このキーワードで検索する人が知りたいことは？」と相談するのも有効です。</p>
+      <div class="tip"><strong>POINT</strong>キーワード選びは「読者の頭の中を想像する」作業です。自分がその立場なら何と検索するか——そこから考えると、外しません。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="writing-6" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="writing-6.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="writing-8.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

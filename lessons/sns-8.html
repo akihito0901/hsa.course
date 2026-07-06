@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リール・ショート動画の作り方（AIで台本作成）｜SNS｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#ec4899,#7c3aed)"></span>SNS</div>
+    <h1 class="lesson-h1">リール・ショート動画の作り方（AIで台本作成）</h1>
+    <div class="lesson-meta">SNS 8 / 10 ・ 目安 12分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>今、SNSでいちばん伸びやすいのが、短い縦動画「リール（Instagram）」「ショート動画（TikTok）」です。新しい人に見つけてもらいやすく、フォロワーを一気に増やすチャンス。AIも使いながら、作り方を学びましょう。</p>
+      <h3>なぜショート動画が伸びるのか</h3>
+      <p>ショート動画は、まだフォローしていない人にもどんどんおすすめ表示されます。つまり、フォロワーが少なくても「バズる」可能性があるということ。アカウントを育てる初期に、特に力を入れる価値があります。</p>
+      <h3>AIで台本を作る</h3>
+      <p>動画作りで難しいのが「何を話すか」です。ここもAIに頼りましょう。「〇〇について、15秒のショート動画の台本を作って。最初の2秒で興味を引く構成で」と頼めば、話す内容の骨組みができます。</p>
+      <h3>作るときのポイント</h3>
+      <ul>
+        <li>最初の2秒で「お、なんだろう」と思わせる</li>
+        <li>15〜30秒と短く、テンポよくまとめる</li>
+        <li>文字（テロップ）を入れ、音がなくても分かるように</li>
+      </ul>
+      <h3>編集は無料アプリで十分</h3>
+      <p>凝った編集は不要です。CapCutなどの無料アプリを使えば、テロップ入れやカットは指先だけでできます。作った動画は、TikTokとInstagramのリール両方に投稿しましょう。1本の労力で2つの入り口を作れます。</p>
+      <div class="tip"><strong>POINT</strong>ショート動画は「質より量と改善」。最初の数本はうまくいかなくて当たり前です。まずAIで台本を作り、1本撮ってみることから始めましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="sns-7" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="sns-7.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="sns-9.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

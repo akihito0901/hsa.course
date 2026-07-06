@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セールスライティングの型｜ライティング｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#7c3aed,#3b82f6)"></span>ライティング</div>
+    <h1 class="lesson-h1">セールスライティングの型</h1>
+    <div class="lesson-meta">ライティング 9 / 10 ・ 目安 11分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>セールスライティングとは、読んだ人に「行動してもらう」ための文章術です。商品を買ってもらう、申し込んでもらう——この一押しができる文章は単価も高く、どんな仕事でも役立ちます。人の心が動く「型」を学びましょう。</p>
+      <h3>人は感情で動き、理屈で納得する</h3>
+      <p>大事なのは、いきなり「買ってください」と言わないこと。人は、まず「ほしい」という感情が動いてから、それを正当化する理屈を探します。だから機能を並べる前に、「それがあると生活がどう良くなるか」という未来を見せることが先決です。</p>
+      <h3>特徴ではなくベネフィットを</h3>
+      <ul>
+        <li>特徴：「この講座は動画100本付き」</li>
+        <li>ベネフィット：「スキマ時間に、確実にスキルが身につく」</li>
+      </ul>
+      <h3>心が動く文章の流れ</h3>
+      <p>LP制作コースでも学んだ流れと、根っこは同じです。問題提起→共感→解決策→証拠→行動、の順で組み立てると、自然と心が動きます。そして、行動をためらわせる「不安」を先回りして取り除くこと（初心者でも大丈夫、返金保証あり、など）も忘れずに。</p>
+      <div class="tip"><strong>POINT</strong>セールスライティングは「売り込み」ではなく「背中を押す」こと。読者の悩みに本気で寄り添えば、押し売り感なく自然と行動につながります。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="writing-8" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="writing-8.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="writing-10.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プロンプト（指示）のコツ｜AI｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#6366f1,#06b6d4)"></span>AI</div>
+    <h1 class="lesson-h1">プロンプト（指示）のコツ</h1>
+    <div class="lesson-meta">AI 6 / 10 ・ 目安 11分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>AIへの指示や質問を「プロンプト」と呼びます。同じAIでも、プロンプト次第で答えの質はまるで変わります。この章では、プロっぽい答えを引き出す、少し踏み込んだ指示のコツを学びます。</p>
+      <h3>良いプロンプトの4要素</h3>
+      <p>次の4つを指示に含めると、答えの質が一気に上がります。全部でなくても、意識するだけで違います。</p>
+      <ul>
+        <li>役割：「あなたはプロの編集者です」など立場を与える</li>
+        <li>背景：「在宅ワーク初心者向けの記事です」など状況を伝える</li>
+        <li>具体的な指示：「800字で・見出しを3つ付けて」など条件を明確に</li>
+        <li>出力の形：「箇条書きで」「表にして」など形式を指定する</li>
+      </ul>
+      <h3>例を見せると精度が上がる</h3>
+      <p>「こんな感じで書いてほしい」という見本を1つ見せると、AIはその雰囲気を真似てくれます。過去にうまくいった文章や、参考にしたい例を貼り付けて「これと同じトーンで」と頼むと、精度がぐっと上がります。</p>
+      <h3>勝ちパターンは保存する</h3>
+      <p>うまくいったプロンプトは、基礎コースで作ったGoogleドキュメントの「指示集」に保存しておきましょう。自分だけのプロンプト集がたまると、毎回ゼロから考えずに済み、作業がどんどん速くなります。</p>
+      <div class="tip"><strong>POINT</strong>プロンプトは「習うより慣れろ」。うまくいかなくても、注文を足して調整すればOK。使うほど、自分なりの効く言い回しが見つかっていきます。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="ai-5" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="ai-5.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="ai-7.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

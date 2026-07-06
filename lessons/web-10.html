@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公開後の改善（アクセス解析の基本）｜HP・LP制作｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)"></span>HP・LP制作</div>
+    <h1 class="lesson-h1">公開後の改善（アクセス解析の基本）</h1>
+    <div class="lesson-meta">HP・LP制作 10 / 10 ・ 目安 10分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>LPは公開して終わりではなく、「見てくれた人の反応を見て、良くしていく」ことで成果が伸びます。そのために欠かせないのが「アクセス解析」です。難しく考えず、基本だけ押さえましょう。</p>
+      <h3>アクセス解析とは</h3>
+      <p>アクセス解析とは、「何人が見たか」「どこから来たか」「どこで離れたか」を数字で知る仕組みです。代表的なのがGoogleの無料ツール「Googleアナリティクス」。これを設定しておくと、ページの成績表が見られるようになります。</p>
+      <h3>まず見るべき数字</h3>
+      <p>最初から全部を理解する必要はありません。次の3つだけ見ておけば十分です。</p>
+      <ul>
+        <li>訪問者数：何人が見に来たか</li>
+        <li>離脱の多い場所：どこで読むのをやめているか</li>
+        <li>ボタンのクリック数：申し込みまでどれだけ進んだか</li>
+      </ul>
+      <h3>数字を見て直す</h3>
+      <p>たとえば「途中で離れる人が多い」なら、その部分の内容を見直す。「訪問者が少ない」なら、SNSでの宣伝を増やす。数字は「どこを直せばいいか」を教えてくれる道しるべです。感覚ではなく数字を根拠に改善していくと、LPは着実に良くなっていきます。</p>
+      <div class="tip"><strong>POINT</strong>解析ツールの設定や数字の読み方が分からなければ、AIに「Googleアナリティクスのこの数字はどういう意味？」と聞けば教えてくれます。まずは設定して、数字を眺めることから始めましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="web-9" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="web-9.html">← 前の教材</a>
+    <span class="foot-nav-btn disabled">次の教材 →</span>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

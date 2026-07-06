@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>取材・インタビューのコツ／リライト術｜ライティング｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#7c3aed,#3b82f6)"></span>ライティング</div>
+    <h1 class="lesson-h1">取材・インタビューのコツ／リライト術</h1>
+    <div class="lesson-meta">ライティング 10 / 10 ・ 目安 10分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>この章では、書ける幅を広げる2つのスキル——「取材」と「リライト」——をまとめて学びます。人に話を聞いて記事にする力と、書いた文章を磨き直す力。どちらもプロのライターに欠かせません。</p>
+      <h3>取材は準備が9割</h3>
+      <p>良いインタビューは、始まる前に決まっています。相手を事前に調べ、「何を聞きたいか」を質問リストにしておきましょう。そして本番では、自分が話しすぎず、聞き役に徹すること。相手が話しやすい空気を作るのが役割です。</p>
+      <h3>具体的なエピソードを引き出す</h3>
+      <p>「大変でしたか？」ではなく、次のように聞くと、記事が面白くなる具体的な話を引き出せます。</p>
+      <ul>
+        <li>「一番大変だったのは、具体的にどんな場面でしたか？」</li>
+        <li>「そのとき、どう感じましたか？」</li>
+        <li>「たとえば、どんなことがありましたか？」</li>
+      </ul>
+      <h3>リライトで文章を磨く</h3>
+      <p>文章は、書いたあとの「リライト（推敲）」で質が決まります。プロほど直しに時間をかけます。コツは3つ——(1)なくても通じる言葉を削る、(2)一文を短くする、(3)声に出して読む。書いた直後ではなく、少し時間を空けて「他人の文章」として読み返すと、直すべき箇所がよく見えます。</p>
+      <div class="tip"><strong>POINT</strong>取材の録音は必ず相手の許可を取ってから。リライトは「削る勇気」が大事です。足すより減らす方が、たいてい文章は良くなります。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="writing-9" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="writing-9.html">← 前の教材</a>
+    <span class="foot-nav-btn disabled">次の教材 →</span>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

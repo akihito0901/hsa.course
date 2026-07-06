@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEOって何？検索から読まれる仕組み｜ライティング｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#7c3aed,#3b82f6)"></span>ライティング</div>
+    <h1 class="lesson-h1">SEOって何？検索から読まれる仕組み</h1>
+    <div class="lesson-meta">ライティング 6 / 10 ・ 目安 10分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>せっかく書いた記事も、読まれなければ意味がありません。GoogleやYahoo!で検索した人に、自分の記事を見つけてもらう工夫——それがSEOです。難しそうですが、基本はシンプル。考え方を押さえましょう。</p>
+      <h3>SEOとは検索から見つけてもらう工夫</h3>
+      <p>SEOとは、検索結果の上の方に自分の記事を表示させるための取り組みです。上位に出れば、広告費をかけなくても、興味のある人が自然に記事を訪れてくれます。この「検索から人が来る流れ」を作れるのが、Webライティングの大きな価値です。</p>
+      <h3>Googleが目指していること</h3>
+      <p>Googleは「検索した人の悩みを、いちばんよく解決している記事」を上位に表示しようとします。つまり、小手先のテクニックより「読者の役に立つ記事かどうか」が何より重視されます。</p>
+      <h3>まずは読者ファースト</h3>
+      <p>昔はテクニックで順位を上げられましたが、今のGoogleはとても賢いです。だから難しく考えず、「検索した人が知りたいことに、過不足なく・分かりやすく答える」——この当たり前を丁寧にやることが、結局いちばん強いSEO対策になります。</p>
+      <div class="tip"><strong>POINT</strong>SEOは「Googが相手」ではなく「その先の読者が相手」と考えましょう。読者の悩みを本気で解決する記事は、自然と評価されます。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="writing-5" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="writing-5.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="writing-7.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIで画像・素材を作る｜AI｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#6366f1,#06b6d4)"></span>AI</div>
+    <h1 class="lesson-h1">AIで画像・素材を作る</h1>
+    <div class="lesson-meta">AI 8 / 10 ・ 目安 11分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>AIは文章だけでなく、画像やイラストも作れます。画像編集コースでも触れましたが、ここでは改めてAIの視点から、画像生成の基本と活かし方を整理します。「デザインが苦手」でも、AIが素材を用意してくれます。</p>
+      <h3>画像生成AIとは</h3>
+      <p>「こんな画像がほしい」と言葉で伝えると、その通りの画像を作ってくれるのが画像生成AIです。ChatGPTの有料版や、Canvaの機能でも使えます。写真風・イラスト風など、幅広いテイストを作れます。</p>
+      <h3>伝え方のコツ</h3>
+      <p>文章のプロンプトと同じで、具体的に伝えるほど理想に近づきます。</p>
+      <ul>
+        <li>何を：「ノートパソコンで作業する女性」など主役</li>
+        <li>どんな雰囲気で：「明るく・清潔感のある・パステルカラー」</li>
+        <li>どんな形式で：「イラスト風」「写真風」「背景は白」</li>
+      </ul>
+      <h3>注意点</h3>
+      <p>AIの画像は、ときどき不自然な部分（指の数など）が出ます。そのまま使わず必ず確認を。また、特定の人物やブランド、既存キャラクターに似せた画像を使うのは避けましょう。仕事で使うときは、商用利用が可能かも意識しておくと安心です。</p>
+      <div class="tip"><strong>POINT</strong>まずは「〇〇な画像を作って」と気軽に試してみましょう。イメージを言葉にする練習は、デザインの指示出し力そのものを鍛えてくれます。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="ai-7" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="ai-7.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="ai-9.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

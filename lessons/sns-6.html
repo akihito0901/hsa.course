@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIで投稿ネタ・構成を量産する｜SNS｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#ec4899,#7c3aed)"></span>SNS</div>
+    <h1 class="lesson-h1">AIで投稿ネタ・構成を量産する</h1>
+    <div class="lesson-meta">SNS 6 / 10 ・ 目安 11分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>SNSで多くの人がぶつかる壁が「投稿ネタが思いつかない」問題です。でも今は、AIに相談すればネタも構成も一瞬で用意できます。ネタ切れの悩みから、AIで解放されましょう。</p>
+      <h3>AIにネタを出してもらう</h3>
+      <p>決めた方向性（誰に・何を）をAIに伝えて、ネタを大量に出してもらいます。たとえばこう頼みます。</p>
+      <ul>
+        <li>「在宅ワーク初心者向けのInstagramアカウントです。保存されやすい投稿ネタを20個出して」</li>
+        <li>「そのうち、初心者がつまずきやすいテーマを5つ選んで」</li>
+      </ul>
+      <h3>投稿の構成もAIで</h3>
+      <p>ネタが決まったら、投稿の中身の構成もAIに相談します。「このネタで、10枚の画像投稿の構成（各ページの見出し）を作って」と頼めば、たたき台が一瞬でできます。それをもとにCanvaで画像を作れば、投稿作りが一気に速くなります。</p>
+      <h3>AIの案を自分色に</h3>
+      <p>AIが出す案は、あくまで土台です。そこに自分の体験や、実際に感じたことを足すと、あなたにしか作れない投稿になります。AIでネタと骨組みを用意し、自分らしさで肉付けする——この分担が最強です。</p>
+      <div class="tip"><strong>POINT</strong>うまくいったAIへの頼み方（プロンプト）は、基礎コースで作ったメモに保存しておきましょう。自分だけの「ネタ出しプロンプト集」がたまると、投稿作りが習慣になります。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="sns-5" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="sns-5.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="sns-7.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スマホ表示を確認・調整する｜HP・LP制作｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)"></span>HP・LP制作</div>
+    <h1 class="lesson-h1">スマホ表示を確認・調整する</h1>
+    <div class="lesson-meta">HP・LP制作 8 / 10 ・ 目安 9分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>今の時代、LPを見る人の多くはスマホからアクセスします。パソコンで綺麗に作れても、スマホで崩れていたら台無しです。公開前に、必ずスマホでの見え方を確認しましょう。</p>
+      <h3>なぜスマホ確認が重要か</h3>
+      <p>パソコンの横長の画面と、スマホの縦長の画面では、レイアウトが大きく変わります。パソコンでは横に並んでいた要素が、スマホでは縦に積み重なる、といったことが起きます。見る人の大半がスマホなので、むしろスマホでの見やすさを優先すべきです。</p>
+      <h3>確認するポイント</h3>
+      <ul>
+        <li>文字が小さすぎて読めなくなっていないか</li>
+        <li>画像がはみ出したり、変な位置にきていないか</li>
+        <li>ボタンが押しやすい大きさ・位置にあるか</li>
+      </ul>
+      <h3>ツールの切り替え機能を使う</h3>
+      <p>ノーコードツールには、編集画面でパソコン表示とスマホ表示を切り替えるボタンがあります。これで両方をこまめに確認しながら調整しましょう。スマホ側で崩れている部分は、その画面で直せることがほとんどです。</p>
+      <div class="tip"><strong>POINT</strong>一番確実なのは、実際に自分のスマホで開いてみること。公開前に、家族や友人のスマホでも見てもらうと、思わぬ崩れに気づけます。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="web-7" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="web-7.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="web-9.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>仕事の受け方・契約・セキュリティの基本｜基礎｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#06b6d4,#7c3aed)"></span>基礎</div>
+    <h1 class="lesson-h1">仕事の受け方・契約・セキュリティの基本</h1>
+    <div class="lesson-meta">基礎 11 / 11 ・ 目安 12分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>スキルが身についてきたら、いよいよ実際に仕事を受けます。ここでは、案件の探し方から契約、そして自分の身を守るセキュリティまで、最低限おさえておきたい基本をまとめます。</p>
+      <h3>仕事の探し方</h3>
+      <ul>
+        <li>クラウドソーシングサイト：案件が多く、実績づくりの第一歩に向く</li>
+        <li>SNS：日頃の発信を見た人から声がかかることもある</li>
+        <li>知人からの紹介：信頼関係があり、相談もしやすい</li>
+      </ul>
+      <h3>契約前に確認すること</h3>
+      <p>金額だけで判断せず、次の点を必ず確認しましょう。「言った・言わない」のトラブルを防げます。</p>
+      <ul>
+        <li>業務の範囲（どこからどこまで担当するか）</li>
+        <li>納期と、修正できる回数</li>
+        <li>報酬の金額と、支払いのタイミング</li>
+      </ul>
+      <h3>パスワードは確実にメモする</h3>
+      <p>仕事で使うアカウントが増えると、パスワード管理が重要になります。サービスごとに違うパスワードにして、それをスマホのメモ（iPhoneのメモアプリはiCloudで自動同期されます）や紙に、必ず一覧で控えておきましょう。頭だけで覚えようとせず、記録に残すのが鉄則です。</p>
+      <h3>怪しいメールに注意</h3>
+      <p>「至急ご確認ください」と急かすメールや、送信元が不自然なものには注意しましょう。少しでもおかしいと感じたら、リンクを開かず放置するのが一番安全です。</p>
+      <div class="tip"><strong>POINT</strong>最初の案件は、金額より「実績と経験を積むこと」を優先すると、その後の仕事につながりやすくなります。ひとつ丁寧にやり切ることが、次の信頼を生みます。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="basic-10" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="basic-10.html">← 前の教材</a>
+    <span class="foot-nav-btn disabled">次の教材 →</span>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

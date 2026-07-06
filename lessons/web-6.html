@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文章と画像を入れていく｜HP・LP制作｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)"></span>HP・LP制作</div>
+    <h1 class="lesson-h1">文章と画像を入れていく</h1>
+    <div class="lesson-meta">HP・LP制作 6 / 10 ・ 目安 10分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>骨組みができたら、そこに中身——文章と画像——を入れていきます。ここまでの学習の総合演習です。AIで作った文章、Canvaで作った画像を、それぞれの場所にはめ込んでいきましょう。</p>
+      <h3>文章を入れる</h3>
+      <p>AIで作ったたたき台を、自分の言葉に整えながら各ブロックに入れていきます。長すぎる文章は読まれないので、一文を短く、見出しで区切って読みやすくするのがポイントです。この感覚は、後の「ライティング」コースでさらに磨けます。</p>
+      <h3>画像を入れる</h3>
+      <p>画像編集コースで学んだCanvaの出番です。ページの雰囲気に合う画像を用意して、各セクションに配置します。写真・バナー・図解などを適切に入れると、ぐっと分かりやすくなります。</p>
+      <ul>
+        <li>文字だけで説明しにくいところは、図や画像で見せる</li>
+        <li>写真は明るく、雰囲気の合うものを選ぶ</li>
+        <li>ボタンは目立つ色にして、押せることが分かるように</li>
+      </ul>
+      <h3>情報を詰め込みすぎない</h3>
+      <p>あれもこれも載せたくなりますが、情報が多すぎると読み手は疲れて離れてしまいます。「この1ページで一番伝えたいこと」に集中し、余計な情報は思い切って削りましょう。</p>
+      <div class="tip"><strong>POINT</strong>文章と画像がそろうと、一気にLPらしくなります。入れ終わったら、一度スマホで最初から読んでみて、流れが自然かを確認しましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="web-5" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="web-5.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="web-7.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

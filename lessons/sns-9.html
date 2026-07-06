@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>分析と改善（インサイトの見方）｜SNS｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#ec4899,#7c3aed)"></span>SNS</div>
+    <h1 class="lesson-h1">分析と改善（インサイトの見方）</h1>
+    <div class="lesson-meta">SNS 9 / 10 ・ 目安 10分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>投稿しっぱなしでは、なかなか伸びません。「どの投稿が良かったか」を数字で確認し、次に活かすことで、アカウントは着実に成長します。Instagramの「インサイト」という無料の分析機能を使いましょう。</p>
+      <h3>インサイトとは</h3>
+      <p>インサイトは、プロアカウントで使える分析機能です。各投稿が「何人に見られたか」「何回保存されたか」などが数字で分かります。感覚ではなく数字で振り返れるようになります。</p>
+      <h3>まず見るべき数字</h3>
+      <ul>
+        <li>リーチ：何人に見られたか（新しい人に届いたか）</li>
+        <li>保存数：後で見返したいと思われたか（役立つ投稿の証拠）</li>
+        <li>プロフィールへのアクセス：投稿からプロフィールを見に来た数</li>
+      </ul>
+      <h3>伸びた投稿を分析して真似る</h3>
+      <p>数字を見て「保存が多かった投稿」を見つけたら、なぜ良かったのかを考えます。テーマ？1枚目の言葉？その「勝ちパターン」を、次の投稿でも繰り返すのです。伸びた投稿の型を再現することが、成長の一番の近道です。分析が難しければ、数字をAIに見せて「どう改善すべき？」と相談するのもおすすめです。</p>
+      <div class="tip"><strong>POINT</strong>毎日数字とにらめっこする必要はありません。週に1回、「今週いちばん保存された投稿は？」を振り返るだけで十分。勝ちパターンを見つけて増やしていきましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="sns-8" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="sns-8.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="sns-10.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

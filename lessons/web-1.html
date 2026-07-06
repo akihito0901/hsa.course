@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HP・LPって何？違いと全体像｜HP・LP制作｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)"></span>HP・LP制作</div>
+    <h1 class="lesson-h1">HP・LPって何？違いと全体像</h1>
+    <div class="lesson-meta">HP・LP制作 1 / 10 ・ 目安 9分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>「ホームページを作れる」「LPを作れる」というスキルは、案件の単価も高く、とても重宝されます。でもまず、HPとLPが何なのか、その違いから整理しておきましょう。ここが分かると、この先の学習がぐっと理解しやすくなります。</p>
+      <h3>HP（ホームページ）とは</h3>
+      <p>HPは、会社やお店の「情報のまとまった拠点」です。トップページ・サービス紹介・会社概要・お問い合わせなど、複数のページで構成され、訪れた人が知りたい情報を探せるようになっています。名刺やパンフレットのネット版、とイメージすると分かりやすいです。</p>
+      <h3>LP（ランディングページ）とは</h3>
+      <p>LPは、1つの商品やサービスを紹介し、「申し込み」や「購入」まで導くための縦長の1枚ページです。今あなたが見ているこの教材ページのように、上から下へスクロールして読む形式ですね。ページを分けず、1枚で完結させて、行動を1つに絞るのが特徴です。</p>
+      <h3>どちらを学ぶ？</h3>
+      <p>このコースでは、まず成果に直結しやすい「LP」の作り方を中心に学びます。LPが作れるようになれば、その考え方はHP制作にも応用できます。ノーコードツールとAIを使えば、専門知識がなくても作れるので、安心して進めてください。</p>
+      <div class="tip"><strong>POINT</strong>まずは「HP＝情報の拠点」「LP＝行動を促す1枚」と覚えればOK。違いが分かれば、案件でどちらが必要かを判断できるようになります。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="web-0" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <span class="foot-nav-btn disabled">← 前の教材</span>
+    <a class="foot-nav-btn" href="web-2.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

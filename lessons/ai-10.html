@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIとの付き合い方・注意点｜AI｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#6366f1,#06b6d4)"></span>AI</div>
+    <h1 class="lesson-h1">AIとの付き合い方・注意点</h1>
+    <div class="lesson-meta">AI 10 / 10 ・ 目安 9分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>AIはとても便利ですが、頼りきりにすると思わぬ落とし穴もあります。最後の章では、AIと上手に付き合い、自分の価値も守るための注意点をまとめます。ここを押さえれば、安心してAIを使いこなせます。</p>
+      <h3>AIは間違えることがある</h3>
+      <p>AIは、もっともらしく間違った情報を答えることがあります（専門用語で「ハルシネーション」と呼びます）。数字・固有名詞・事実に関わる部分は、鵜呑みにせず必ず自分で確認しましょう。特に、人に見せる文章や仕事では、この一手間が信頼を守ります。</p>
+      <h3>自分の判断は手放さない</h3>
+      <p>AIに8割やってもらっても、最終的な判断は必ず自分で。AIの答えをそのまま出すと、どこか借り物っぽくなり、間違いも見逃します。AIは助手であって、責任者はあなた自身です。</p>
+      <h3>自分の体験こそが価値になる</h3>
+      <p>AIがどれだけ賢くなっても、「あなたが実際に体験したこと」だけは書けません。失敗談、そのとき感じたこと、現場で気づいたこと——こうした一次情報こそ、これからの時代にいちばん価値を持ちます。AIに任せる部分と、自分にしか出せない部分を意識して分けましょう。</p>
+      <h3>情報の扱いに注意</h3>
+      <p>AIに、他人の個人情報や会社の機密情報を安易に入力するのは避けましょう。便利だからこそ、何を入力するかには気を配る必要があります。</p>
+      <div class="tip"><strong>POINT</strong>AIは「使いこなす人」が強い時代です。恐れず、でも頼りきらず。最後は自分の目と体験でひと手間かける——それがあなたの価値になります。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="ai-9" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="ai-9.html">← 前の教材</a>
+    <span class="foot-nav-btn disabled">次の教材 →</span>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公開して独自ドメインをつなぐ｜HP・LP制作｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)"></span>HP・LP制作</div>
+    <h1 class="lesson-h1">公開して独自ドメインをつなぐ</h1>
+    <div class="lesson-meta">HP・LP制作 9 / 10 ・ 目安 10分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>ページが完成したら、いよいよ世界に公開します。ノーコードツールなら、ボタン1つで公開できます。あわせて、より本格的に見せる「独自ドメイン」についても知っておきましょう。</p>
+      <h3>まずは公開ボタンを押す</h3>
+      <p>ノーコードツールには「公開」ボタンがあります。押すだけで、あなたのページがインターネット上に公開され、URLが発行されます。まずはこの状態でも、リンクを送れば誰でも見られます。</p>
+      <h3>独自ドメインとは</h3>
+      <p>ドメインとは、ページの住所（URL）のことです。公開直後は「ツール名が入った長いURL」になっていますが、「独自ドメイン」を設定すると「〇〇.com」のような、自分だけの短くて覚えやすいURLにできます。お店や会社のLPなら、独自ドメインの方が信頼感が出ます。</p>
+      <ul>
+        <li>独自ドメインは、専門のサービスで年間1,000〜2,000円ほどで取得できる</li>
+        <li>取得したドメインを、ノーコードツールの設定でつなぐ</li>
+        <li>つなぎ方が分からなければ、AIやツールのヘルプに聞けばOK</li>
+      </ul>
+      <h3>公開してからが本番</h3>
+      <p>公開はゴールではなくスタートです。ノーコードなら公開後もかんたんに修正できるので、「まず出して、動かしながら直す」という身軽さを活かしましょう。</p>
+      <div class="tip"><strong>POINT</strong>最初は独自ドメインなしの公開でも全く問題ありません。案件で「本格的にしたい」と言われたときに、独自ドメインを提案できると喜ばれます。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="web-8" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="web-8.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="web-10.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

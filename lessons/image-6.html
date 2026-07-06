@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>写真・画像を入れ替えよう｜画像編集｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#f97316,#ec4899)"></span>画像編集</div>
+    <h1 class="lesson-h1">写真・画像を入れ替えよう</h1>
+    <div class="lesson-meta">画像編集 6 / 10 ・ 目安 9分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>テンプレートの写真を自分のものに差し替えると、一気にオリジナル感が出ます。手持ちの写真を使ったり、Canvaにある無料写真を使ったり——方法を覚えていきましょう。</p>
+      <h3>自分の写真をアップロードする</h3>
+      <p>左メニューの「アップロード」から、パソコンやスマホの中の写真をCanvaに読み込めます。読み込んだ写真は、テンプレートの写真部分にドラッグ&amp;ドロップするだけで入れ替わります。</p>
+      <h3>Canvaの無料写真を使う</h3>
+      <p>手持ちの写真がなくても大丈夫。左メニューの「素材」や「写真」から、Canvaに用意された大量の写真を検索して使えます。「カフェ」「ビジネス」などの言葉で探してみましょう。</p>
+      <h3>写真の調整もかんたん</h3>
+      <p>入れた写真は、次のような調整ができます。難しい操作は不要で、直感的に触れます。</p>
+      <ul>
+        <li>大きさ・位置：ドラッグで動かす</li>
+        <li>切り抜き（トリミング）：ダブルクリックで範囲を調整</li>
+        <li>明るさ・色味：「画像を編集」から補正できる</li>
+      </ul>
+      <div class="tip"><strong>POINT</strong>写真は、明るくて余白のあるものを選ぶと、文字が乗せやすくデザインが締まります。まずはテンプレートの写真を、自分らしい1枚に差し替えてみましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="image-5" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="image-5.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="image-7.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

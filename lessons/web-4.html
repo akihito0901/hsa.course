@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIで構成・文章のたたき台を作る｜HP・LP制作｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)"></span>HP・LP制作</div>
+    <h1 class="lesson-h1">AIで構成・文章のたたき台を作る</h1>
+    <div class="lesson-meta">HP・LP制作 4 / 10 ・ 目安 11分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>LP作りで一番手が止まるのが「何を書けばいいか分からない」という悩みです。ここでAIの出番です。AIに相談すれば、LPの構成案も、載せる文章のたたき台も、あっという間に作ってくれます。ゼロから考える必要はもうありません。</p>
+      <h3>まず構成をAIに相談する</h3>
+      <p>前の章で学んだLPの型（共感→解決→証拠→行動）を踏まえて、AIに構成を相談しましょう。たとえばこう頼みます。</p>
+      <ul>
+        <li>「〇〇（商品）のLPを作ります。共感→解決→証拠→行動の流れで、各セクションの見出し案を出して」</li>
+        <li>「ターゲットは△△な人です。刺さるキャッチコピーを5案ください」</li>
+      </ul>
+      <h3>文章のたたき台を作らせる</h3>
+      <p>構成が決まったら、各セクションの文章もAIに下書きしてもらいます。「この見出しの本文を、やさしい言葉で300字で書いて」と頼めば、すぐにたたき台ができます。それを自分の言葉に直していけば、作業が一気に進みます。</p>
+      <h3>そのまま使わず、自分で整える</h3>
+      <p>AIの文章は便利ですが、そのまま使うと「どこか借り物っぽい」印象になります。自分の商品の魅力や、実際のお客様の声を足して、あなたにしか書けない内容に仕上げましょう。AIは8割、最後の2割は自分——この分担が大切です。</p>
+      <div class="tip"><strong>POINT</strong>AIは「優秀だけど、こちらの商品を何も知らない新人」と考えましょう。商品の特徴や想いを丁寧に伝えるほど、良いたたき台が返ってきます。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="web-3" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="web-3.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="web-5.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>

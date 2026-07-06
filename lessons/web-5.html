@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ページの骨組みを作る｜HP・LP制作｜ホームサクセスアカデミー</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
+    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
+  </div>
+</header>
+
+<main class="lesson-wrap">
+  <div class="lesson-hero">
+    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)"></span>HP・LP制作</div>
+    <h1 class="lesson-h1">ページの骨組みを作る</h1>
+    <div class="lesson-meta">HP・LP制作 5 / 10 ・ 目安 10分</div>
+  </div>
+
+  <!-- 動画エリア（動画が用意できたら下の video-ph を <video src="..."> や YouTube iframe に差し替え） -->
+  <div class="video-frame">
+    <div class="video-ph">
+      <span class="ic">🎬</span>
+      動画は準備中です
+      <small>この教材は近日中に解説動画を追加予定です</small>
+    </div>
+  </div>
+
+  <article class="article">
+      <p>構成と文章のたたき台ができたら、いよいよノーコードツールでページの形を作っていきます。いきなり細部を作り込まず、まずは「骨組み」から。全体の流れを先に組み立てるのがコツです。</p>
+      <h3>セクションを上から並べる</h3>
+      <p>前の章で作った構成（共感→解決→証拠→行動）の順に、ページのブロックを上から並べていきます。ペライチなどのツールでは、ブロックを選んで積み重ねるだけで骨組みができます。</p>
+      <h3>テンプレートを土台にする</h3>
+      <p>ノーコードツールにも、Canvaと同じようにテンプレートがあります。ゼロから作るより、近いテンプレートを選んで、中身を差し替えていく方が断然早いです。</p>
+      <ul>
+        <li>まず全体のブロック（セクション）を並べる</li>
+        <li>各ブロックに「ここは共感」「ここは証拠」とあたりをつける</li>
+        <li>細かい装飾は後回し。まず流れを完成させる</li>
+      </ul>
+      <h3>完璧を目指さず7割で進む</h3>
+      <p>この段階では、見た目が多少ダサくても気にしないでください。まず最後まで骨組みを通すことが大事です。細部を作り込むのは、全体の流れができてから。7割の完成度で先に進みましょう。</p>
+      <div class="tip"><strong>POINT</strong>骨組み作りは「引っ越しの間取り決め」のようなもの。どこに何を置くかを先に決めれば、あとの作業が迷わず進みます。まず上から下まで、一気に並べてみましょう。</div>
+  </article>
+
+  <button class="complete-btn" data-lesson="web-4" type="button">この教材を読み終えたらチェック</button>
+
+  <div class="lesson-foot-nav">
+    <a class="foot-nav-btn" href="web-4.html">← 前の教材</a>
+    <a class="foot-nav-btn" href="web-6.html">次の教材 →</a>
+  </div>
+  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
+</main>
+
+<script>
+(function(){
+  var KEY='hsa_completed';
+  var btn=document.querySelector('.complete-btn');
+  var id=btn.dataset.lesson;
+  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
+  function sync(){
+    var d=done.has(id);
+    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
+    btn.classList.toggle('done',d);
+  }
+  btn.addEventListener('click',function(){
+    if(done.has(id)){done.delete(id);}else{done.add(id);}
+    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>
