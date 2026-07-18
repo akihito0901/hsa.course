@@ -92,6 +92,22 @@ header{
   content:'';position:absolute;left:2px;top:19px;
   width:6px;height:6px;border-radius:50%;background:var(--ga);
 }
+.article ol{list-style:none;counter-reset:hsa-step;margin:0 0 20px}
+.article ol li{
+  counter-increment:hsa-step;
+  position:relative;padding:10px 0 10px 42px;
+  font-size:.95rem;color:#333;line-height:1.85;
+  border-bottom:1px solid #f0edff;
+}
+.article ol li:last-child{border-bottom:none}
+.article ol li::before{
+  content:counter(hsa-step);
+  position:absolute;left:0;top:13px;
+  width:27px;height:27px;border-radius:50%;
+  background:var(--ga);color:#fff;
+  font-size:.82rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
 .lesson-figure{
   margin:28px 0;border-radius:16px;overflow:hidden;
   border:1px solid #efeaff;box-shadow:0 8px 30px rgba(124,58,237,.10);
