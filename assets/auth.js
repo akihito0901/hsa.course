@@ -10,6 +10,20 @@
   const HSA = (window.HSA = window.HSA || {});
   HSA.sb = sb;
 
+  /* ── サイト内のパス解決 ──
+     lessons/ 配下から呼ばれても、ルートの login.html / index.html に正しく戻れるようにする */
+  const inLessons = /\/lessons\//.test(location.pathname);
+  HSA.base = inLessons ? '../' : '';
+  // サイトルートから見た現在ページ（例: 'index.html' / 'lessons/sns-3.html'）
+  HSA.currentPath = function () {
+    const file = location.pathname.split('/').pop() || 'index.html';
+    return (inLessons ? 'lessons/' : '') + file;
+  };
+  HSA.loginUrl = function (next) {
+    return HSA.base + 'login.html?next=' + encodeURIComponent(next || HSA.currentPath());
+  };
+  HSA.gotoLogin = function (next) { location.href = HSA.loginUrl(next); };
+
   const DAY = 24 * 60 * 60 * 1000;
   const WEEK = 7 * DAY;
 
@@ -21,11 +35,7 @@
   // ログイン必須ページで呼ぶ。未ログインなら login.html へ飛ばす
   HSA.requireLogin = async function () {
     const s = await HSA.getSession();
-    if (!s) {
-      const next = encodeURIComponent(location.pathname.replace(/^.*\//, ''));
-      location.href = 'login.html?next=' + next;
-      return null;
-    }
+    if (!s) { HSA.gotoLogin(); return null; }
     return s;
   };
 
@@ -39,7 +49,7 @@
 
   HSA.logout = async function () {
     await sb.auth.signOut();
-    location.href = 'login.html';
+    location.href = HSA.base + 'index.html';
   };
 
   // 課金開始日からの経過週数（0起点）。未課金は0
@@ -73,7 +83,7 @@
   // Stripe Checkout（課金）を開始
   HSA.startCheckout = async function () {
     const s = await HSA.getSession();
-    if (!s) { location.href = 'login.html'; return; }
+    if (!s) { HSA.gotoLogin(); return; }
     const res = await fetch('/api/checkout', {
       method: 'POST',
       headers: { 'Authorization': 'Bearer ' + s.access_token }

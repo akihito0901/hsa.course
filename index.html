@@ -50,8 +50,12 @@ header{
 .nav-right{display:flex;align-items:center;gap:18px}
 .nav-back{font-size:.85rem;font-weight:700;color:var(--muted)}
 .nav-back:hover{color:var(--pur)}
-.nav-user{font-size:.85rem;font-weight:700;color:#1a1a2e}
-.nav-user span{color:var(--pur)}
+.nav-user{font-size:.85rem;font-weight:700;color:#1a1a2e;display:flex;align-items:center;gap:12px}
+.nav-mail{color:var(--pur);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav-login{font-size:.82rem;font-weight:800;padding:9px 20px;border-radius:999px;background:var(--ga);color:#fff}
+.nav-login:hover{filter:brightness(1.06)}
+.nav-logout{font-size:.8rem;font-weight:700;color:var(--muted);background:none;border:none;padding:0;text-decoration:underline}
+.nav-logout:hover{color:var(--pur)}
 
 /* ════ PAGE HEAD ════ */
 .page-head{padding:44px 0 28px}
@@ -103,6 +107,8 @@ header{
 .member-btn.primary:hover{filter:brightness(1.06);background:var(--ga)}
 .member-btn.ghost{border-color:var(--line);color:var(--muted)}
 .member-note{font-size:.76rem;color:#bbb;margin-top:16px}
+.member-note.ok{color:#059669;font-weight:700;font-size:.82rem}
+.member-note.warn{color:#dc2626;font-weight:700;font-size:.82rem}
 
 /* ════ LAYOUT ════ */
 .board{display:grid;grid-template-columns:240px 1fr;gap:36px;padding:36px 0 100px;align-items:start}
@@ -289,7 +295,9 @@ header{
   .progress-card,.member-card{padding:20px 18px;gap:18px;margin-top:20px}
   .progress-num{font-size:1.7rem}
   .bm-toggle{width:100%;justify-content:center}
-  .nav-user{display:none}
+  .nav-user{gap:10px}
+  .nav-mail{display:none}
+  .nav-back{display:none}
   .board{padding:24px 0 80px}
   .cat-nav{margin:0 -16px;padding-left:16px;padding-right:16px}
   .cat-panel-head{gap:12px;margin-bottom:20px}
@@ -317,7 +325,7 @@ header{
     </a>
     <div class="nav-right">
       <a class="nav-back" href="../home.success.academy/index.html">サイトトップへ</a>
-      <div class="nav-user">ようこそ、<span>受講生</span>さん</div>
+      <div class="nav-user" id="navUser"></div>
     </div>
   </div>
 </header>
@@ -327,7 +335,9 @@ header{
   <h1 class="page-title">教材一覧</h1>
   <p class="page-lead">「基礎」コースはどなたでもすべて無料で読めます。デザイン・SNSなどのスキル系コースは第1章が無料で、月額会員になると入会日から1週間ごとに続きの教材が解放されていきます（すべて解放されるまで、目安で約1年のカリキュラムです）。</p>
 
-  <div class="member-card" id="memberCard"></div>
+  <div class="member-card" id="memberCard">
+    <div class="member-row"><div class="member-status"><span class="member-detail">会員状態を確認しています…</span></div></div>
+  </div>
 
   <div class="progress-card">
     <div class="progress-num" id="progressNum">0<span>%</span></div>
@@ -344,37 +354,28 @@ header{
   <div id="catPanels"></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/config.js"></script>
+<script src="assets/auth.js"></script>
 <script src="assets/data.js"></script>
 <script>
 const catNav = document.getElementById('catNav');
 const catPanels = document.getElementById('catPanels');
 const memberCard = document.getElementById('memberCard');
+const navUser = document.getElementById('navUser');
 const STORE_KEY = 'hsa_bookmarks';
 const DONE_KEY = 'hsa_completed';
-const SUB_KEY = 'hsa_subscribed';
-const JOIN_KEY = 'hsa_join_date';
-const OFFSET_KEY = 'hsa_demo_offset';
 const bookmarks = new Set(JSON.parse(localStorage.getItem(STORE_KEY) || '[]'));
 const completed = new Set(JSON.parse(localStorage.getItem(DONE_KEY) || '[]'));
 let bmOnly = false;
-let subscribed = localStorage.getItem(SUB_KEY) === '1';
-let joinDate = Number(localStorage.getItem(JOIN_KEY)) || null;
-let demoOffsetDays = Number(localStorage.getItem(OFFSET_KEY)) || 0;
 
-/* ── 管理者（受講生プレビュー）モード ── */
-const ADMIN_KEY = 'hsa_admin';
-let adminPreview = localStorage.getItem(ADMIN_KEY) === '1';
-(function(){
-  const p = new URLSearchParams(location.search).get('admin');
-  if(p === '1'){ adminPreview = true; localStorage.setItem(ADMIN_KEY,'1'); }
-  if(p === '0'){ adminPreview = false; localStorage.setItem(ADMIN_KEY,'0'); }
-})();
-
-const DAY_MS = 24*60*60*1000;
-const WEEK_MS = 7*DAY_MS;
+/* ── 会員状態（Supabase の profiles から取得した本物の値） ──
+   session: 未ログインなら null / profile: profiles テーブルの自分の行 */
+let session = null;
+let profile = null;
+let notice  = '';      // 決済直後などに会員カードへ出すお知らせ
 
 function lessonId(catId, idx){ return catId + '-' + idx; }
-
 function saveBookmarks(){
   localStorage.setItem(STORE_KEY, JSON.stringify([...bookmarks]));
 }
@@ -382,105 +383,117 @@ function saveCompleted(){
   localStorage.setItem(DONE_KEY, JSON.stringify([...completed]));
 }
 
-/* ── 会員・週次アンロック（デモ用シミュレーション） ── */
-function nowMs(){ return Date.now() + demoOffsetDays*DAY_MS; }
-function elapsedDays(){ return joinDate ? Math.floor((nowMs()-joinDate)/DAY_MS) : 0; }
-function elapsedWeeks(){ return joinDate ? Math.floor((nowMs()-joinDate)/WEEK_MS) : 0; }
+/* ── アクセス判定は assets/auth.js の共通ルールに委ねる ──
+   基礎コースは全章無料 / 他コースは第1章のみ無料 /
+   それ以外は「月額会員」かつ「入会日から idx 週が経過」で解放 */
+function getAccess(catId, lesson, idx){ return HSA.getAccess(profile, catId, lesson, idx); }
+function daysUntilUnlock(idx){ return HSA.daysUntilUnlock(profile, idx); }
 
-function subscribe(){
-  subscribed = true;
-  joinDate = Date.now();
-  demoOffsetDays = 0;
-  localStorage.setItem(SUB_KEY,'1');
-  localStorage.setItem(JOIN_KEY, String(joinDate));
-  localStorage.setItem(OFFSET_KEY,'0');
-  render();
-}
-function unsubscribe(){
-  subscribed = false;
-  localStorage.setItem(SUB_KEY,'0');
-  render();
-}
-function advanceWeek(){
-  demoOffsetDays += 7;
-  localStorage.setItem(OFFSET_KEY, String(demoOffsetDays));
-  render();
-}
-function resetDemo(){
-  demoOffsetDays = 0;
-  localStorage.setItem(OFFSET_KEY,'0');
-  render();
+/* ── ヘッダーのログイン状態 ── */
+function renderNavUser(){
+  if(!session){
+    navUser.innerHTML = '<a class="nav-login" href="login.html">ログイン</a>';
+    return;
+  }
+  const name = (session.user && session.user.email) || '受講生';
+  navUser.innerHTML = `<span class="nav-mail">${name}</span>` +
+    `<button class="nav-logout" data-action="logout" type="button">ログアウト</button>`;
 }
 
-// 基礎カテゴリは常に全開放（無料）。
-// スキル系カテゴリは idx===0 が無料、idx>=1 は「入会日 + idx週」で解放
-function getAccess(catId, lesson, idx){
-  if(!lesson.url) return 'soon';
-  if(adminPreview) return 'admin';
-  if(catId === 'basic') return 'free';
-  if(idx === 0) return 'free';
-  if(!subscribed) return 'member';
-  return elapsedWeeks() >= idx ? 'live' : 'week';
-}
-function daysUntilUnlock(idx){
-  return Math.max(0, idx*7 - elapsedDays());
-}
-
+/* ── 会員カード（未ログイン / 無料 / 月額会員 / 管理者） ── */
 function renderMemberCard(){
-  if(adminPreview){
+  const note = notice ? `<div class="member-note ok">${notice}</div>` : '';
+
+  if(profile && profile.is_admin){
     memberCard.innerHTML = `
       <div class="member-row">
         <div class="member-status">
-          <span class="member-pill admin">👁 受講生プレビュー中</span>
-          <span class="member-detail">管理者モードです。<strong>週やロックに関係なく、公開済みの全教材を閲覧できます。</strong>受講生の画面には影響しません。</span>
+          <span class="member-pill admin">👁 管理者</span>
+          <span class="member-detail">管理者アカウントです。<strong>週やロックに関係なく、公開済みの全教材を閲覧できます。</strong></span>
         </div>
         <div class="member-actions">
           <a class="member-btn" href="admin.html">管理ページへ</a>
-          <button class="member-btn ghost" data-action="exitAdmin" type="button">プレビューを終了</button>
+          <button class="member-btn ghost" data-action="logout" type="button">ログアウト</button>
         </div>
-      </div>`;
+      </div>${note}`;
     return;
   }
-  if(!subscribed){
+
+  if(!session){
+    memberCard.innerHTML = `
+      <div class="member-row">
+        <div class="member-status">
+          <span class="member-pill free">ゲスト</span>
+          <span class="member-detail"><strong>基礎コースはすべて無料</strong>、スキル系コースは<strong>第1章まで無料</strong>で読めます。続きを読むには、登録して月額会員になってください。</span>
+        </div>
+        <div class="member-actions">
+          <a class="member-btn primary" href="login.html">ログイン・新規登録</a>
+        </div>
+      </div>${note}`;
+    return;
+  }
+
+  if(!HSA.isActive(profile)){
+    const canceled = profile && profile.sub_status === 'canceled';
     memberCard.innerHTML = `
       <div class="member-row">
         <div class="member-status">
           <span class="member-pill free">無料ユーザー</span>
-          <span class="member-detail"><strong>基礎コースはすべて無料</strong>、スキル系コースは<strong>第1章まで無料</strong>で読めます。月額会員になると、入会日から毎週続きが解放されます。</span>
+          <span class="member-detail">${canceled ? '月額会員は解約済みです。再開すると、続きの教材がまた解放されていきます。' : '<strong>基礎コースはすべて無料</strong>、スキル系コースは<strong>第1章まで無料</strong>で読めます。月額会員になると、入会日から毎週続きが解放されます。'}</span>
         </div>
         <div class="member-actions">
-          <button class="member-btn primary" data-action="subscribe" type="button">［デモ］月額会員になる</button>
+          <button class="member-btn primary" data-action="join" type="button">月額会員になる（月額2,980円）</button>
+          <button class="member-btn ghost" data-action="logout" type="button">ログアウト</button>
         </div>
-      </div>`;
+      </div>${note}`;
     return;
   }
-  const week = elapsedWeeks();
-  const daysToNext = Math.max(0, (week+1)*7 - elapsedDays());
-  const joinLabel = new Date(joinDate).toLocaleDateString('ja-JP');
+
+  const week = HSA.elapsedWeeks(profile);
+  const daysToNext = HSA.daysUntilUnlock(profile, week + 1);
+  const joinLabel = profile.sub_started_at ? new Date(profile.sub_started_at).toLocaleDateString('ja-JP') : '—';
+  const pastDue = profile.sub_status === 'past_due';
   memberCard.innerHTML = `
     <div class="member-row">
       <div class="member-status">
         <span class="member-pill pro">月額会員</span>
-        <span class="member-detail">入会日：<strong>${joinLabel}</strong>／ 現在 <strong>第${week+1}週</strong>（次の解放まであと${daysToNext}日）</span>
+        <span class="member-detail">入会日：<strong>${joinLabel}</strong> ／ 現在 <strong>第${week+1}週</strong>（次の解放まであと${daysToNext}日）</span>
       </div>
       <div class="member-actions">
-        <button class="member-btn" data-action="advance" type="button">［デモ］1週間進める</button>
-        <button class="member-btn ghost" data-action="reset" type="button">［デモ］週をリセット</button>
-        <button class="member-btn ghost" data-action="unsubscribe" type="button">解約する（デモ）</button>
+        <button class="member-btn" data-action="portal" type="button">お支払い・解約の管理</button>
+        <button class="member-btn ghost" data-action="logout" type="button">ログアウト</button>
       </div>
     </div>
-    <div class="member-note">※ 現在はUIプロトタイプです。実際の決済・自動解放は本番の課金システム連携後に有効になります。</div>`;
+    ${pastDue ? '<div class="member-note warn">お支払いが確認できていません。「お支払い・解約の管理」からカード情報をご確認ください。</div>' : ''}${note}`;
 }
+
+/* ── ボタン操作（会員カード・教材リストの両方から使う） ── */
+async function handleAction(action, btn){
+  if(action === 'logout'){ await HSA.logout(); return; }
+  if(action === 'login'){ location.href = 'login.html'; return; }
+  if(action === 'join'){
+    if(!session){ location.href = 'login.html'; return; }
+    if(btn){ btn.disabled = true; btn.textContent = '決済ページを開いています…'; }
+    try{ await HSA.startCheckout(); }
+    catch(e){ if(btn){ btn.disabled = false; btn.textContent = '月額会員になる（月額2,980円）'; } }
+    return;
+  }
+  if(action === 'portal'){
+    if(btn){ btn.disabled = true; btn.textContent = '開いています…'; }
+    try{ await HSA.openBillingPortal(); }
+    catch(e){ if(btn){ btn.disabled = false; btn.textContent = 'お支払い・解約の管理'; } }
+    return;
+  }
+}
+
+document.querySelector('header').addEventListener('click', e => {
+  const btn = e.target.closest('[data-action]');
+  if(btn) handleAction(btn.dataset.action, btn);
+});
 
 memberCard.addEventListener('click', e => {
   const btn = e.target.closest('[data-action]');
-  if(!btn) return;
-  const action = btn.dataset.action;
-  if(action==='subscribe') subscribe();
-  else if(action==='advance') advanceWeek();
-  else if(action==='reset') resetDemo();
-  else if(action==='unsubscribe') unsubscribe();
-  else if(action==='exitAdmin'){ adminPreview=false; localStorage.setItem(ADMIN_KEY,'0'); render(); }
+  if(btn) handleAction(btn.dataset.action, btn);
 });
 
 function render(){
@@ -520,7 +533,9 @@ function render(){
           if(access === 'soon'){
             note = '<div class="lesson-soon-note">🔒 本文教材は準備中です。公開までしばらくお待ちください。</div>';
           } else if(access === 'member'){
-            note = '<div class="lesson-lock-note">月額会員になると、入会日から1週間ごとに続きの教材が解放されていきます。<br><button class="member-btn primary" data-action="subscribe" type="button">［デモ］月額会員になる</button></div>';
+            note = session
+              ? '<div class="lesson-lock-note">月額会員になると、入会日から1週間ごとに続きの教材が解放されていきます。<br><button class="member-btn primary" data-action="join" type="button">月額会員になる（月額2,980円）</button></div>'
+              : '<div class="lesson-lock-note">この先は月額会員向けの教材です。登録すると、入会日から1週間ごとに続きが解放されていきます。<br><a class="member-btn primary" href="login.html">ログイン・新規登録</a></div>';
           } else if(access === 'week'){
             note = `<div class="lesson-lock-note">第${idx+1}週（あと${daysUntilUnlock(idx)}日）で解放される予定です。それまでは、上の教材から順番に進めてお待ちください。</div>`;
           }
@@ -593,9 +608,9 @@ catNav.addEventListener('click', e => {
 });
 
 catPanels.addEventListener('click', e => {
-  const subBtn = e.target.closest('[data-action="subscribe"]');
-  if(subBtn){
-    subscribe();
+  const actBtn = e.target.closest('[data-action]');
+  if(actBtn){
+    handleAction(actBtn.dataset.action, actBtn);
     return;
   }
   const star = e.target.closest('[data-star]');
@@ -625,7 +640,56 @@ document.getElementById('bmToggle').addEventListener('click', () => {
   applyFilter();
 });
 
-render();
+/* ══ 起動処理 ══
+   ログイン状態とプロフィールを読み込んでから画面を描く。
+   未ログインでも「ゲスト」として無料教材は閲覧できる。 */
+async function loadMe(){
+  try{
+    session = await HSA.getSession();
+    profile = session ? await HSA.getProfile() : null;
+  }catch(e){
+    session = null; profile = null;
+  }
+}
+
+/* Stripe の決済から戻ってきた直後は、Webhook の反映を数秒待って再確認する */
+async function handleCheckoutReturn(){
+  const q = new URLSearchParams(location.search);
+  const r = q.get('checkout');
+  if(!r) return;
+  history.replaceState(null, '', location.pathname);
+  if(r === 'cancel'){
+    notice = '決済は完了していません。いつでもお申し込みいただけます。';
+    renderMemberCard();
+    return;
+  }
+  if(r !== 'success') return;
+  notice = 'お支払いを確認しています…（数秒かかることがあります）';
+  renderMemberCard();
+  for(let i = 0; i < 10 && !HSA.isActive(profile); i++){
+    await new Promise(res => setTimeout(res, 2000));
+    await loadMe();
+  }
+  notice = HSA.isActive(profile)
+    ? 'ご登録ありがとうございます。今日から1週間ごとに、続きの教材が解放されていきます。'
+    : '決済は完了しています。会員状態の反映に少し時間がかかっています。数分後にページを再読み込みしてください。';
+  render();
+}
+
+(async function init(){
+  await loadMe();
+  render();
+  renderNavUser();
+  // 別タブでのログイン・ログアウトに追従する
+  HSA.sb.auth.onAuthStateChange(() => {
+    setTimeout(async () => {
+      await loadMe();
+      render();
+      renderNavUser();
+    }, 0);
+  });
+  await handleCheckoutReturn();
+})();
 </script>
 </body>
 </html>
