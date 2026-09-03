@@ -8,8 +8,13 @@ const admin = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVIC
 export default async function handler(req, res) {
   try {
     const token = (req.headers.authorization || '').replace('Bearer ', '');
+    if (!token) { res.status(401).json({ error: 'ログイン情報が送られていません' }); return; }
     const { data: { user }, error } = await admin.auth.getUser(token);
-    if (error || !user) { res.status(401).json({ error: 'unauthorized' }); return; }
+    // 原因を握りつぶすと調べようがないので、そのまま返す
+    if (error || !user) {
+      res.status(401).json({ error: 'unauthorized: ' + (error?.message || 'ユーザーを特定できません') });
+      return;
+    }
 
     const { data: me } = await admin.from('profiles').select('is_admin').eq('id', user.id).single();
     if (!me?.is_admin) { res.status(403).json({ error: 'forbidden' }); return; }

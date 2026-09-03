@@ -26,9 +26,20 @@
   };
   HSA.gotoLogin = function (next) { location.href = HSA.loginUrl(next); };
 
+  /* ログイン中のセッションを返す。
+     アクセストークンは1時間で切れるため、期限が近ければ先に更新する。
+     （期限切れのまま /api/* を呼ぶと 401 になり「ログインの有効期限が切れています」になる） */
   HSA.getSession = async function () {
     const { data } = await sb.auth.getSession();
-    return data.session;
+    let s = data.session;
+    if (!s) return null;
+    const expMs = (s.expires_at || 0) * 1000;
+    if (!expMs || expMs - Date.now() < 60 * 1000) {
+      const { data: r, error } = await sb.auth.refreshSession();
+      if (error || !r?.session) return null;   // 更新できない＝ログインし直しが必要
+      s = r.session;
+    }
+    return s;
   };
 
   // ログイン必須ページで呼ぶ。未ログインなら login.html へ飛ばす

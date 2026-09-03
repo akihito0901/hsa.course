@@ -206,7 +206,7 @@ async function loadStudents(){
   }
   const session = await HSA.getSession();
   if(!session){
-    studentsArea.innerHTML = `<div class="students-msg">受講生一覧を見るには管理者アカウントでのログインが必要です。<br><a href="login.html?next=admin.html">ログインする →</a></div>`;
+    studentsArea.innerHTML = `<div class="students-msg">受講生一覧を見るには管理者アカウントでのログインが必要です。<br><a href="login.html?next=admin.html&amp;force=1">ログインする →</a></div>`;
     return;
   }
   try{
@@ -218,7 +218,7 @@ async function loadStudents(){
       return;
     }
     if(res.status === 401){
-      studentsArea.innerHTML = `<div class="students-msg">ログインの有効期限が切れています。<a href="login.html?next=admin.html">再ログインする →</a></div>`;
+      studentsArea.innerHTML = `<div class="students-msg">ログインの有効期限が切れています。<br><a href="login.html?next=admin.html&amp;force=1">ログインし直す →</a></div>`;
       return;
     }
     const json = await res.json();

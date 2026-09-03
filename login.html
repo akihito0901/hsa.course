@@ -79,8 +79,18 @@ const submitBtn = document.getElementById('submit');
 function setMsg(text, kind){ msg.textContent = text; msg.className = 'msg ' + (kind||''); }
 function go(){ location.href = nextParam; }
 
-// すでにログイン済みなら飛ばす
-sb.auth.getSession().then(({data})=>{ if(data.session) go(); });
+/* すでにログイン済みなら飛ばす。
+   ただし ?force=1 が付いていれば、いったんログアウトしてこの画面に留まる。
+   （セッションが壊れて401になったとき、ここで跳ね返されると
+     ログインし直せず堂々巡りになるため） */
+const forceLogin = new URLSearchParams(location.search).get('force') === '1';
+if(forceLogin){
+  sb.auth.signOut().finally(()=>{
+    setMsg('いったんログアウトしました。もう一度ログインしてください。');
+  });
+}else{
+  sb.auth.getSession().then(({data})=>{ if(data.session) go(); });
+}
 
 document.querySelectorAll('.tab').forEach(t=>{
   t.addEventListener('click',()=>{
