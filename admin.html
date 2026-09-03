@@ -99,7 +99,7 @@ tr:last-child td{border-bottom:none}
 <div class="wrap head">
   <p class="eyebrow">ADMIN</p>
   <h1 class="h1">教材 管理ページ</h1>
-  <p class="lead">全教材の公開状況と、各ページへの直リンクを一覧できます。受講生の週次解放に関係なく、ここから公開済みの教材をいつでも確認できます。</p>
+  <p class="lead">全教材の公開状況と、各ページへの直リンクを一覧できます。受講生の購入状況に関係なく、ここから公開済みの教材をいつでも確認できます。</p>
 
   <div class="stats" id="stats"></div>
 
@@ -114,7 +114,7 @@ tr:last-child td{border-bottom:none}
   <p class="note">
     ・「公開済み」＝固定ページが用意できている教材です。行の「開く」からいつでも中身を確認できます。<br>
     ・「準備中」＝まだ本文ページが未作成の教材です。<br>
-    ・解放タイミングは受講生から見た公開条件です（基礎＝常に無料／スキル系＝第1章無料・以降は入会から毎週1章）。<br>
+    ・解放タイミングは受講生から見た公開条件です（基礎＝常に無料／スキル系＝第1章無料・以降は購入者のみ）。買い切りなので、購入するとその場で全部開きます。<br>
     ・教材の内容を修正するには、対応する lessons/◯◯-◯.html を編集します。項目の増減は assets/data.js を編集します。
   </p>
 </div>
@@ -140,7 +140,7 @@ function accessLabel(cat, idx, lesson){
   if(!lesson.url) return {cls:'pill-soon', text:'準備中'};
   if(cat.id === 'basic') return {cls:'pill-free', text:'無料（常時）'};
   if(idx === 0) return {cls:'pill-free', text:'第1章・無料'};
-  return {cls:'pill-week', text:`第${idx+1}週で解放`};
+  return {cls:'pill-week', text:'購入者限定'};
 }
 
 // 集計
@@ -190,7 +190,7 @@ document.getElementById('board').innerHTML = CATEGORIES.map(c => `
 
 /* ── 受講生一覧（会員システム） ── */
 const studentsArea = document.getElementById('students-area');
-const SUB_LABEL = { active:{cls:'pill-active', text:'課金中'}, none:{cls:'pill-none', text:'未課金'}, canceled:{cls:'pill-canceled', text:'解約済み'}, past_due:{cls:'pill-past_due', text:'支払い遅延'} };
+const PAID_LABEL = { yes:{cls:'pill-active', text:'購入済み'}, no:{cls:'pill-none', text:'未購入'} };
 function fmtDate(v){ return v ? new Date(v).toLocaleDateString('ja-JP') : '—'; }
 
 async function loadStudents(){
@@ -209,7 +209,7 @@ async function loadStudents(){
       headers: { 'Authorization': 'Bearer ' + session.access_token }
     });
     if(res.status === 403){
-      studentsArea.innerHTML = `<div class="students-msg">このアカウントには管理者権限がありません。Supabaseの profiles テーブルで is_admin を true にしてください（SETUP.md 手順6）。</div>`;
+      studentsArea.innerHTML = `<div class="students-msg">このアカウントには管理者権限がありません。Supabaseの profiles テーブルで is_admin を true にしてください（SETUP.md 手順5）。</div>`;
       return;
     }
     if(res.status === 401){
@@ -229,26 +229,25 @@ function renderStudents(students){
     studentsArea.innerHTML = `<div class="students-msg">まだ登録している受講生がいません。</div>`;
     return;
   }
-  const activeCount = students.filter(s => s.sub_status === 'active').length;
+  const paidCount = students.filter(s => s.is_paid).length;
   studentsArea.innerHTML = `
     <div class="stats" style="margin:0 0 16px">
       <div class="stat"><div class="stat-num">${students.length}</div><div class="stat-label">登録ユーザー数</div></div>
-      <div class="stat"><div class="stat-num">${activeCount}</div><div class="stat-label">月額会員（課金中）</div></div>
+      <div class="stat"><div class="stat-num">${paidCount}</div><div class="stat-label">購入者数</div></div>
     </div>
     <div class="table-scroll">
       <table>
         <thead>
-          <tr><th>メール</th><th>会員状態</th><th>課金開始日</th><th>今期の更新日</th><th>管理者</th><th>登録日</th></tr>
+          <tr><th>メール</th><th>購入状態</th><th>購入日</th><th>管理者</th><th>登録日</th></tr>
         </thead>
         <tbody>
           ${students.map(s => {
-            const sub = SUB_LABEL[s.sub_status] || SUB_LABEL.none;
+            const paid = s.is_paid ? PAID_LABEL.yes : PAID_LABEL.no;
             return `
             <tr>
               <td class="t-title">${s.email || '—'}</td>
-              <td><span class="pill ${sub.cls}">${sub.text}</span></td>
-              <td class="t-min">${fmtDate(s.sub_started_at)}</td>
-              <td class="t-min">${fmtDate(s.current_period_end)}</td>
+              <td><span class="pill ${paid.cls}">${paid.text}</span></td>
+              <td class="t-min">${fmtDate(s.paid_at)}</td>
               <td>${s.is_admin ? '<span class="pill pill-admin-yes">管理者</span>' : ''}</td>
               <td class="t-min">${fmtDate(s.created_at)}</td>
             </tr>`;

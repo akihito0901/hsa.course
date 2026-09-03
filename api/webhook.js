@@ -1,4 +1,4 @@
-// POST /api/webhook … Stripe からの通知を受けて会員状態を更新する
+// POST /api/webhook … Stripe からの通知を受けて購入状態を更新する（買い切り方式）
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 
@@ -19,26 +19,33 @@ function readRaw(req) {
   });
 }
 
-async function userIdFromSub(sub) {
-  if (sub?.metadata?.supabase_id) return sub.metadata.supabase_id;
-  const { data } = await admin.from('profiles').select('id').eq('stripe_customer_id', sub.customer).single();
+// Stripe の顧客IDから受講生を引き当てる（metadata が無い場合の保険）
+async function userIdFromCustomer(customerId) {
+  if (!customerId) return null;
+  const { data } = await admin.from('profiles').select('id').eq('stripe_customer_id', customerId).single();
   return data?.id || null;
 }
 
-// 課金状態を profiles に反映。sub_started_at は初回課金時のみ設定（週次解放の起点を固定）
-async function applySubscription(userId, sub) {
+// 購入を profiles に反映。paid_at は初回のみ設定する
+async function applyPurchase(userId, { customerId, paymentIntentId }) {
   if (!userId) return;
-  const active = ['active', 'trialing'].includes(sub.status);
+  const { data: prof } = await admin.from('profiles').select('paid_at').eq('id', userId).single();
   const patch = {
-    stripe_customer_id: sub.customer,
-    stripe_subscription_id: sub.id,
-    sub_status: active ? 'active' : sub.status,
-    current_period_end: sub.current_period_end ? new Date(sub.current_period_end * 1000).toISOString() : null,
+    is_paid: true,
     updated_at: new Date().toISOString()
   };
-  const { data: prof } = await admin.from('profiles').select('sub_started_at').eq('id', userId).single();
-  if (active && !prof?.sub_started_at) patch.sub_started_at = new Date().toISOString();
+  if (customerId) patch.stripe_customer_id = customerId;
+  if (paymentIntentId) patch.stripe_payment_intent_id = paymentIntentId;
+  if (!prof?.paid_at) patch.paid_at = new Date().toISOString();
   await admin.from('profiles').update(patch).eq('id', userId);
+}
+
+// 返金されたら閲覧権を取り消す
+async function revokePurchase(userId) {
+  if (!userId) return;
+  await admin.from('profiles')
+    .update({ is_paid: false, updated_at: new Date().toISOString() })
+    .eq('id', userId);
 }
 
 export default async function handler(req, res) {
@@ -54,29 +61,59 @@ export default async function handler(req, res) {
 
   try {
     switch (event.type) {
+      // 決済ページで支払いが完了した
       case 'checkout.session.completed': {
         const s = event.data.object;
-        const userId = s.client_reference_id || s.metadata?.supabase_id;
-        if (s.subscription) {
-          const sub = await stripe.subscriptions.retrieve(s.subscription);
-          await applySubscription(userId || await userIdFromSub(sub), sub);
-        }
+        if (s.payment_status !== 'paid') break;      // 後払い等で未入金ならまだ開けない
+        const userId = s.client_reference_id
+          || s.metadata?.supabase_id
+          || await userIdFromCustomer(s.customer);
+        await applyPurchase(userId, {
+          customerId: s.customer,
+          paymentIntentId: typeof s.payment_intent === 'string' ? s.payment_intent : s.payment_intent?.id
+        });
         break;
       }
-      case 'customer.subscription.created':
-      case 'customer.subscription.updated': {
-        const sub = event.data.object;
-        await applySubscription(await userIdFromSub(sub), sub);
+
+      // コンビニ払い・銀行振込など、あとから入金が確定した場合の保険
+      case 'checkout.session.async_payment_succeeded': {
+        const s = event.data.object;
+        const userId = s.client_reference_id
+          || s.metadata?.supabase_id
+          || await userIdFromCustomer(s.customer);
+        await applyPurchase(userId, {
+          customerId: s.customer,
+          paymentIntentId: typeof s.payment_intent === 'string' ? s.payment_intent : s.payment_intent?.id
+        });
         break;
       }
-      case 'customer.subscription.deleted': {
-        const sub = event.data.object;
-        const userId = await userIdFromSub(sub);
-        if (userId) {
-          await admin.from('profiles')
-            .update({ sub_status: 'canceled', updated_at: new Date().toISOString() })
-            .eq('id', userId);
-        }
+
+      // 支払い成立（Checkout を通さず請求した場合もここで開放される）
+      case 'payment_intent.succeeded': {
+        const pi = event.data.object;
+        const userId = pi.metadata?.supabase_id || await userIdFromCustomer(pi.customer);
+        await applyPurchase(userId, { customerId: pi.customer, paymentIntentId: pi.id });
+        break;
+      }
+
+      // 全額返金されたら閲覧権を取り消す（一部返金では取り消さない）
+      case 'charge.refunded': {
+        const ch = event.data.object;
+        if (ch.amount_refunded < ch.amount) break;
+        const userId = ch.metadata?.supabase_id || await userIdFromCustomer(ch.customer);
+        await revokePurchase(userId);
+        break;
+      }
+
+      // チャージバック（カード会社への異議申し立て）が起きたら取り消す
+      // このイベントの本体は charge ではなく dispute なので、charge を引き直す
+      case 'charge.dispute.created': {
+        const dispute = event.data.object;
+        const chargeId = typeof dispute.charge === 'string' ? dispute.charge : dispute.charge?.id;
+        if (!chargeId) break;
+        const ch = await stripe.charges.retrieve(chargeId);
+        const userId = ch.metadata?.supabase_id || await userIdFromCustomer(ch.customer);
+        await revokePurchase(userId);
         break;
       }
     }

@@ -334,7 +334,7 @@ header{
 <div class="wrap page-head">
   <p class="page-eyebrow">MATERIALS</p>
   <h1 class="page-title">教材一覧</h1>
-  <p class="page-lead">「基礎」コースはどなたでもすべて無料で読めます。デザイン・SNSなどのスキル系コースは第1章が無料で、月額会員になると入会日から1週間ごとに続きの教材が解放されていきます（すべて解放されるまで、目安で約1年のカリキュラムです）。</p>
+  <p class="page-lead">「基礎」コースはどなたでもすべて無料で読めます。デザイン・SNSなどのスキル系コースは第1章が無料です。<strong>一度ご購入いただくと、全7コース71教材が期限なしですべて読めるようになります</strong>（月額料金や追加のお支払いはありません）。</p>
 
   <div class="member-card" id="memberCard">
     <div class="member-row"><div class="member-status"><span class="member-detail">会員状態を確認しています…</span></div></div>
@@ -386,9 +386,14 @@ function saveCompleted(){
 
 /* ── アクセス判定は assets/auth.js の共通ルールに委ねる ──
    基礎コースは全章無料 / 他コースは第1章のみ無料 /
-   それ以外は「月額会員」かつ「入会日から idx 週が経過」で解放 */
+   それ以外は購入者だけが読める（買い切りなので、買えば全部開く） */
 function getAccess(catId, lesson, idx){ return HSA.getAccess(profile, catId, lesson, idx); }
-function daysUntilUnlock(idx){ return HSA.daysUntilUnlock(profile, idx); }
+
+/* 購入ボタンの文言。金額は assets/config.js の PRICE_LABEL で出し分ける */
+function buyLabel(){
+  const p = (window.HSA_CONFIG || {}).PRICE_LABEL;
+  return p ? `この講座を購入する（${p}）` : 'この講座を購入する';
+}
 
 /* ── ヘッダーのログイン状態 ── */
 function renderNavUser(){
@@ -401,19 +406,34 @@ function renderNavUser(){
     `<button class="nav-logout" data-action="logout" type="button">ログアウト</button>`;
 }
 
-/* ── 会員カード（未ログイン / 無料 / 月額会員 / 管理者） ── */
+/* ── 購入カード（未ログイン / 未購入 / 購入済み / 管理者） ── */
 function renderMemberCard(){
   const note = notice ? `<div class="member-note ok">${notice}</div>` : '';
 
-  if(profile && profile.is_admin){
+  if(HSA.isAdmin(profile)){
     memberCard.innerHTML = `
       <div class="member-row">
         <div class="member-status">
           <span class="member-pill admin">👁 管理者</span>
-          <span class="member-detail">管理者アカウントです。<strong>週やロックに関係なく、公開済みの全教材を閲覧できます。</strong></span>
+          <span class="member-detail">管理者アカウントです。<strong>購入の有無に関係なく、全教材を閲覧できます。</strong></span>
         </div>
         <div class="member-actions">
           <a class="member-btn" href="admin.html">管理ページへ</a>
+          <button class="member-btn ghost" data-action="logout" type="button">ログアウト</button>
+        </div>
+      </div>${note}`;
+    return;
+  }
+
+  if(HSA.hasPurchased(profile)){
+    const on = HSA.purchasedOn(profile);
+    memberCard.innerHTML = `
+      <div class="member-row">
+        <div class="member-status">
+          <span class="member-pill pro">購入済み</span>
+          <span class="member-detail">${on ? `ご購入日：<strong>${on}</strong> ／ ` : ''}<strong>全7コース71教材が、期限なしですべて読めます。</strong>好きな順番で進めてください。</span>
+        </div>
+        <div class="member-actions">
           <button class="member-btn ghost" data-action="logout" type="button">ログアウト</button>
         </div>
       </div>${note}`;
@@ -425,7 +445,7 @@ function renderMemberCard(){
       <div class="member-row">
         <div class="member-status">
           <span class="member-pill free">ゲスト</span>
-          <span class="member-detail"><strong>基礎コースはすべて無料</strong>、スキル系コースは<strong>第1章まで無料</strong>で読めます。続きを読むには、登録して月額会員になってください。</span>
+          <span class="member-detail"><strong>基礎コースはすべて無料</strong>、スキル系コースは<strong>第1章まで無料</strong>で読めます。続きは、ご購入いただくと全部まとめて読めるようになります。</span>
         </div>
         <div class="member-actions">
           <a class="member-btn primary" href="login.html">ログイン・新規登録</a>
@@ -434,71 +454,30 @@ function renderMemberCard(){
     return;
   }
 
-  // 支払い失敗中。ここで「月額会員になる」を出すと二重課金になるため、
-  // カード情報を直す導線（カスタマーポータル）だけを出す
-  if(profile && profile.sub_status === 'past_due'){
-    memberCard.innerHTML = `
-      <div class="member-row">
-        <div class="member-status">
-          <span class="member-pill due">⚠ お支払い確認中</span>
-          <span class="member-detail">カードのお支払いが確認できていません。<strong>カード情報を更新すると、教材はすぐに元どおり開きます。</strong>それまでの間、会員限定の教材は一時的に閉じています。</span>
-        </div>
-        <div class="member-actions">
-          <button class="member-btn primary" data-action="portal" type="button">カード情報を更新する</button>
-          <button class="member-btn ghost" data-action="logout" type="button">ログアウト</button>
-        </div>
-      </div>${note}`;
-    return;
-  }
-
-  if(!HSA.isActive(profile)){
-    const canceled = profile && profile.sub_status === 'canceled';
-    memberCard.innerHTML = `
-      <div class="member-row">
-        <div class="member-status">
-          <span class="member-pill free">無料ユーザー</span>
-          <span class="member-detail">${canceled ? '月額会員は解約済みです。再開すると、続きの教材がまた解放されていきます。' : '<strong>基礎コースはすべて無料</strong>、スキル系コースは<strong>第1章まで無料</strong>で読めます。月額会員になると、入会日から毎週続きが解放されます。'}</span>
-        </div>
-        <div class="member-actions">
-          <button class="member-btn primary" data-action="join" type="button">月額会員になる（月額2,980円）</button>
-          <button class="member-btn ghost" data-action="logout" type="button">ログアウト</button>
-        </div>
-      </div>${note}`;
-    return;
-  }
-
-  const week = HSA.elapsedWeeks(profile);
-  const daysToNext = HSA.daysUntilUnlock(profile, week + 1);
-  const joinLabel = profile.sub_started_at ? new Date(profile.sub_started_at).toLocaleDateString('ja-JP') : '—';
+  // ログイン済み・未購入
   memberCard.innerHTML = `
     <div class="member-row">
       <div class="member-status">
-        <span class="member-pill pro">月額会員</span>
-        <span class="member-detail">入会日：<strong>${joinLabel}</strong> ／ 現在 <strong>第${week+1}週</strong>（次の解放まであと${daysToNext}日）</span>
+        <span class="member-pill free">未購入</span>
+        <span class="member-detail"><strong>基礎コースはすべて無料</strong>、スキル系コースは<strong>第1章まで無料</strong>で読めます。ご購入いただくと、残りの教材も含めて<strong>全71教材が期限なしで読み放題</strong>になります。</span>
       </div>
       <div class="member-actions">
-        <button class="member-btn" data-action="portal" type="button">お支払い・解約の管理</button>
+        <button class="member-btn primary" data-action="buy" type="button">${buyLabel()}</button>
         <button class="member-btn ghost" data-action="logout" type="button">ログアウト</button>
       </div>
-    </div>
-    ${note}`;
+    </div>${note}`;
 }
 
-/* ── ボタン操作（会員カード・教材リストの両方から使う） ── */
+/* ── ボタン操作（購入カード・教材リストの両方から使う） ── */
 async function handleAction(action, btn){
   if(action === 'logout'){ await HSA.logout(); return; }
   if(action === 'login'){ location.href = 'login.html'; return; }
-  if(action === 'join'){
+  if(action === 'buy'){
     if(!session){ location.href = 'login.html'; return; }
+    const before = btn ? btn.textContent : '';
     if(btn){ btn.disabled = true; btn.textContent = '決済ページを開いています…'; }
     try{ await HSA.startCheckout(); }
-    catch(e){ if(btn){ btn.disabled = false; btn.textContent = '月額会員になる（月額2,980円）'; } }
-    return;
-  }
-  if(action === 'portal'){
-    if(btn){ btn.disabled = true; btn.textContent = '開いています…'; }
-    try{ await HSA.openBillingPortal(); }
-    catch(e){ if(btn){ btn.disabled = false; btn.textContent = 'お支払い・解約の管理'; } }
+    catch(e){ if(btn){ btn.disabled = false; btn.textContent = before; } }
     return;
   }
 }
@@ -542,23 +521,16 @@ function render(){
             free:{cls:'badge-live', text:'無料公開'},
             live:{cls:'badge-live', text:'公開中'},
             admin:{cls:'badge-admin', text:'👁 プレビュー'},
-            member:{cls:'badge-soon', text:'🔒 会員限定'},
-            week:{cls:'badge-soon', text:`🔒 第${idx+1}週で解放`},
+            locked:{cls:'badge-soon', text:'🔒 購入者限定'},
             soon:{cls:'badge-soon', text:'準備中'},
           }[access];
           let note = '';
           if(access === 'soon'){
             note = '<div class="lesson-soon-note">🔒 本文教材は準備中です。公開までしばらくお待ちください。</div>';
-          } else if(access === 'member'){
-            if(!session){
-              note = '<div class="lesson-lock-note">この先は月額会員向けの教材です。登録すると、入会日から1週間ごとに続きが解放されていきます。<br><a class="member-btn primary" href="login.html">ログイン・新規登録</a></div>';
-            } else if(profile && profile.sub_status === 'past_due'){
-              note = '<div class="lesson-lock-note">カードのお支払いが確認できていません。カード情報を更新すると、この教材はすぐに元どおり開きます。<br><button class="member-btn primary" data-action="portal" type="button">カード情報を更新する</button></div>';
-            } else {
-              note = '<div class="lesson-lock-note">月額会員になると、入会日から1週間ごとに続きの教材が解放されていきます。<br><button class="member-btn primary" data-action="join" type="button">月額会員になる（月額2,980円）</button></div>';
-            }
-          } else if(access === 'week'){
-            note = `<div class="lesson-lock-note">第${idx+1}週（あと${daysUntilUnlock(idx)}日）で解放される予定です。それまでは、上の教材から順番に進めてお待ちください。</div>`;
+          } else if(access === 'locked'){
+            note = session
+              ? `<div class="lesson-lock-note">ご購入いただくと、この教材を含む<strong>全71教材が期限なしですべて</strong>読めるようになります。<br><button class="member-btn primary" data-action="buy" type="button">${buyLabel()}</button></div>`
+              : '<div class="lesson-lock-note">この先は購入者限定の教材です。ご購入いただくと、全71教材が期限なしですべて読めるようになります。<br><a class="member-btn primary" href="login.html">ログイン・新規登録</a></div>';
           }
           return `
           <div class="lesson" data-id="${id}" data-bm="${isBm?'1':'0'}">
@@ -680,20 +652,20 @@ async function handleCheckoutReturn(){
   if(!r) return;
   history.replaceState(null, '', location.pathname);
   if(r === 'cancel'){
-    notice = '決済は完了していません。いつでもお申し込みいただけます。';
+    notice = '決済は完了していません。いつでもご購入いただけます。';
     renderMemberCard();
     return;
   }
   if(r !== 'success') return;
   notice = 'お支払いを確認しています…（数秒かかることがあります）';
   renderMemberCard();
-  for(let i = 0; i < 10 && !HSA.isActive(profile); i++){
+  for(let i = 0; i < 10 && !HSA.hasPurchased(profile); i++){
     await new Promise(res => setTimeout(res, 2000));
     await loadMe();
   }
-  notice = HSA.isActive(profile)
-    ? 'ご登録ありがとうございます。今日から1週間ごとに、続きの教材が解放されていきます。'
-    : '決済は完了しています。会員状態の反映に少し時間がかかっています。数分後にページを再読み込みしてください。';
+  notice = HSA.hasPurchased(profile)
+    ? 'ご購入ありがとうございます。全71教材がすべて開きました。好きな順番で進めてください。'
+    : '決済は完了しています。反映に少し時間がかかっています。数分後にページを再読み込みしてください。';
   render();
 }
 
