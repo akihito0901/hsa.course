@@ -218,7 +218,10 @@ async function loadStudents(){
       return;
     }
     if(res.status === 401){
-      studentsArea.innerHTML = `<div class="students-msg">ログインの有効期限が切れています。<br><a href="login.html?next=admin.html&amp;force=1">ログインし直す →</a></div>`;
+      // サーバーが返した理由も出す（設定ミスとログイン切れを見分けるため）
+      let reason = '';
+      try{ reason = (await res.clone().json()).error || ''; }catch(e){}
+      studentsArea.innerHTML = `<div class="students-msg">ログインの有効期限が切れています。<br><a href="login.html?next=admin.html&amp;force=1">ログインし直す →</a>${reason ? `<br><span style="font-size:.8em;color:#999">${reason}</span>` : ''}</div>`;
       return;
     }
     const json = await res.json();

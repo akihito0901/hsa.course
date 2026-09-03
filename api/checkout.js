@@ -2,8 +2,15 @@
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-const admin = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
+// 環境変数の値を掃除して読む。
+// Vercel の入力欄に値を複数行（同じキーを繰り返す等）で貼ってしまうと
+// 改行入りの文字列になり、HTTPヘッダーに使えず 401 になる。
+// 1行目だけを取り出し、前後の空白を落として使う。
+const env = (name) => String(process.env[name] || '').split(/[\r\n]/)[0].trim();
+
+
+const stripe = new Stripe(env('STRIPE_SECRET_KEY'));
+const admin = createClient(env('SUPABASE_URL'), env('SUPABASE_SERVICE_ROLE_KEY'), {
   auth: { persistSession: false }
 });
 
@@ -27,11 +34,11 @@ export default async function handler(req, res) {
       await admin.from('profiles').update({ stripe_customer_id: customerId }).eq('id', user.id);
     }
 
-    const origin = req.headers.origin || process.env.SITE_URL || '';
+    const origin = req.headers.origin || env('SITE_URL') || '';
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',                       // 買い切り（1回きりの支払い）
       customer: customerId,
-      line_items: [{ price: process.env.STRIPE_PRICE_ID, quantity: 1 }],
+      line_items: [{ price: env('STRIPE_PRICE_ID'), quantity: 1 }],
       success_url: origin + '/index.html?checkout=success',
       cancel_url: origin + '/index.html?checkout=cancel',
       client_reference_id: user.id,

@@ -1,7 +1,14 @@
 // GET /api/admin-students … 管理者だけが全受講生の購入状況を取得する
 import { createClient } from '@supabase/supabase-js';
 
-const admin = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
+// 環境変数の値を掃除して読む。
+// Vercel の入力欄に値を複数行（同じキーを繰り返す等）で貼ってしまうと
+// 改行入りの文字列になり、HTTPヘッダーに使えず 401 になる。
+// 1行目だけを取り出し、前後の空白を落として使う。
+const env = (name) => String(process.env[name] || '').split(/[\r\n]/)[0].trim();
+
+
+const admin = createClient(env('SUPABASE_URL'), env('SUPABASE_SERVICE_ROLE_KEY'), {
   auth: { persistSession: false }
 });
 

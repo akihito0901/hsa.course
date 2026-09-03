@@ -2,11 +2,18 @@
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 
+// 環境変数の値を掃除して読む。
+// Vercel の入力欄に値を複数行（同じキーを繰り返す等）で貼ってしまうと
+// 改行入りの文字列になり、HTTPヘッダーに使えず 401 になる。
+// 1行目だけを取り出し、前後の空白を落として使う。
+const env = (name) => String(process.env[name] || '').split(/[\r\n]/)[0].trim();
+
+
 // Stripe 署名検証のため、生のリクエストボディが必要（bodyParser を無効化）
 export const config = { api: { bodyParser: false } };
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-const admin = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
+const stripe = new Stripe(env('STRIPE_SECRET_KEY'));
+const admin = createClient(env('SUPABASE_URL'), env('SUPABASE_SERVICE_ROLE_KEY'), {
   auth: { persistSession: false }
 });
 
@@ -53,7 +60,7 @@ export default async function handler(req, res) {
   try {
     const raw = await readRaw(req);
     const sig = req.headers['stripe-signature'];
-    event = stripe.webhooks.constructEvent(raw, sig, process.env.STRIPE_WEBHOOK_SECRET);
+    event = stripe.webhooks.constructEvent(raw, sig, env('STRIPE_WEBHOOK_SECRET'));
   } catch (err) {
     res.status(400).send('signature error: ' + err.message);
     return;
