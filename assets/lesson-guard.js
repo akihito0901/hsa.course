@@ -115,6 +115,28 @@
         return;
       }
 
+      // 支払い失敗中は「月額会員になる」を出さない（二重課金になるため）
+      if (profile && profile.sub_status === 'past_due') {
+        lock('<div class="lesson-lock-ic">⚠️</div>' +
+          '<h2 class="lesson-lock-h">お支払いが確認できていません</h2>' +
+          '<p class="lesson-lock-p">カードのお支払いが確認できていないため、会員限定の教材を一時的に閉じています。' +
+          '<br><strong>カード情報を更新すると、すぐに元どおり開きます。</strong></p>' +
+          '<div class="lesson-lock-actions">' +
+          '<button class="lesson-lock-btn" type="button" id="hsaLockPortal">カード情報を更新する</button>' +
+          '<a class="lesson-lock-btn ghost" href="../index.html">教材一覧へ戻る</a>' +
+          '</div>');
+        var portal = document.getElementById('hsaLockPortal');
+        if (portal) portal.addEventListener('click', function () {
+          portal.disabled = true;
+          portal.textContent = '開いています…';
+          HSA.openBillingPortal().catch(function () {
+            portal.disabled = false;
+            portal.textContent = 'カード情報を更新する';
+          });
+        });
+        return;
+      }
+
       // access === 'member'（ログイン済み・未課金）
       lock('<div class="lesson-lock-ic">🔒</div>' +
         '<h2 class="lesson-lock-h">この教材は月額会員限定です</h2>' +

@@ -95,6 +95,7 @@ header{
 .member-pill.free{background:#f3f0ff;color:var(--pur)}
 .member-pill.pro{background:var(--ga);color:#fff}
 .member-pill.admin{background:var(--gb);color:#fff}
+.member-pill.due{background:#fee2e2;color:#dc2626}
 .member-detail{font-size:.85rem;color:var(--muted);line-height:1.7}
 .member-detail strong{color:#1a1a2e}
 .member-actions{display:flex;gap:10px;flex-wrap:wrap}
@@ -433,6 +434,23 @@ function renderMemberCard(){
     return;
   }
 
+  // 支払い失敗中。ここで「月額会員になる」を出すと二重課金になるため、
+  // カード情報を直す導線（カスタマーポータル）だけを出す
+  if(profile && profile.sub_status === 'past_due'){
+    memberCard.innerHTML = `
+      <div class="member-row">
+        <div class="member-status">
+          <span class="member-pill due">⚠ お支払い確認中</span>
+          <span class="member-detail">カードのお支払いが確認できていません。<strong>カード情報を更新すると、教材はすぐに元どおり開きます。</strong>それまでの間、会員限定の教材は一時的に閉じています。</span>
+        </div>
+        <div class="member-actions">
+          <button class="member-btn primary" data-action="portal" type="button">カード情報を更新する</button>
+          <button class="member-btn ghost" data-action="logout" type="button">ログアウト</button>
+        </div>
+      </div>${note}`;
+    return;
+  }
+
   if(!HSA.isActive(profile)){
     const canceled = profile && profile.sub_status === 'canceled';
     memberCard.innerHTML = `
@@ -452,7 +470,6 @@ function renderMemberCard(){
   const week = HSA.elapsedWeeks(profile);
   const daysToNext = HSA.daysUntilUnlock(profile, week + 1);
   const joinLabel = profile.sub_started_at ? new Date(profile.sub_started_at).toLocaleDateString('ja-JP') : '—';
-  const pastDue = profile.sub_status === 'past_due';
   memberCard.innerHTML = `
     <div class="member-row">
       <div class="member-status">
@@ -464,7 +481,7 @@ function renderMemberCard(){
         <button class="member-btn ghost" data-action="logout" type="button">ログアウト</button>
       </div>
     </div>
-    ${pastDue ? '<div class="member-note warn">お支払いが確認できていません。「お支払い・解約の管理」からカード情報をご確認ください。</div>' : ''}${note}`;
+    ${note}`;
 }
 
 /* ── ボタン操作（会員カード・教材リストの両方から使う） ── */
@@ -533,9 +550,13 @@ function render(){
           if(access === 'soon'){
             note = '<div class="lesson-soon-note">🔒 本文教材は準備中です。公開までしばらくお待ちください。</div>';
           } else if(access === 'member'){
-            note = session
-              ? '<div class="lesson-lock-note">月額会員になると、入会日から1週間ごとに続きの教材が解放されていきます。<br><button class="member-btn primary" data-action="join" type="button">月額会員になる（月額2,980円）</button></div>'
-              : '<div class="lesson-lock-note">この先は月額会員向けの教材です。登録すると、入会日から1週間ごとに続きが解放されていきます。<br><a class="member-btn primary" href="login.html">ログイン・新規登録</a></div>';
+            if(!session){
+              note = '<div class="lesson-lock-note">この先は月額会員向けの教材です。登録すると、入会日から1週間ごとに続きが解放されていきます。<br><a class="member-btn primary" href="login.html">ログイン・新規登録</a></div>';
+            } else if(profile && profile.sub_status === 'past_due'){
+              note = '<div class="lesson-lock-note">カードのお支払いが確認できていません。カード情報を更新すると、この教材はすぐに元どおり開きます。<br><button class="member-btn primary" data-action="portal" type="button">カード情報を更新する</button></div>';
+            } else {
+              note = '<div class="lesson-lock-note">月額会員になると、入会日から1週間ごとに続きの教材が解放されていきます。<br><button class="member-btn primary" data-action="join" type="button">月額会員になる（月額2,980円）</button></div>';
+            }
           } else if(access === 'week'){
             note = `<div class="lesson-lock-note">第${idx+1}週（あと${daysUntilUnlock(idx)}日）で解放される予定です。それまでは、上の教材から順番に進めてお待ちください。</div>`;
           }
