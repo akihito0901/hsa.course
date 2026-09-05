@@ -80,8 +80,10 @@ header{
   border:2px solid #ddd6fe;color:var(--pur);
   padding:10px 18px;border-radius:999px;
   background:#fff;transition:background .2s,color .2s;
-  display:flex;align-items:center;gap:6px;
+  display:flex;align-items:center;gap:7px;
 }
+.bm-ic{width:15px;height:15px;flex-shrink:0;display:grid;place-items:center}
+.bm-ic svg{width:15px;height:15px}
 .bm-toggle.on{background:var(--ga);color:#fff;border-color:transparent}
 
 /* ── 会員ステータス ── */
@@ -114,46 +116,40 @@ header{
 /* ════ LAYOUT ════ */
 .board{display:grid;grid-template-columns:240px 1fr;gap:36px;padding:36px 0 100px;align-items:start}
 
-/* ── カテゴリタブ（サイドバー） ── */
-.cat-nav{position:sticky;top:88px;display:flex;flex-direction:column;gap:6px}
+/* ── コース一覧（PC＝サイドバー / スマホ＝積み重ね） ── */
+.cat-nav{position:sticky;top:88px;display:flex;flex-direction:column;gap:2px}
 .cat-btn{
   display:flex;align-items:center;gap:12px;
-  padding:13px 16px;border-radius:14px;
-  font-size:.9rem;font-weight:700;color:#555;
-  border:1px solid transparent;text-align:left;background:transparent;width:100%;
+  padding:11px 14px;border-radius:12px;
+  font-size:.88rem;font-weight:700;color:#6b7280;
+  border:none;text-align:left;background:transparent;width:100%;
   transition:background .15s,color .15s;
 }
-.cat-btn:hover{background:#fff}
-.cat-btn.active{background:#fff;color:#1a1a2e;box-shadow:0 4px 18px rgba(124,58,237,.1);border-color:#ede9fe}
+.cat-btn:hover{background:#fff;color:#1a1a2e}
+.cat-btn.active{background:#fff;color:#1a1a2e;box-shadow:0 1px 3px rgba(16,12,40,.06)}
 .cat-ic{
-  width:34px;height:34px;border-radius:10px;flex-shrink:0;
-  display:grid;place-items:center;font-size:1.05rem;color:#fff;
+  width:32px;height:32px;border-radius:9px;flex-shrink:0;
+  display:grid;place-items:center;
+  background:var(--cc-bg);color:var(--cc);
 }
-.cat-count{margin-left:auto;font-size:.72rem;color:#aaa;font-weight:700}
-.cat-btn.active .cat-count{color:var(--pur)}
+.cat-ic svg{width:17px;height:17px}
+.cat-count{margin-left:auto;font-size:.74rem;color:#c4c4cc;font-weight:700;font-variant-numeric:tabular-nums}
+.cat-btn.active .cat-count{color:var(--cc)}
 
-@media(max-width:860px){
-  .board{grid-template-columns:1fr;gap:20px}
-  .cat-nav{
-    position:sticky;top:68px;z-index:20;
-    flex-direction:row;gap:8px;overflow-x:auto;
-    background:#f8f7ff;padding:10px 0;margin:0 -24px;padding-left:24px;padding-right:24px;
-    border-bottom:1px solid #ece4ff;
-  }
-  .cat-btn{flex-shrink:0;padding:10px 14px}
-  .cat-count{display:none}
-}
-
-/* ── カテゴリパネル ── */
+/* ── コースのまとまり ── */
 .cat-panel{display:none}
 .cat-panel.active{display:block}
-.cat-panel-head{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.cat-panel-head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
 .cat-panel-ic{
-  width:52px;height:52px;border-radius:16px;flex-shrink:0;
-  display:grid;place-items:center;font-size:1.5rem;color:#fff;
+  width:44px;height:44px;border-radius:13px;flex-shrink:0;
+  display:grid;place-items:center;
+  background:var(--cc-bg);color:var(--cc);
 }
-.cat-panel-title{font-size:1.3rem;font-weight:900}
-.cat-panel-desc{font-size:.87rem;color:var(--muted);margin-top:2px}
+.cat-panel-ic svg{width:22px;height:22px}
+.cat-panel-title{font-size:1.22rem;font-weight:900;letter-spacing:-.01em}
+.cat-panel-desc{font-size:.85rem;color:var(--muted);margin-top:3px;line-height:1.65}
+.cat-panel-n{display:none}
+.cat-panel-chev{display:none}
 
 /* ── レッスンカード ── */
 .lesson{
@@ -182,12 +178,16 @@ header{
 .badge-live{background:#ecfdf5;color:#059669}
 .badge-admin{background:#fff7ed;color:var(--ora-d)}
 .lesson-star{
-  flex-shrink:0;width:36px;height:36px;border-radius:50%;
-  display:grid;place-items:center;font-size:1rem;color:#ccc;
-  background:transparent;border:none;
+  flex-shrink:0;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;color:#d4d4dc;
+  background:transparent;border:none;transition:color .15s;
 }
+.lesson-star svg{width:17px;height:17px}
+.lesson-star:hover{color:#f9a03c}
 .lesson-star.on{color:var(--ora)}
-.lesson-chev{flex-shrink:0;color:#bbb;font-size:.8rem;transition:transform .2s}
+.lesson-no svg{width:15px;height:15px}
+.lesson-chev{flex-shrink:0;color:#c4c4cc;display:grid;place-items:center;transition:transform .2s}
+.lesson-chev svg{width:14px;height:14px}
 .lesson.open .lesson-chev{transform:rotate(180deg)}
 .lesson-body{max-height:0;overflow:hidden;transition:max-height .25s ease}
 .lesson.open .lesson-body{max-height:420px}
@@ -276,45 +276,76 @@ header{
   .reader-body{padding:32px 20px 80px}
 }
 
-/* カテゴリカラー */
-.c1{background:var(--gc)}
-.c2{background:var(--gb)}
-.c3{background:var(--ge)}
-.c4{background:var(--gd)}
-.c5{background:var(--ga)}
-.c6{background:var(--gf)}
-.c7{background:var(--gg)}
+/* コースごとのアクセント色（--cc=線と文字 / --cc-bg=下地） */
+.c1{--cc:#0891b2;--cc-bg:#ecfeff}
+.c2{--cc:#ea580c;--cc-bg:#fff7ed}
+.c3{--cc:#db2777;--cc-bg:#fdf2f8}
+.c4{--cc:#059669;--cc-bg:#ecfdf5}
+.c5{--cc:#7c3aed;--cc-bg:#f5f3ff}
+.c6{--cc:#4f46e5;--cc-bg:#eef2ff}
+.c7{--cc:#0284c7;--cc-bg:#f0f9ff}
 
-/* ════ スマホ最適化 ════ */
+/* ════ スマホ最適化 ════
+   スマホではタブを廃止し、コースを縦に積んで開閉する形にする。
+   横スクロールのタブは「いま何番目を見ているか」が分からず操作しづらいため。 */
+@media(max-width:860px){
+  .board{grid-template-columns:1fr;gap:0;padding:20px 0 80px}
+  .cat-nav{display:none}
+
+  .cat-panel{display:block;background:#fff;border-radius:16px;margin-bottom:10px;
+    box-shadow:0 1px 3px rgba(16,12,40,.05);overflow:hidden}
+  .cat-panel-head{
+    display:flex;align-items:center;gap:13px;margin:0;
+    padding:16px 16px;cursor:pointer;user-select:none;
+  }
+  .cat-panel-ic{width:38px;height:38px;border-radius:11px}
+  .cat-panel-ic svg{width:19px;height:19px}
+  .cat-panel-title{font-size:1rem}
+  .cat-panel-desc{display:none}
+  .cat-panel-n{
+    display:block;font-size:.75rem;font-weight:700;color:#b9b9c4;
+    margin-top:2px;font-variant-numeric:tabular-nums;
+  }
+  .cat-panel-chev{
+    display:grid;place-items:center;margin-left:auto;flex-shrink:0;
+    width:24px;height:24px;color:#c4c4cc;transition:transform .22s ease;
+  }
+  .cat-panel-chev svg{width:15px;height:15px}
+  .cat-panel.collapsed .cat-panel-chev{transform:rotate(-90deg)}
+  .cat-panel.collapsed .lesson-list{display:none}
+
+  .lesson-list{padding:0 10px 10px}
+  .lesson{border:none;border-radius:12px;box-shadow:none;margin-bottom:2px;background:#fbfaff}
+  .lesson-head{padding:13px 12px;gap:11px}
+  .lesson-no{width:27px;height:27px;font-size:.76rem}
+  .lesson-title{font-size:.9rem;gap:7px}
+  .lesson-meta{font-size:.74rem;margin-top:2px}
+  .lesson-star{width:30px;height:30px}
+  .lesson-body-in{padding:0 12px 16px 12px}
+}
+
 @media(max-width:600px){
   .wrap{padding:0 16px}
-  .nav{height:60px}
-  .logo img{height:32px}
+  .nav{height:58px}
+  .logo img{height:30px}
   .nav-right{gap:12px}
-  .page-head{padding:32px 0 20px}
-  .page-lead{font-size:.9rem}
-  .progress-card,.member-card{padding:20px 18px;gap:18px;margin-top:20px}
-  .progress-num{font-size:1.7rem}
-  .bm-toggle{width:100%;justify-content:center}
   .nav-user{gap:10px}
   .nav-mail{display:none}
   .nav-back{display:none}
-  .board{padding:24px 0 80px}
-  .cat-nav{margin:0 -16px;padding-left:16px;padding-right:16px}
-  .cat-panel-head{gap:12px;margin-bottom:20px}
-  .cat-panel-ic{width:46px;height:46px;font-size:1.3rem}
-  .cat-panel-title{font-size:1.15rem}
-  .lesson-head{padding:16px;gap:12px}
-  .lesson-no{width:30px;height:30px;font-size:.8rem}
-  .lesson-title{font-size:.94rem}
-  .lesson-star{width:32px;height:32px}
-  .lesson-body-in{padding:0 16px 20px 16px}
+  .page-head{padding:28px 0 16px}
+  .page-title{font-size:1.7rem}
+  .page-lead{font-size:.88rem}
+  .progress-card,.member-card{padding:18px 16px;gap:16px;margin-top:16px}
+  .progress-num{font-size:1.55rem}
+  .bm-toggle{width:100%;justify-content:center}
 }
+
 @media(max-width:400px){
   .member-actions,.member-btn{width:100%}
   .member-btn{justify-content:center;text-align:center}
   .progress-label{font-size:.72rem}
 }
+
 </style>
 </head>
 <body>
@@ -346,7 +377,7 @@ header{
       <div class="progress-label"><span>教材の公開状況</span><span id="progressCount">0 / 0 教材が公開済み</span></div>
       <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
     </div>
-    <button class="bm-toggle" id="bmToggle" type="button">★ ブックマークのみ表示</button>
+    <button class="bm-toggle" id="bmToggle" type="button"><span class="bm-ic"></span>ブックマークのみ表示</button>
   </div>
 </div>
 
@@ -406,6 +437,29 @@ function renderNavUser(){
     `<button class="nav-logout" data-action="logout" type="button">ログアウト</button>`;
 }
 
+/* ── アイコン（絵文字をやめて線画SVGに統一） ── */
+const ICON_PATHS = {
+  basic:   '<rect x="3" y="5" width="18" height="12" rx="2"/><path d="M2 20h20"/>',
+  image:   '<rect x="3" y="4" width="18" height="16" rx="2.5"/><circle cx="8.6" cy="9.4" r="1.6"/><path d="M4 16.8l3.6-3.6a1.9 1.9 0 0 1 2.7 0l3 3"/><path d="M14.2 14.2l1.5-1.5a1.9 1.9 0 0 1 2.7 0L20 14.3"/>',
+  web:     '<circle cx="12" cy="12" r="9"/><path d="M3.2 12h17.6"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/>',
+  sns:     '<rect x="6.2" y="2.5" width="11.6" height="19" rx="2.6"/><path d="M10.6 18.6h2.8"/>',
+  writing: '<path d="M4 20.2l1.1-4.2L16.4 4.7a2 2 0 0 1 2.9 2.9L8 18.9l-4 1.3z"/><path d="M14.8 6.4l2.8 2.8"/>',
+  ai:      '<path d="M12 3.4l1.8 4.8 4.8 1.8-4.8 1.8L12 16.6l-1.8-4.8L5.4 10l4.8-1.8L12 3.4z"/><path d="M18.4 16.2l.7 1.9 1.9.7-1.9.7-.7 1.9-.7-1.9-1.9-.7 1.9-.7z"/>',
+  sales:   '<rect x="2.5" y="6" width="19" height="12" rx="2.2"/><circle cx="12" cy="12" r="2.5"/><path d="M6.2 9.6v4.8M17.8 9.6v4.8"/>',
+  star:    '<path d="M12 3.7l2.6 5.2 5.8.85-4.2 4.08 1 5.77L12 16.87l-5.2 2.73 1-5.77-4.2-4.08 5.8-.85L12 3.7z"/>',
+  check:   '<path d="M4.5 12.5l5 5 10-11"/>',
+  right:   '<path d="M9 5l7 7-7 7"/>',
+  down:    '<path d="M5 9l7 7 7-7"/>'
+};
+function icon(name, stroke){
+  const d = ICON_PATHS[name];
+  if(!d) return '';
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${stroke||1.7}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+}
+function starIcon(filled){
+  return `<svg viewBox="0 0 24 24" fill="${filled?'currentColor':'none'}" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS.star}</svg>`;
+}
+
 /* ── 購入カード（未ログイン / 未購入 / 購入済み / 管理者） ── */
 function renderMemberCard(){
   const note = notice ? `<div class="member-note ok">${notice}</div>` : '';
@@ -414,7 +468,7 @@ function renderMemberCard(){
     memberCard.innerHTML = `
       <div class="member-row">
         <div class="member-status">
-          <span class="member-pill admin">👁 管理者</span>
+          <span class="member-pill admin">管理者</span>
           <span class="member-detail">管理者アカウントです。<strong>購入の有無に関係なく、全教材を閲覧できます。</strong></span>
         </div>
         <div class="member-actions">
@@ -494,21 +548,23 @@ memberCard.addEventListener('click', e => {
 
 function render(){
   catNav.innerHTML = CATEGORIES.map((c,i) => `
-    <button class="cat-btn ${i===0?'active':''}" data-cat="${c.id}">
-      <span class="cat-ic ${c.cls}">${c.icon}</span>
+    <button class="cat-btn ${c.cls} ${i===0?'active':''}" data-cat="${c.id}">
+      <span class="cat-ic">${icon(c.id)}</span>
       ${c.title}
       <span class="cat-count">${c.lessons.length}</span>
     </button>
   `).join('');
 
   catPanels.innerHTML = CATEGORIES.map((c,i) => `
-    <div class="cat-panel ${i===0?'active':''}" data-cat="${c.id}">
+    <div class="cat-panel ${c.cls} ${i===0?'active':'collapsed'}" data-cat="${c.id}">
       <div class="cat-panel-head">
-        <span class="cat-panel-ic ${c.cls}">${c.icon}</span>
+        <span class="cat-panel-ic">${icon(c.id)}</span>
         <div>
           <div class="cat-panel-title">${c.title}</div>
           <div class="cat-panel-desc">${c.desc}</div>
+          <div class="cat-panel-n">${c.lessons.length}教材</div>
         </div>
+        <span class="cat-panel-chev">${icon('down', 2)}</span>
       </div>
       <div class="lesson-list">
         ${c.lessons.map((l, idx) => {
@@ -520,13 +576,13 @@ function render(){
           const BADGE = {
             free:{cls:'badge-live', text:'無料公開'},
             live:{cls:'badge-live', text:'公開中'},
-            admin:{cls:'badge-admin', text:'👁 プレビュー'},
-            locked:{cls:'badge-soon', text:'🔒 購入者限定'},
+            admin:{cls:'badge-admin', text:'プレビュー'},
+            locked:{cls:'badge-soon', text:'購入者限定'},
             soon:{cls:'badge-soon', text:'準備中'},
           }[access];
           let note = '';
           if(access === 'soon'){
-            note = '<div class="lesson-soon-note">🔒 本文教材は準備中です。公開までしばらくお待ちください。</div>';
+            note = '<div class="lesson-soon-note">本文教材は準備中です。公開までしばらくお待ちください。</div>';
           } else if(access === 'locked'){
             note = session
               ? `<div class="lesson-lock-note">ご購入いただくと、この教材を含む<strong>全71教材が期限なしですべて</strong>読めるようになります。<br><button class="member-btn primary" data-action="buy" type="button">${buyLabel()}</button></div>`
@@ -535,7 +591,7 @@ function render(){
           return `
           <div class="lesson" data-id="${id}" data-bm="${isBm?'1':'0'}">
             <div class="lesson-head" data-url="${clickable ? l.url : ''}" data-toggle="${clickable ? '' : id}">
-              <div class="lesson-no ${isDone?'done':''}">${isDone ? '✓' : String(idx+1).padStart(2,'0')}</div>
+              <div class="lesson-no ${isDone?'done':''}">${isDone ? icon('check', 2.4) : String(idx+1).padStart(2,'0')}</div>
               <div class="lesson-main">
                 <div class="lesson-title">
                   ${l.t}
@@ -543,8 +599,8 @@ function render(){
                 </div>
                 <div class="lesson-meta">目安 ${l.min}分</div>
               </div>
-              <button class="lesson-star ${isBm?'on':''}" data-star="${id}" type="button" aria-label="ブックマーク">★</button>
-              <div class="lesson-chev">${clickable ? '→' : '▾'}</div>
+              <button class="lesson-star ${isBm?'on':''}" data-star="${id}" type="button" aria-label="ブックマーク">${starIcon(isBm)}</button>
+              <div class="lesson-chev">${clickable ? icon('right', 2) : icon('down', 2)}</div>
             </div>
             <div class="lesson-body">
               <div class="lesson-body-in">
@@ -579,6 +635,8 @@ function applyFilter(){
   });
   document.querySelectorAll('.cat-panel').forEach(panel => {
     const visible = [...panel.querySelectorAll('.lesson')].some(el => el.style.display !== 'none');
+    // ブックマーク絞り込み中は、閉じているコースの中身も見えるように開く
+    if(bmOnly && visible) panel.classList.remove('collapsed');
     let empty = panel.querySelector('.filter-empty');
     if(bmOnly && !visible){
       if(!empty){
@@ -606,6 +664,12 @@ catPanels.addEventListener('click', e => {
     handleAction(actBtn.dataset.action, actBtn);
     return;
   }
+  // コースの見出しをタップして開閉（スマホ表示のとき有効）
+  const catHead = e.target.closest('.cat-panel-head');
+  if(catHead){
+    catHead.closest('.cat-panel').classList.toggle('collapsed');
+    return;
+  }
   const star = e.target.closest('[data-star]');
   if(star){
     const id = star.dataset.star;
@@ -630,6 +694,7 @@ catPanels.addEventListener('click', e => {
 document.getElementById('bmToggle').addEventListener('click', () => {
   bmOnly = !bmOnly;
   document.getElementById('bmToggle').classList.toggle('on', bmOnly);
+  paintBmIcon();
   applyFilter();
 });
 
@@ -669,7 +734,13 @@ async function handleCheckoutReturn(){
   render();
 }
 
+function paintBmIcon(){
+  const el = document.querySelector('.bm-ic');
+  if(el) el.innerHTML = starIcon(bmOnly);
+}
+
 (async function init(){
+  paintBmIcon();
   await loadMe();
   render();
   renderNavUser();

@@ -25,6 +25,18 @@
   hider.textContent = '.article,.complete-btn,.lesson-foot-nav{display:none !important}';
   document.head.appendChild(hider);
 
+  /* 絵文字を使わず、線画SVGで統一する */
+  var GUARD_ICONS = {
+    lock:  '<rect x="4.5" y="10.5" width="15" height="10.5" rx="2.2"/><path d="M8 10.5V7.6a4 4 0 0 1 8 0v2.9"/>',
+    key:   '<circle cx="8.5" cy="12" r="4"/><path d="M12.5 12H21"/><path d="M18 12v3.2M15 12v2.2"/>',
+    alert: '<path d="M12 3.8L21 19.5H3L12 3.8z"/><path d="M12 10v4"/><path d="M12 16.8v.2"/>'
+  };
+  function gIcon(name){
+    return '<svg class="lesson-lock-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+      'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      (GUARD_ICONS[name] || '') + '</svg>';
+  }
+
   function ready(fn) {
     if (document.readyState !== 'loading') fn();
     else document.addEventListener('DOMContentLoaded', fn);
@@ -53,7 +65,7 @@
       if (isAdmin) {
         var b = document.createElement('div');
         b.className = 'lesson-admin-bar';
-        b.innerHTML = '👁 管理者プレビュー中：購入の有無に関係なく閲覧しています。' +
+        b.innerHTML = '管理者プレビュー中：購入の有無に関係なく閲覧しています。' +
           '<a href="../index.html">教材一覧へ</a>';
         wrap.insertBefore(b, wrap.firstChild);
       }
@@ -70,7 +82,7 @@
     }
 
     if (!window.HSA || !window.HSA.getAccess) {
-      lock('<div class="lesson-lock-ic">⚠️</div>' +
+      lock('<div class="lesson-lock-ic">' + gIcon('alert') + '</div>' +
         '<h2 class="lesson-lock-h">教材を表示できませんでした</h2>' +
         '<p class="lesson-lock-p">通信環境を確認して、ページを再読み込みしてください。</p>' +
         '<a class="lesson-lock-btn ghost" href="../index.html">教材一覧へ戻る</a>');
@@ -91,7 +103,7 @@
 
       // 未ログイン
       if (!session) {
-        lock('<div class="lesson-lock-ic">🔑</div>' +
+        lock('<div class="lesson-lock-ic">' + gIcon('key') + '</div>' +
           '<h2 class="lesson-lock-h">この教材は購入者限定です</h2>' +
           '<p class="lesson-lock-p">すでに購入済みの方は、ログインするとこのまま読めます。' +
           '<br>基礎コースと、各コースの第1章は、登録なしで今すぐ読めます。</p>' +
@@ -105,7 +117,7 @@
       // ログイン済み・未購入（access === 'locked'）
       var cfg = window.HSA_CONFIG || {};
       var label = cfg.PRICE_LABEL ? 'この講座を購入する（' + esc(cfg.PRICE_LABEL) + '）' : 'この講座を購入する';
-      lock('<div class="lesson-lock-ic">🔒</div>' +
+      lock('<div class="lesson-lock-ic">' + gIcon('lock') + '</div>' +
         '<h2 class="lesson-lock-h">この教材は購入者限定です</h2>' +
         '<p class="lesson-lock-p">一度ご購入いただくと、<strong>この教材を含む全71教材が、期限なしですべて読めるようになります。</strong>' +
         '<br>月額料金や追加の支払いはありません。</p>' +
