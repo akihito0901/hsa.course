@@ -1,0 +1,432 @@
+{
+  "date": "2026-09-14T01:24:46.919Z",
+  "base": "https://hsa-course.vercel.app",
+  "results": [
+    {
+      "path": "login.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/basic-4.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/basic-3.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/basic-2.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/basic-1.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/basic-5.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/basic-6.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/basic-8.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/basic-7.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/basic-9.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/basic-10.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/basic-11.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/image-1.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/image-2.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/image-4.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/image-5.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/image-6.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/image-7.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/image-8.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/image-3.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/image-9.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/web-1.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/image-10.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/web-2.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/web-4.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/web-3.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/web-5.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/web-7.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/web-8.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/web-6.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/web-10.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sns-1.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/web-9.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sns-2.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sns-3.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sns-5.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sns-6.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sns-4.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sns-7.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sns-8.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sns-10.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/writing-1.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/writing-2.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/writing-3.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/writing-5.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/writing-4.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/writing-6.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sns-9.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/writing-7.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/writing-8.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/writing-9.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/writing-10.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/ai-1.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/ai-2.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/ai-3.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/ai-4.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/ai-6.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/ai-7.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/ai-5.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/ai-8.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/ai-9.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/ai-10.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sales-1.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sales-2.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sales-3.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sales-4.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sales-5.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sales-6.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "assets/campus.css",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "assets/campus.js",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sales-7.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sales-8.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sales-9.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "assets/auth.js",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "lessons/sales-10.html",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "assets/reader.js",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "assets/reader.css",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "assets/lesson-guard.js",
+      "status": 200,
+      "match": true
+    },
+    {
+      "path": "content/base.json",
+      "status": 404,
+      "match": true
+    },
+    {
+      "path": "docs/REVISION.md",
+      "status": 404,
+      "match": true
+    },
+    {
+      "path": "content-audit.before.json",
+      "status": 404,
+      "match": true
+    },
+    {
+      "path": "api/checkout",
+      "status": 405,
+      "match": true
+    },
+    {
+      "path": "api/admin-students",
+      "status": 401,
+      "match": true
+    },
+    {
+      "path": "api/webhook",
+      "status": 400,
+      "match": true
+    }
+  ],
+  "failures": []
+}
