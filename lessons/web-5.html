@@ -1,93 +1,33 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ページの骨組みを作る｜HP・LP制作｜ホームサクセスアカデミー</title>
-<meta name="robots" content="noindex,nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/lesson.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="../assets/config.js"></script>
-<script src="../assets/auth.js"></script>
-<script src="../assets/lesson-guard.js"></script>
-</head>
-<body>
-
-<header>
-  <div class="nav">
-    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
-    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
-  </div>
-</header>
-
-<main class="lesson-wrap">
-  <div class="lesson-hero">
-    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)"></span>HP・LP制作</div>
-    <h1 class="lesson-h1">ページの骨組みを作る</h1>
-    <div class="lesson-meta">HP・LP制作 5 / 10 ・ 目安 10分</div>
-  </div>
-
-  <article class="article">
-      <p>構成と文章のたたき台ができたら、いよいよノーコードツールでページの形を作っていきます。いきなり細部を作り込まず、まずは「骨組み」から。全体の流れを先に組み立てるのがコツです。</p>
+<!doctype html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>ページの骨組みを作る｜HP・LP制作｜HSA</title><meta name="description" content="装飾の前に、全ブロックとリンクを配置し、ページ全体の流れを完成させます。"><link rel="stylesheet" href="../assets/campus.css"><link rel="stylesheet" href="../assets/reader.css"><script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script defer src="../assets/config.js"></script><script defer src="../assets/auth.js"></script><script defer src="../assets/lesson-guard.js"></script><script defer src="../assets/learning.js"></script><script defer src="../assets/reader.js"></script></head><body class="reader" data-course="web" data-lesson="web-4"><a class="skip-link" href="#lesson-content">本文へ移動</a><header class="reader-header"><a class="brand" href="../index.html"><span class="brand-mark">hsa</span><span><b>HSA</b><small>LEARNING CAMPUS</small></span></a><a class="reader-back" href="../index.html?course=web">← HP・LP制作の教材一覧</a><span class="reader-count">05 / 10</span></header><div class="reading-track" aria-hidden="true"><i id="readingFill"></i></div><main class="lesson-wrap"><div class="lesson-hero"><a class="lesson-cat" href="../index.html?course=web">HP・LP制作 / LESSON 05</a><h1>ページの骨組みを作る</h1><p class="lesson-meta">読む目安 5分 <span>·</span> 実践目安 20分 <span>·</span> 文章＋ワークシート</p></div><div class="reader-layout"><aside class="reader-toc"><details id="tocDetails" open><summary>この章の目次 <span aria-hidden="true">＋</span></summary><nav aria-label="この章の目次"><a href="#section-1">基本を理解する</a><a href="#section-7">ワイヤーフレームを作る</a><a href="#section-8">見出しの階層を整理する</a><a href="#section-9">手を動かす：実践の手順</a><a href="#section-10">具体例で確かめる</a><a href="#section-11">コピーして使えるワークシート</a><a href="#section-12">この章の実践課題</a><a href="#section-14">理解度チェック</a><a href="#section-15">学習メモ</a></nav></details><div class="reader-tools"><button type="button" class="text-button" data-size aria-pressed="false">文字を大きくする</button><button type="button" class="text-button" data-reader-bookmark aria-pressed="false">この教材を保存する</button><a class="text-button" href="#section-15">学習メモへ移動 ↓</a></div><p class="toc-note">少しずつ、自分のペースで。<br>読む → 試す → 記録する。</p></aside><article class="article" id="lesson-content"><section class="lesson-objective"><span class="eyebrow">TODAY’S GOAL</span><p>装飾の前に、全ブロックとリンクを配置し、ページ全体の流れを完成させます。</p><div class="learning-flow"><span>01 理解する</span><span>02 試してみる</span><span>03 振り返る</span></div></section><div class="video-status"><span class="video-status-icon" aria-hidden="true">▷</span><div><b>動画は準備中です</b><p>この章は、文章と実践ワークだけで学習できます。</p></div><span class="video-status-tag">TEXT LESSON</span></div><section class="theory"><h2 id="section-1">基本を理解する</h2><p>構成と文章のたたき台ができたら、いよいよノーコードツールでページの形を作っていきます。いきなり細部を作り込まず、まずは「骨組み」から。全体の流れを先に組み立てるのがコツです。</p>
       <p>この教材を読み終えると、次のことができるようになります。</p>
       <ul>
         <li>構成に沿ってページのブロックを並べられる</li>
         <li>テンプレートを土台に、効率よく作り始められる</li>
         <li>「完璧を目指さず先に進む」進め方が身につく</li>
       </ul>
-      <h3>セクションを上から並べる</h3>
+      <h3 id="section-2">セクションを上から並べる</h3>
       <p>前の章で作った構成（共感→解決→証拠→行動）の順に、ページのブロックを上から並べていきます。ペライチなどのツールでは、ブロックを選んで積み重ねるだけで骨組みができます。まずは中身が空のままでも、必要なブロックを全部並べてしまいましょう。</p>
-      <h3>テンプレートを土台にする</h3>
+      <h3 id="section-3">テンプレートを土台にする</h3>
       <p>ノーコードツールにも、Canvaと同じようにテンプレートがあります。ゼロから作るより、近いテンプレートを選んで、中身を差し替えていく方が断然早いです。</p>
       <ul>
         <li>まず全体のブロック（セクション）を並べる</li>
         <li>各ブロックに「ここは共感」「ここは証拠」とあたりをつける</li>
         <li>細かい装飾は後回し。まず流れを完成させる</li>
       </ul>
-      <h3>迷ったらAIとツールのヘルプに聞く</h3>
+      <h3 id="section-4">迷ったらAIとツールのヘルプに聞く</h3>
       <p>操作で分からないことが出てきたら、抱え込まずに聞きましょう。ツールの多くには使い方ガイドがありますし、「ペライチでボタンを追加する方法は？」とAIに聞けば、手順を教えてくれます。分からない箇所で止まらず、どんどん質問して進めるのが早く仕上げるコツです。</p>
-      <h3>完璧を目指さず7割で進む</h3>
+      <h3 id="section-5">完璧を目指さず7割で進む</h3>
       <p>この段階では、見た目が多少ダサくても気にしないでください。まず最後まで骨組みを通すことが大事です。細部を作り込むのは、全体の流れができてから。7割の完成度で先に進みましょう。1か所にこだわって止まるのが、一番もったいないパターンです。</p>
-      <h3>よくあるつまずきと対処法</h3>
+      <h3 id="section-6">よくあるつまずきと対処法</h3>
       <ul>
         <li><strong>最初の1ブロックで止まってしまう</strong> → まず全ブロックを空のまま並べるのが先。中身は後から一気に入れれば大丈夫です</li>
         <li><strong>テンプレートが商品に合わない</strong> → 完璧に合うものはありません。近いものを選び、不要なブロックは消して調整しましょう</li>
         <li><strong>操作方法が分からない</strong> → ツールのヘルプやAIに聞けば解決します。「〇〇（ツール名）で△△する方法」と検索するのも有効です</li>
       </ul>
       <div class="tip"><strong>やってみよう</strong>ペライチで新規ページを作り、構成の順にブロックを上から並べてみましょう。中身はまだ空でOK。「共感」「解決」「証拠」「行動」の箱が上から下に並べば、今回のゴールです。</div>
-      <div class="tip"><strong>POINT</strong>骨組み作りは「引っ越しの間取り決め」のようなもの。どこに何を置くかを先に決めれば、あとの作業が迷わず進みます。まず上から下まで、一気に並べてみましょう。</div>
-  </article>
-
-  <button class="complete-btn" data-lesson="web-4" type="button">この教材を読み終えたらチェック</button>
-
-  <div class="lesson-foot-nav">
-    <a class="foot-nav-btn" href="web-4.html">← 前の教材</a>
-    <a class="foot-nav-btn" href="web-6.html">次の教材 →</a>
-  </div>
-  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
-</main>
-
-<script>
-(function(){
-  var KEY='hsa_completed';
-  var btn=document.querySelector('.complete-btn');
-  var id=btn.dataset.lesson;
-  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
-  function sync(){
-    var d=done.has(id);
-    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
-    btn.classList.toggle('done',d);
-  }
-  btn.addEventListener('click',function(){
-    if(done.has(id)){done.delete(id);}else{done.add(id);}
-    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
-    sync();
-  });
-  sync();
-})();
-</script>
-</body>
-</html>
+      <div class="tip"><strong>POINT</strong>骨組み作りは「引っ越しの間取り決め」のようなもの。どこに何を置くかを先に決めれば、あとの作業が迷わず進みます。まず上から下まで、一気に並べてみましょう。</div></section><section><h2 id="section-7">ワイヤーフレームを作る</h2><p>ワイヤーフレームは、見出し、文章、画像、ボタンの位置を示す簡単な設計図です。色や写真を決め込まず、箱と文字で十分です。全体を先に並べることで、途中だけきれいなのに申し込み条件が欠けている、といった問題を早く見つけられます。</p><p>各ブロックには仮の長さの文章を入れます。すべてを「ここに文章」としてしまうと、本当の原稿を入れた際の長さが分かりません。内容が確定していない場合でも、何を説明する場所かを1〜2文で置いておきましょう。</p></section><section><h2 id="section-8">見出しの階層を整理する</h2><p>ページの主題はH1、主要なブロックはH2、その中の小見出しはH3というように、内容の関係で階層を決めます。単に文字を大きく見せるために見出しの種類を選ばないようにします。ツールで見出し設定がある場合は、見た目と意味を両方確認します。</p><p>ボタンは実際に開く行き先を用意します。まだ決まっていない場合は未設定と管理メモへ残し、公開前に必ず解決する項目にします。押せそうで何も起きないボタンがあると、利用者は操作を間違えたのかと迷います。</p></section><section><h2 id="section-9">手を動かす：実践の手順</h2><ol class="practice-steps"><li><span class="step-count">01</span><div>構成案の順に、見出しと文章用の領域を配置する。</div></li><li><span class="step-count">02</span><div>画像の場所には、何を説明する画像かを短く記入する。</div></li><li><span class="step-count">03</span><div>主要ボタンとその行き先を設定し、ページ内の流れを確認する。</div></li><li><span class="step-count">04</span><div>上から下までスクロールし、重複と不足を直す。</div></li></ol></section><section class="worked-example"><span class="eyebrow">WORKED EXAMPLE</span><h2 id="section-10">具体例で確かめる</h2><p>【点検例】内容紹介の直後に申し込みボタンがあるのに、料金が一番下にしかない場合、条件を見ないまま押す人が出るかもしれません。条件を確認できる位置へボタンを置くか、ボタンの近くに料金案内への導線を設けます。</p></section><section><h2 id="section-11">コピーして使えるワークシート</h2><p>自分の条件に置き換えて使ってください。入力内容は、下の学習メモにも残せます。</p><div class="template-block"><div class="template-bar"><span>記入用テンプレート</span><button type="button" class="copy-button" data-copy>コピーする</button></div><pre class="worksheet">ブロック順：
+見出しの役割：
+必要な文章：
+必要な画像：
+ボタンの行き先：
+公開前の未解決項目：</pre></div></section><section class="assignment"><span class="eyebrow">YOUR PRACTICE</span><h2 id="section-12">この章の実践課題</h2><p>全ブロックを白黒の状態で並べ、見出しだけを読んで案内内容を説明します。見た目の調整を始める前に、必要情報が揃っているか点検してください。</p><h3 id="section-13">できたことを確認する</h3><div class="checklist"><label><input type="checkbox" data-check="0"><span>ページ全体が最後まである</span></label><label><input type="checkbox" data-check="1"><span>見出しの階層が整理されている</span></label><label><input type="checkbox" data-check="2"><span>ボタンの行き先を把握した</span></label></div><p class="small-text">チェックはこのブラウザに保存されます。すべてにチェックしなくても、教材は自由に読み進められます。</p></section><section><h2 id="section-14">理解度チェック</h2><p class="quiz-question">骨組み段階で色や影を作り込まない理由は？</p><details class="answer"><summary>答えと解説を確認する</summary><p>順番や情報不足を先に直すためです。構成変更後に装飾をやり直す手間を減らせます。</p></details></section><section class="notes-section"><h2 id="section-15">学習メモ</h2><label for="studyNote">できたこと・つまずいたこと・次に試すこと</label><textarea id="studyNote" rows="6" maxlength="20000" placeholder="例：今日はここまでできた。次回は、この手順から再開する。"></textarea><div class="note-actions"><span id="noteStatus" role="status">このブラウザに自動保存します</span><button class="copy-button" data-download type="button">メモを保存（.txt）</button></div><p class="small-text">端末間では同期されません。共有端末ではご注意ください。パスワード、認証コード、お客様の個人情報は記入しないでください。</p></section></article></div><div class="completion-area"><button class="complete-btn" data-lesson="web-4" type="button" aria-pressed="false">この教材を学習済みにする</button><p>読み終えたら記録しましょう。あとで解除できます。</p></div><nav class="lesson-foot-nav" aria-label="前後の教材"><a class="foot-nav-btn" href="web-4.html"><small>前の教材</small><span>← AIで構成・文章のたたき台を作る</span></a><a class="foot-nav-btn next" href="web-6.html"><small>次の教材</small><span>文章と画像を入れていく →</span></a></nav><a class="back-to-list" href="../index.html?course=web">コースの教材一覧へ戻る</a></main><footer class="reader-footer">HOME SUCCESS ACADEMY <span>学びを、毎日の力に。</span></footer><div id="toast" class="toast" role="status" hidden></div></body></html>

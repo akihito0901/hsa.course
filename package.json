@@ -6,5 +6,10 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
     "stripe": "^16.12.0"
+  },
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs && node scripts/build-home.mjs",
+    "check": "node scripts/check.mjs"
   }
 }

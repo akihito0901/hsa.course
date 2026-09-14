@@ -37,6 +37,7 @@ input:focus{outline:none;border-color:var(--pur)}
 .foot{text-align:center;font-size:.78rem;color:#bbb;margin-top:22px}
 .foot a{color:var(--muted);font-weight:700}
 </style>
+<link rel="stylesheet" href="assets/auth-screen.css">
 </head>
 <body>
 <div class="card">
@@ -53,7 +54,7 @@ input:focus{outline:none;border-color:var(--pur)}
     <label for="email">メールアドレス</label>
     <input id="email" type="email" autocomplete="email" required placeholder="you@example.com">
     <label for="password">パスワード</label>
-    <input id="password" type="password" autocomplete="current-password" required placeholder="6文字以上">
+    <input id="password" type="password" autocomplete="current-password" required placeholder="パスワードを入力">
     <button class="btn" id="submit" type="submit">ログイン</button>
   </form>
 
@@ -63,16 +64,18 @@ input:focus{outline:none;border-color:var(--pur)}
     Googleで続ける
   </button>
 
-  <p class="msg" id="msg"></p>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
   <p class="foot"><a href="index.html">← 教材一覧へ戻る</a></p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/config.js"></script>
 <script>
-const sb = window.supabase.createClient(HSA_CONFIG.SUPABASE_URL, HSA_CONFIG.SUPABASE_ANON_KEY);
+let sb = null;
+try { if (window.supabase) sb = window.supabase.createClient(HSA_CONFIG.SUPABASE_URL, HSA_CONFIG.SUPABASE_ANON_KEY); } catch (_) {}
 let mode = 'login';
-const nextParam = new URLSearchParams(location.search).get('next') || 'index.html';
+const requestedNext = new URLSearchParams(location.search).get('next') || 'index.html';
+const nextParam = /^(?:index\.html|lessons\/(?:basic|image|web|sns|writing|ai|sales)-\d+\.html)(?:[?#][a-zA-Z0-9_=&%#-]*)?$/.test(requestedNext) ? requestedNext : 'index.html';
 const msg = document.getElementById('msg');
 const submitBtn = document.getElementById('submit');
 
@@ -84,12 +87,16 @@ function go(){ location.href = nextParam; }
    （セッションが壊れて401になったとき、ここで跳ね返されると
      ログインし直せず堂々巡りになるため） */
 const forceLogin = new URLSearchParams(location.search).get('force') === '1';
-if(forceLogin){
+if(!sb){
+  setMsg('会員機能へ接続できませんでした。通信環境を確認して再読み込みしてください。無料教材は教材一覧から読めます。','err');
+  submitBtn.disabled = true;
+  document.getElementById('google').disabled = true;
+}else if(forceLogin){
   sb.auth.signOut().finally(()=>{
     setMsg('いったんログアウトしました。もう一度ログインしてください。');
   });
 }else{
-  sb.auth.getSession().then(({data})=>{ if(data.session) go(); });
+  sb.auth.getSession().then(({data})=>{ if(data.session) go(); }).catch(()=>setMsg('会員情報を確認できませんでした。通信環境を確認してください。','err'));
 }
 
 document.querySelectorAll('.tab').forEach(t=>{
@@ -106,6 +113,7 @@ document.querySelectorAll('.tab').forEach(t=>{
 
 document.getElementById('form').addEventListener('submit', async (e)=>{
   e.preventDefault();
+  if(!sb) return;
   const email = document.getElementById('email').value.trim();
   const password = document.getElementById('password').value;
   submitBtn.disabled = true; setMsg('処理中…');
@@ -129,12 +137,15 @@ document.getElementById('form').addEventListener('submit', async (e)=>{
 });
 
 document.getElementById('google').addEventListener('click', async ()=>{
+  if(!sb) return;
   setMsg('Googleに移動します…');
+  try {
   const { error } = await sb.auth.signInWithOAuth({
     provider: 'google',
     options: { redirectTo: location.origin + '/' + nextParam }
   });
   if(error) setMsg(error.message, 'err');
+  } catch (_) { setMsg('接続できませんでした。通信環境を確認してください。','err'); }
 });
 </script>
 </body>

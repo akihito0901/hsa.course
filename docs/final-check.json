@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-14T00:55:45.895Z",
+  "checks": [
+    "Signup password autocomplete",
+    "Synthetic signup confirmation",
+    "Login returns to requested lesson (synthetic session)",
+    "External redirect rejected",
+    "Menu restores focus",
+    "Resume points to last unfinished lesson",
+    "Resume label",
+    "Storage denied: session state still updates",
+    "Storage denied: visible warning",
+    "Storage denied: note export guidance",
+    "SDK unavailable: login disabled",
+    "SDK unavailable: login explains failure",
+    "No additional browser errors"
+  ],
+  "errors": [],
+  "note": "Synthetic authentication only; no real email, signup, or checkout."
+}

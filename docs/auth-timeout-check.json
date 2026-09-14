@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "Course navigation available while authentication hangs",
+    "Authentication wait ends with a visible explanation",
+    "Authentication outage does not prompt repurchase",
+    "Free lesson remains immediately readable",
+    "No page errors"
+  ],
+  "errors": []
+}

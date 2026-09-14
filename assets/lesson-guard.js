@@ -22,7 +22,7 @@
 
   /* 判定が終わるまで本文を隠す（未購入の人に一瞬でも中身を見せないため） */
   var hider = document.createElement('style');
-  hider.textContent = '.article,.complete-btn,.lesson-foot-nav{display:none !important}';
+  hider.textContent = '.article,.reader-toc,.completion-area,.complete-btn,.lesson-foot-nav{display:none !important}';
   document.head.appendChild(hider);
 
   /* 絵文字を使わず、線画SVGで統一する */
@@ -56,12 +56,14 @@
     var panel = document.createElement('div');
     panel.className = 'lesson-lock';
     panel.innerHTML = '<div class="lesson-lock-check">確認しています…</div>';
-    if (article) article.insertAdjacentElement('beforebegin', panel);
+    if (article) (document.querySelector('.reader-layout') || article).insertAdjacentElement('beforebegin', panel);
     else wrap.appendChild(panel);
 
     function unlock(isAdmin) {
       panel.remove();
       hider.remove();
+      document.documentElement.dataset.lessonAccess = 'allowed';
+      window.dispatchEvent(new CustomEvent('hsa:lesson-access', {detail:{allowed:true}}));
       if (isAdmin) {
         var b = document.createElement('div');
         b.className = 'lesson-admin-bar';
@@ -72,6 +74,8 @@
     }
 
     function lock(html) {
+      document.querySelector('.reader-toc')?.remove();
+      document.querySelector('.completion-area')?.remove();
       if (article) article.remove();          // 本文をDOMから取り除く
       var btn = document.querySelector('.complete-btn');
       if (btn) btn.remove();
@@ -94,7 +98,12 @@
       try {
         session = await HSA.getSession();
         if (session) profile = await HSA.getProfile();
-      } catch (e) { /* 通信エラーは未ログイン扱いにする */ }
+      } catch (e) {
+        lock('<h2 class="lesson-lock-h">会員情報を確認できませんでした</h2>' +
+          '<p class="lesson-lock-p">通信環境を確認して再読み込みしてください。購入済みの方は、再購入する必要はありません。</p>' +
+          '<a class="lesson-lock-btn ghost" href="../index.html">教材一覧へ戻る</a>');
+        return;
+      }
 
       var access = HSA.getAccess(profile, catId, { url: file + '.html' }, idx);
 

@@ -1,44 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>プロンプト（指示）のコツ｜AI｜ホームサクセスアカデミー</title>
-<meta name="robots" content="noindex,nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/lesson.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="../assets/config.js"></script>
-<script src="../assets/auth.js"></script>
-<script src="../assets/lesson-guard.js"></script>
-</head>
-<body>
-
-<header>
-  <div class="nav">
-    <a class="logo" href="../index.html"><img src="../images/logo.png" alt="Home Success Academy"></a>
-    <a class="nav-back" href="../index.html">← 教材一覧へ戻る</a>
-  </div>
-</header>
-
-<main class="lesson-wrap">
-  <div class="lesson-hero">
-    <div class="lesson-cat"><span class="cat-dot" style="background:linear-gradient(135deg,#6366f1,#06b6d4)"></span>AI</div>
-    <h1 class="lesson-h1">プロンプト（指示）のコツ</h1>
-    <div class="lesson-meta">AI 6 / 10 ・ 目安 11分</div>
-  </div>
-
-  <article class="article">
-      <p>AIへの指示や質問を「プロンプト」と呼びます。同じAIでも、プロンプト次第で答えの質はまるで変わります。前の章の「質問のしかた」をさらに一歩進めて、この章では、プロっぽい答えを引き出す少し踏み込んだ指示のコツを学びます。</p>
+<!doctype html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>プロンプト（指示）のコツ｜AI｜HSA</title><meta name="description" content="繰り返し使える指示を作り、入力する材料と出力の条件を区別します。"><link rel="stylesheet" href="../assets/campus.css"><link rel="stylesheet" href="../assets/reader.css"><script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script defer src="../assets/config.js"></script><script defer src="../assets/auth.js"></script><script defer src="../assets/lesson-guard.js"></script><script defer src="../assets/learning.js"></script><script defer src="../assets/reader.js"></script></head><body class="reader" data-course="ai" data-lesson="ai-5"><a class="skip-link" href="#lesson-content">本文へ移動</a><header class="reader-header"><a class="brand" href="../index.html"><span class="brand-mark">hsa</span><span><b>HSA</b><small>LEARNING CAMPUS</small></span></a><a class="reader-back" href="../index.html?course=ai">← AIの教材一覧</a><span class="reader-count">06 / 10</span></header><div class="reading-track" aria-hidden="true"><i id="readingFill"></i></div><main class="lesson-wrap"><div class="lesson-hero"><a class="lesson-cat" href="../index.html?course=ai">AI / LESSON 06</a><h1>プロンプト（指示）のコツ</h1><p class="lesson-meta">読む目安 6分 <span>·</span> 実践目安 20分 <span>·</span> 文章＋ワークシート</p></div><div class="reader-layout"><aside class="reader-toc"><details id="tocDetails" open><summary>この章の目次 <span aria-hidden="true">＋</span></summary><nav aria-label="この章の目次"><a href="#section-1">基本を理解する</a><a href="#section-7">役割より、作業条件を具体的にする</a><a href="#section-8">例示と評価基準をセットで渡す</a><a href="#section-9">手を動かす：実践の手順</a><a href="#section-10">具体例で確かめる</a><a href="#section-11">コピーして使えるワークシート</a><a href="#section-12">この章の実践課題</a><a href="#section-14">理解度チェック</a><a href="#section-15">学習メモ</a><a href="#section-16">公式情報・確認先</a></nav></details><div class="reader-tools"><button type="button" class="text-button" data-size aria-pressed="false">文字を大きくする</button><button type="button" class="text-button" data-reader-bookmark aria-pressed="false">この教材を保存する</button><a class="text-button" href="#section-15">学習メモへ移動 ↓</a></div><p class="toc-note">少しずつ、自分のペースで。<br>読む → 試す → 記録する。</p></aside><article class="article" id="lesson-content"><section class="lesson-objective"><span class="eyebrow">TODAY’S GOAL</span><p>繰り返し使える指示を作り、入力する材料と出力の条件を区別します。</p><div class="learning-flow"><span>01 理解する</span><span>02 試してみる</span><span>03 振り返る</span></div></section><div class="video-status"><span class="video-status-icon" aria-hidden="true">▷</span><div><b>動画は準備中です</b><p>この章は、文章と実践ワークだけで学習できます。</p></div><span class="video-status-tag">TEXT LESSON</span></div><section class="theory"><h2 id="section-1">基本を理解する</h2><p>AIへの指示や質問を「プロンプト」と呼びます。同じAIでも、プロンプト次第で答えの質はまるで変わります。前の章の「質問のしかた」をさらに一歩進めて、この章では、プロっぽい答えを引き出す少し踏み込んだ指示のコツを学びます。</p>
       <p>この教材を読み終えると、次のことができるようになります。</p>
       <ul>
         <li>良いプロンプトに必要な4つの要素が分かる</li>
         <li>見本を見せて、答えの精度を上げられる</li>
         <li>自分だけの「効くプロンプト集」を育てられる</li>
       </ul>
-      <h3>良いプロンプトの4要素</h3>
+      <h3 id="section-2">良いプロンプトの4要素</h3>
       <p>次の4つを指示に含めると、答えの質が一気に上がります。全部でなくても、意識するだけで違います。</p>
       <ul>
         <li>役割：「あなたはプロの編集者です」など立場を与える</li>
@@ -47,49 +14,23 @@
         <li>出力の形：「箇条書きで」「表にして」など形式を指定する</li>
       </ul>
       <p>たとえば「あなたはプロのSNS運用者です。在宅ワークを始めたい主婦向けに、Instagram投稿のネタを、箇条書きで10個出してください」と伝えると、狙い通りの答えがぐっと出やすくなります。</p>
-      <h3>例を見せると精度が上がる</h3>
+      <h3 id="section-3">例を見せると精度が上がる</h3>
       <p>「こんな感じで書いてほしい」という見本を1つ見せると、AIはその雰囲気を真似てくれます。過去にうまくいった文章や、参考にしたい例を貼り付けて「これと同じトーンで」と頼むと、精度がぐっと上がります。言葉で説明しにくいニュアンスも、見本を1つ見せるだけで伝わることが多いのです。</p>
-      <h3>長い作業は手順に分ける</h3>
+      <h3 id="section-4">長い作業は手順に分ける</h3>
       <p>複雑な作業を一度に頼むと、AIも混乱しがちです。「まず構成だけ作って」→「OK、次はこの見出しの本文を書いて」というように、手順を分けて頼むと、一つひとつの精度が上がります。料理と同じで、工程を分けたほうがきれいに仕上がります。</p>
-      <h3>勝ちパターンは保存する</h3>
+      <h3 id="section-5">勝ちパターンは保存する</h3>
       <p>うまくいったプロンプトは、基礎コースで作ったGoogleドキュメントの「指示集」に保存しておきましょう。自分だけのプロンプト集がたまると、毎回ゼロから考えずに済み、作業がどんどん速くなります。これがあなたの「見えない資産」になっていきます。</p>
-      <h3>よくあるつまずきと対処法</h3>
+      <h3 id="section-6">よくあるつまずきと対処法</h3>
       <ul>
         <li><strong>4要素を全部入れるのが難しい</strong> → 全部そろえなくてOK。まず「役割」と「出力の形」の2つだけでも、効果を実感できます</li>
         <li><strong>見本が手元にない</strong> → 「まず3パターン出して」と頼み、良かった1つを見本にして「これと同じ調子で続けて」と伝える手もあります</li>
         <li><strong>指示が長くなりすぎる</strong> → 一文を短く区切り、箇条書きで条件を並べると、AIにも伝わりやすくなります</li>
       </ul>
       <div class="tip"><strong>やってみよう</strong>いつも使いそうな指示を1つ、「役割・背景・具体的な指示・出力の形」の4要素を入れて作ってみましょう。うまくいったら、それをGoogleドキュメントに保存。あなただけのプロンプト集の1本目です。</div>
-      <div class="tip"><strong>POINT</strong>プロンプトは「習うより慣れろ」。うまくいかなくても、注文を足して調整すればOK。使うほど、自分なりの効く言い回しが見つかっていきます。</div>
-  </article>
-
-  <button class="complete-btn" data-lesson="ai-5" type="button">この教材を読み終えたらチェック</button>
-
-  <div class="lesson-foot-nav">
-    <a class="foot-nav-btn" href="ai-5.html">← 前の教材</a>
-    <a class="foot-nav-btn" href="ai-7.html">次の教材 →</a>
-  </div>
-  <a class="back-to-list" href="../index.html">教材一覧へ戻る</a>
-</main>
-
-<script>
-(function(){
-  var KEY='hsa_completed';
-  var btn=document.querySelector('.complete-btn');
-  var id=btn.dataset.lesson;
-  var done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'));
-  function sync(){
-    var d=done.has(id);
-    btn.textContent=d?'✓ 読み終えました':'この教材を読み終えたらチェック';
-    btn.classList.toggle('done',d);
-  }
-  btn.addEventListener('click',function(){
-    if(done.has(id)){done.delete(id);}else{done.add(id);}
-    localStorage.setItem(KEY,JSON.stringify(Array.from(done)));
-    sync();
-  });
-  sync();
-})();
-</script>
-</body>
-</html>
+      <div class="tip"><strong>POINT</strong>プロンプトは「習うより慣れろ」。うまくいかなくても、注文を足して調整すればOK。使うほど、自分なりの効く言い回しが見つかっていきます。</div></section><section><h2 id="section-7">役割より、作業条件を具体的にする</h2><p>「あなたは専門家です」と書くだけで、根拠や正確さが保証されるわけではありません。何を材料にして、どの条件で、どんな形式へまとめるかを具体化する方が確認しやすくなります。役割は補助的に使い、重要な判断基準を省かないようにしましょう。</p><p>指示と材料は見出しで分けます。引用した文章の中に「これを無視して」などの命令があっても、編集対象の文章として扱わせます。自動化する場合は、入力資料内の指示を実行しない設計が必要です。人が使う練習でも、素材と命令の境界を意識します。</p></section><section><h2 id="section-8">例示と評価基準をセットで渡す</h2><p>良い見本を示すときは、文体や構造のどこを参考にしてほしいかを伝えます。見本の固有名詞や数字までコピーされないよう、使う事実は別に指定します。第三者の有料文章など、入力の許可がない素材は使わないでください。</p><p>保存するプロンプトには、用途、差し替える欄、確認する項目を付けます。うまくいった1回の指示を万能と思わず、別の素材でも試します。繰り返し誤る条件があれば、指示だけでなく入力の不足も見直しましょう。</p></section><section><h2 id="section-9">手を動かす：実践の手順</h2><ol class="practice-steps"><li><span class="step-count">01</span><div>指示を目的・材料・制約・出力形式に分けて書く。</div></li><li><span class="step-count">02</span><div>必要なら短い自作の見本を添え、参考にする点を指定する。</div></li><li><span class="step-count">03</span><div>2種類の素材で試し、必須条件を守るか確認する。</div></li><li><span class="step-count">04</span><div>差し替え欄と確認項目を付け、プロンプト集へ保存する。</div></li></ol></section><section class="worked-example"><span class="eyebrow">WORKED EXAMPLE</span><h2 id="section-10">具体例で確かめる</h2><p>【再利用する指示】「目的：案内文の整理。材料：下記の確定情報。条件：材料にない料金・実績を追加しない。形式：見出し、本文150字、確認事項の順。見本からは語調だけを参考にする。不足情報は確認事項へ」。短くても、採用の基準が明確です。</p></section><section><h2 id="section-11">コピーして使えるワークシート</h2><p>自分の条件に置き換えて使ってください。入力内容は、下の学習メモにも残せます。</p><div class="template-block"><div class="template-bar"><span>記入用テンプレート</span><button type="button" class="copy-button" data-copy>コピーする</button></div><pre class="worksheet">プロンプト名・用途：
+目的：
+差し替える素材：
+制約：
+出力形式：
+良い出力の基準：
+失敗しやすい点：</pre></div></section><section class="assignment"><span class="eyebrow">YOUR PRACTICE</span><h2 id="section-12">この章の実践課題</h2><p>案内文用のプロンプトを1つ作り、異なる架空イベント2件で試します。どちらでも守れた条件と、改善が必要な条件を記録してください。</p><h3 id="section-13">できたことを確認する</h3><div class="checklist"><label><input type="checkbox" data-check="0"><span>指示と素材を分けた</span></label><label><input type="checkbox" data-check="1"><span>見本からコピーする範囲が明確</span></label><label><input type="checkbox" data-check="2"><span>別素材でも試した</span></label></div><p class="small-text">チェックはこのブラウザに保存されます。すべてにチェックしなくても、教材は自由に読み進められます。</p></section><section><h2 id="section-14">理解度チェック</h2><p class="quiz-question">「プロの編集者として」と書けば、誤情報はなくなりますか？</p><details class="answer"><summary>答えと解説を確認する</summary><p>なくなりません。使用する事実、制約、確認項目を指定し、出力後に人が照合します。</p></details></section><section class="notes-section"><h2 id="section-15">学習メモ</h2><label for="studyNote">できたこと・つまずいたこと・次に試すこと</label><textarea id="studyNote" rows="6" maxlength="20000" placeholder="例：今日はここまでできた。次回は、この手順から再開する。"></textarea><div class="note-actions"><span id="noteStatus" role="status">このブラウザに自動保存します</span><button class="copy-button" data-download type="button">メモを保存（.txt）</button></div><p class="small-text">端末間では同期されません。共有端末ではご注意ください。パスワード、認証コード、お客様の個人情報は記入しないでください。</p></section><section class="source-section"><h2 id="section-16">公式情報・確認先</h2><p>操作画面・料金・利用条件は変わることがあります。利用時点の公式案内を確認してください。</p><ul><li><a href="https://learn.chatgpt.com/" target="_blank" rel="noopener noreferrer">OpenAI：ChatGPTの学習ガイド ↗</a></li></ul><p class="small-text">教材改訂：2026年9月14日。具体例の数値や案件は、特記のない限り練習用です。</p></section></article></div><div class="completion-area"><button class="complete-btn" data-lesson="ai-5" type="button" aria-pressed="false">この教材を学習済みにする</button><p>読み終えたら記録しましょう。あとで解除できます。</p></div><nav class="lesson-foot-nav" aria-label="前後の教材"><a class="foot-nav-btn" href="ai-5.html"><small>前の教材</small><span>← 基本的な使い方（質問のしかた）</span></a><a class="foot-nav-btn next" href="ai-7.html"><small>次の教材</small><span>AIで文章を作る →</span></a></nav><a class="back-to-list" href="../index.html?course=ai">コースの教材一覧へ戻る</a></main><footer class="reader-footer">HOME SUCCESS ACADEMY <span>学びを、毎日の力に。</span></footer><div id="toast" class="toast" role="status" hidden></div></body></html>

@@ -7,10 +7,19 @@
 */
 (function () {
   const cfg = window.HSA_CONFIG || {};
-  const sb = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+  let sb = null;
+  try {
+    if (window.supabase) sb = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+  } catch (_) { /* Free lessons remain usable if the authentication SDK is unavailable. */ }
 
   const HSA = (window.HSA = window.HSA || {});
   HSA.sb = sb;
+  function withTimeout(promise) {
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error('会員情報の確認がタイムアウトしました。通信環境を確認して再読み込みしてください。')), 10000);
+      Promise.resolve(promise).then(value => { clearTimeout(timer); resolve(value); }, error => { clearTimeout(timer); reject(error); });
+    });
+  }
 
   /* ── サイト内のパス解決 ──
      lessons/ 配下から呼ばれても、ルートの login.html / index.html に正しく戻れるようにする */
@@ -30,12 +39,13 @@
      アクセストークンは1時間で切れるため、期限が近ければ先に更新する。
      （期限切れのまま /api/* を呼ぶと 401 になり「ログインの有効期限が切れています」になる） */
   HSA.getSession = async function () {
-    const { data } = await sb.auth.getSession();
+    if (!sb) return null;
+    const { data } = await withTimeout(sb.auth.getSession());
     let s = data.session;
     if (!s) return null;
     const expMs = (s.expires_at || 0) * 1000;
     if (!expMs || expMs - Date.now() < 60 * 1000) {
-      const { data: r, error } = await sb.auth.refreshSession();
+      const { data: r, error } = await withTimeout(sb.auth.refreshSession());
       if (error || !r?.session) return null;   // 更新できない＝ログインし直しが必要
       s = r.session;
     }
@@ -53,11 +63,13 @@
   HSA.getProfile = async function () {
     const s = await HSA.getSession();
     if (!s) return null;
-    const { data } = await sb.from('profiles').select('*').eq('id', s.user.id).single();
+    const { data, error } = await withTimeout(sb.from('profiles').select('*').eq('id', s.user.id).single());
+    if (error) throw error;
     return data;
   };
 
   HSA.logout = async function () {
+    if (!sb) throw new Error('会員機能へ接続できません。通信環境を確認してください。');
     await sb.auth.signOut();
     location.href = HSA.base + 'index.html';
   };

@@ -1,0 +1,645 @@
+{
+  "total": 71,
+  "characters": 192838,
+  "lessons": [
+    {
+      "file": "lessons/basic-1.html",
+      "course": "basic",
+      "chars": 4873,
+      "readingMin": 10,
+      "practiceMin": 20,
+      "headings": 18,
+      "sections": 10
+    },
+    {
+      "file": "lessons/basic-2.html",
+      "course": "basic",
+      "chars": 4158,
+      "readingMin": 9,
+      "practiceMin": 20,
+      "headings": 18,
+      "sections": 9
+    },
+    {
+      "file": "lessons/basic-3.html",
+      "course": "basic",
+      "chars": 3877,
+      "readingMin": 8,
+      "practiceMin": 20,
+      "headings": 17,
+      "sections": 9
+    },
+    {
+      "file": "lessons/basic-4.html",
+      "course": "basic",
+      "chars": 3781,
+      "readingMin": 8,
+      "practiceMin": 20,
+      "headings": 17,
+      "sections": 9
+    },
+    {
+      "file": "lessons/basic-5.html",
+      "course": "basic",
+      "chars": 3820,
+      "readingMin": 8,
+      "practiceMin": 20,
+      "headings": 18,
+      "sections": 9
+    },
+    {
+      "file": "lessons/basic-6.html",
+      "course": "basic",
+      "chars": 3786,
+      "readingMin": 8,
+      "practiceMin": 20,
+      "headings": 18,
+      "sections": 10
+    },
+    {
+      "file": "lessons/basic-7.html",
+      "course": "basic",
+      "chars": 3675,
+      "readingMin": 8,
+      "practiceMin": 20,
+      "headings": 18,
+      "sections": 10
+    },
+    {
+      "file": "lessons/basic-8.html",
+      "course": "basic",
+      "chars": 3640,
+      "readingMin": 8,
+      "practiceMin": 20,
+      "headings": 17,
+      "sections": 9
+    },
+    {
+      "file": "lessons/basic-9.html",
+      "course": "basic",
+      "chars": 3889,
+      "readingMin": 8,
+      "practiceMin": 20,
+      "headings": 18,
+      "sections": 9
+    },
+    {
+      "file": "lessons/basic-10.html",
+      "course": "basic",
+      "chars": 3687,
+      "readingMin": 8,
+      "practiceMin": 20,
+      "headings": 17,
+      "sections": 9
+    },
+    {
+      "file": "lessons/basic-11.html",
+      "course": "basic",
+      "chars": 4246,
+      "readingMin": 9,
+      "practiceMin": 40,
+      "headings": 20,
+      "sections": 10
+    },
+    {
+      "file": "lessons/image-1.html",
+      "course": "image",
+      "chars": 2611,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/image-2.html",
+      "course": "image",
+      "chars": 2614,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/image-3.html",
+      "course": "image",
+      "chars": 2601,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/image-4.html",
+      "course": "image",
+      "chars": 2599,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/image-5.html",
+      "course": "image",
+      "chars": 2494,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/image-6.html",
+      "course": "image",
+      "chars": 2501,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/image-7.html",
+      "course": "image",
+      "chars": 2475,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/image-8.html",
+      "course": "image",
+      "chars": 2568,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/image-9.html",
+      "course": "image",
+      "chars": 2651,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/image-10.html",
+      "course": "image",
+      "chars": 2604,
+      "readingMin": 6,
+      "practiceMin": 40,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/web-1.html",
+      "course": "web",
+      "chars": 2428,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/web-2.html",
+      "course": "web",
+      "chars": 2442,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/web-3.html",
+      "course": "web",
+      "chars": 2543,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/web-4.html",
+      "course": "web",
+      "chars": 2390,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/web-5.html",
+      "course": "web",
+      "chars": 2404,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/web-6.html",
+      "course": "web",
+      "chars": 2384,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/web-7.html",
+      "course": "web",
+      "chars": 2292,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/web-8.html",
+      "course": "web",
+      "chars": 2328,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/web-9.html",
+      "course": "web",
+      "chars": 2667,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/web-10.html",
+      "course": "web",
+      "chars": 2566,
+      "readingMin": 6,
+      "practiceMin": 40,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/sns-1.html",
+      "course": "sns",
+      "chars": 2473,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sns-2.html",
+      "course": "sns",
+      "chars": 2437,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sns-3.html",
+      "course": "sns",
+      "chars": 2344,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sns-4.html",
+      "course": "sns",
+      "chars": 2362,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sns-5.html",
+      "course": "sns",
+      "chars": 1834,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 14,
+      "sections": 10
+    },
+    {
+      "file": "lessons/sns-6.html",
+      "course": "sns",
+      "chars": 2330,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sns-7.html",
+      "course": "sns",
+      "chars": 2322,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sns-8.html",
+      "course": "sns",
+      "chars": 2374,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sns-9.html",
+      "course": "sns",
+      "chars": 2395,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sns-10.html",
+      "course": "sns",
+      "chars": 2562,
+      "readingMin": 6,
+      "practiceMin": 40,
+      "headings": 17,
+      "sections": 10
+    },
+    {
+      "file": "lessons/writing-1.html",
+      "course": "writing",
+      "chars": 2327,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/writing-2.html",
+      "course": "writing",
+      "chars": 2375,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 9
+    },
+    {
+      "file": "lessons/writing-3.html",
+      "course": "writing",
+      "chars": 2306,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/writing-4.html",
+      "course": "writing",
+      "chars": 2297,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/writing-5.html",
+      "course": "writing",
+      "chars": 2244,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/writing-6.html",
+      "course": "writing",
+      "chars": 2492,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/writing-7.html",
+      "course": "writing",
+      "chars": 2400,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/writing-8.html",
+      "course": "writing",
+      "chars": 2497,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/writing-9.html",
+      "course": "writing",
+      "chars": 2307,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/writing-10.html",
+      "course": "writing",
+      "chars": 2434,
+      "readingMin": 5,
+      "practiceMin": 40,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/ai-1.html",
+      "course": "ai",
+      "chars": 2749,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/ai-2.html",
+      "course": "ai",
+      "chars": 2636,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 10
+    },
+    {
+      "file": "lessons/ai-3.html",
+      "course": "ai",
+      "chars": 2672,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/ai-4.html",
+      "course": "ai",
+      "chars": 1844,
+      "readingMin": 5,
+      "practiceMin": 20,
+      "headings": 14,
+      "sections": 10
+    },
+    {
+      "file": "lessons/ai-5.html",
+      "course": "ai",
+      "chars": 2614,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/ai-6.html",
+      "course": "ai",
+      "chars": 2672,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/ai-7.html",
+      "course": "ai",
+      "chars": 2614,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/ai-8.html",
+      "course": "ai",
+      "chars": 2607,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/ai-9.html",
+      "course": "ai",
+      "chars": 2543,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/ai-10.html",
+      "course": "ai",
+      "chars": 2646,
+      "readingMin": 6,
+      "practiceMin": 40,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/sales-1.html",
+      "course": "sales",
+      "chars": 2709,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sales-2.html",
+      "course": "sales",
+      "chars": 2590,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 14,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sales-3.html",
+      "course": "sales",
+      "chars": 2675,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/sales-4.html",
+      "course": "sales",
+      "chars": 2752,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/sales-5.html",
+      "course": "sales",
+      "chars": 2521,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sales-6.html",
+      "course": "sales",
+      "chars": 2670,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 16,
+      "sections": 10
+    },
+    {
+      "file": "lessons/sales-7.html",
+      "course": "sales",
+      "chars": 2550,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sales-8.html",
+      "course": "sales",
+      "chars": 2504,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sales-9.html",
+      "course": "sales",
+      "chars": 2638,
+      "readingMin": 6,
+      "practiceMin": 20,
+      "headings": 15,
+      "sections": 9
+    },
+    {
+      "file": "lessons/sales-10.html",
+      "course": "sales",
+      "chars": 2926,
+      "readingMin": 6,
+      "practiceMin": 40,
+      "headings": 17,
+      "sections": 10
+    }
+  ]
+}

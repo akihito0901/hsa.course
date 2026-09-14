@@ -1,0 +1,21 @@
+{
+ "basic-1":[{"title":"Microsoft：Windows 10のサポート終了と移行の案内","url":"https://support.microsoft.com/ja-jp/windows/deployment/updates-lifecycle/windows-10-support-has-ended-on-october-14-2025"}],
+ "basic-6":[{"title":"Google：アカウントのセキュリティ診断","url":"https://myaccount.google.com/security-checkup"}],
+ "basic-7":[{"title":"Google ドライブ：ファイルの共有と権限","url":"https://support.google.com/drive/answer/2494822?hl=ja"}],
+ "basic-11":[{"title":"公正取引委員会：フリーランス法の概要・確認事項","url":"https://www.jftc.go.jp/freelancelaw_2024/"},{"title":"国税庁：確定申告の案内","url":"https://www.nta.go.jp/taxes/shiraberu/shinkoku/index.htm"}],
+ "image":[{"title":"Canva：コンテンツ利用ライセンス","url":"https://www.canva.com/policies/content-license-agreement/"},{"title":"Canva：AI製品の利用条件","url":"https://www.canva.com/policies/ai-product-terms/"}],
+ "web-3":[{"title":"Studio：公式プラン案内","url":"https://studio.design/ja/pricing"},{"title":"ペライチ：公式プラン案内","url":"https://peraichi.com/pages/pricing"}],
+ "web-9":[{"title":"Studio：公式ヘルプセンター","url":"https://help.studio.design/ja/"}],
+ "web-10":[{"title":"Google アナリティクス：公式ヘルプ","url":"https://support.google.com/analytics/?hl=ja"}],
+ "sns-5":[{"title":"TikTok：コンテンツがおすすめされる仕組み","url":"https://support.tiktok.com/en/using-tiktok/exploring-videos/how-tiktok-recommends-content"},{"title":"Instagram：公式ヘルプセンター","url":"https://help.instagram.com/"}],
+ "sns-10":[{"title":"公正取引委員会：フリーランス法の概要・確認事項","url":"https://www.jftc.go.jp/freelancelaw_2024/"}],
+ "writing-6":[{"title":"Google：読者を第一に考えたコンテンツの作成","url":"https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ja"}],
+ "writing-8":[{"title":"Google：生成AIによるコンテンツについてのガイダンス","url":"https://developers.google.com/search/docs/fundamentals/using-gen-ai-content?hl=ja"}],
+ "ai":[{"title":"OpenAI：ChatGPTの学習ガイド","url":"https://learn.chatgpt.com/"}],
+ "ai-3":[{"title":"Google Gemini：公式ヘルプ","url":"https://support.google.com/gemini/?hl=ja"},{"title":"Anthropic：Claude公式ヘルプ","url":"https://support.claude.com/"}],
+ "ai-4":[{"title":"ChatGPT：公式のプラン比較","url":"https://chatgpt.com/pricing/"},{"title":"Google AI：公式プラン案内","url":"https://one.google.com/about/google-ai-plans/"},{"title":"Claude：公式プラン案内","url":"https://claude.com/pricing"}],
+ "sales-3":[{"title":"note：コンテンツ販売時の手数料","url":"https://www.help-note.com/hc/ja/articles/360011358873"}],
+ "sales-4":[{"title":"Brain：公式サイト（利用規約・販売条件はサイト内から確認）","url":"https://brain-market.com/"},{"title":"消費者庁：ステルスマーケティングに関する案内","url":"https://www.caa.go.jp/policies/policy/representation/fair_labeling/stealth_marketing/"}],
+ "sales-6":[{"title":"消費者庁：通信販売の表示とルール","url":"https://www.no-trouble.caa.go.jp/what/mailorder/"}],
+ "sales-10":[{"title":"消費者庁：通信販売の表示とルール","url":"https://www.no-trouble.caa.go.jp/what/mailorder/"}]
+}
