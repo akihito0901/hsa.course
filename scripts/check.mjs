@@ -21,7 +21,9 @@ for(const file of files){
  if(file.startsWith('lessons/')){
   const slug=file.replace('lessons/','').replace('.html',''),[cat,num]=slug.split('-');
   if(!s.includes('data-lesson="'+cat+'-'+(Number(num)-1)+'"'))problems.push(file+': incompatible saved ID');
-  for(const cls of ['lesson-objective','practice-steps','worked-example','worksheet','checklist','quiz-question','notes-section','video-status','lesson-guard.js'])if(!s.includes(cls))problems.push(file+': missing '+cls);
+  for(const cls of ['lesson-objective','practice-steps','worked-example','worksheet','checklist','quiz-question','notes-section','lesson-guard.js'])if(!s.includes(cls))problems.push(file+': missing '+cls);
+  // 動画がまだの回は「準備中」の表示、動画がある回は動画枠があること（2026-10-10）
+  if(!s.includes('video-status')&&!s.includes('video-frame'))problems.push(file+': missing video-status or video-frame');
   const headings=[...s.matchAll(/<h([23])\b/g)].map(m=>Number(m[1]));if(headings[0]!==2)problems.push(file+': heading hierarchy');
  }
 }

@@ -1,1 +1,286 @@
-{}
+{
+  "ai-1": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/ai-01.mp4"
+  },
+  "ai-2": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/ai-02.mp4"
+  },
+  "ai-3": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/ai-03.mp4"
+  },
+  "ai-4": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/ai-04.mp4"
+  },
+  "ai-5": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/ai-05.mp4"
+  },
+  "ai-6": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/ai-06.mp4"
+  },
+  "ai-7": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/ai-07.mp4"
+  },
+  "ai-8": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/ai-08.mp4"
+  },
+  "ai-9": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/ai-09.mp4"
+  },
+  "ai-10": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/ai-10.mp4"
+  },
+  "web-1": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/web-01.mp4"
+  },
+  "web-2": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/web-02.mp4"
+  },
+  "web-3": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/web-03.mp4"
+  },
+  "web-4": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/web-04.mp4"
+  },
+  "web-5": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/web-05.mp4"
+  },
+  "web-6": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/web-06.mp4"
+  },
+  "web-7": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/web-07.mp4"
+  },
+  "web-8": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/web-08.mp4"
+  },
+  "web-9": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/web-09.mp4"
+  },
+  "web-10": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/web-10.mp4"
+  },
+  "sns-1": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sns-01.mp4"
+  },
+  "sns-2": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sns-02.mp4"
+  },
+  "sns-3": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sns-03.mp4"
+  },
+  "sns-4": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sns-04.mp4"
+  },
+  "sns-5": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sns-05.mp4"
+  },
+  "sns-6": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sns-06.mp4"
+  },
+  "sns-7": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sns-07.mp4"
+  },
+  "sns-8": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sns-08.mp4"
+  },
+  "sns-9": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sns-09.mp4"
+  },
+  "sns-10": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sns-10.mp4"
+  },
+  "sales-1": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sales-01.mp4"
+  },
+  "sales-2": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sales-02.mp4"
+  },
+  "sales-3": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sales-03.mp4"
+  },
+  "sales-4": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sales-04.mp4"
+  },
+  "sales-5": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sales-05.mp4"
+  },
+  "sales-6": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sales-06.mp4"
+  },
+  "sales-7": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sales-07.mp4"
+  },
+  "sales-8": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sales-08.mp4"
+  },
+  "sales-9": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sales-09.mp4"
+  },
+  "sales-10": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/sales-10.mp4"
+  },
+  "writing-1": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/writing-01.mp4"
+  },
+  "writing-2": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/writing-02.mp4"
+  },
+  "writing-3": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/writing-03.mp4"
+  },
+  "writing-4": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/writing-04.mp4"
+  },
+  "writing-5": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/writing-05.mp4"
+  },
+  "writing-6": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/writing-06.mp4"
+  },
+  "writing-7": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/writing-07.mp4"
+  },
+  "writing-8": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/writing-08.mp4"
+  },
+  "writing-9": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/writing-09.mp4"
+  },
+  "writing-10": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/writing-10.mp4"
+  },
+  "basic-1": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/basic-01.mp4"
+  },
+  "basic-2": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/basic-02.mp4"
+  },
+  "basic-3": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/basic-03.mp4"
+  },
+  "basic-4": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/basic-04.mp4"
+  },
+  "basic-5": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/basic-05.mp4"
+  },
+  "basic-6": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/basic-06.mp4"
+  },
+  "basic-7": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/basic-07.mp4"
+  },
+  "basic-8": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/basic-08.mp4"
+  },
+  "basic-9": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/basic-09.mp4"
+  },
+  "basic-10": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/basic-10.mp4"
+  },
+  "basic-11": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/basic-11.mp4"
+  },
+  "image-1": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/image-01.mp4"
+  },
+  "image-2": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/image-02.mp4"
+  },
+  "image-3": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/image-03.mp4"
+  },
+  "image-4": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/image-04.mp4"
+  },
+  "image-5": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/image-05.mp4"
+  },
+  "image-6": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/image-06.mp4"
+  },
+  "image-7": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/image-07.mp4"
+  },
+  "image-8": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/image-08.mp4"
+  },
+  "image-9": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/image-09.mp4"
+  },
+  "image-10": {
+    "type": "mp4",
+    "url": "https://pub-1770c9ff4bbc47ac8a06e826d7a953f1.r2.dev/image-10.mp4"
+  }
+}
