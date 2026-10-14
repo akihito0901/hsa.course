@@ -1,0 +1,7 @@
+# Supabase の一時停止を防ぐ Worker（1日1回）。デプロイ：cd keepalive && npx wrangler deploy
+name = "hsa-supabase-keepalive"
+main = "worker.js"
+compatibility_date = "2025-09-01"
+
+[triggers]
+crons = ["0 18 * * *"]   # 毎日 18:00 UTC（日本時間 3:00）

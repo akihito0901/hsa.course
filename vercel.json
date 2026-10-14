@@ -3,7 +3,7 @@
   "framework": null,
   "buildCommand": "npm run build && npm run check && node scripts/stage-public.mjs",
   "outputDirectory": "public",
-  "functions": {
-    "api/*.js": { "maxDuration": 30 }
-  }
+  "redirects": [
+    { "source": "/(.*)", "destination": "https://hsa-course.pages.dev/$1", "permanent": true }
+  ]
 }
