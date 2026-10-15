@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>講座の購入｜HSA Learning Campus</title>
+<meta name="description" content="ホームサクセスアカデミー（HSA）全7コース・71教材の購入ページ。29,800円（税込）の買い切り。">
+<!-- LINEのリッチメニュー「講座を購入する」から開くページ。
+     登録（またはログイン）と購入をこの1ページで済ませ、そのまま Stripe の決済画面へ進む。 -->
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="assets/config.js"></script>
+<script defer src="assets/auth.js"></script>
+<style>
+:root{--ink:#203631;--forest:#173e34;--green:#4d713b;--leaf:#739447;--muted:#5f7069;--line:#dce3da;--bg:#fbfcf8;--gold:#e2b04a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;line-height:1.7}
+main{max-width:520px;margin:0 auto;padding:28px 16px 48px}
+.brand{font-weight:800;letter-spacing:.08em;color:var(--leaf);font-size:.8rem}
+h1{font-size:1.45rem;line-height:1.45;margin:6px 0 14px;color:var(--forest)}
+.price{display:flex;align-items:baseline;gap:6px;margin:0 0 6px}
+.price b{font-size:2.2rem;color:var(--forest)}
+.price span{font-size:.9rem;color:var(--muted)}
+.note{font-size:.85rem;color:var(--muted);margin:0 0 18px}
+ul.points{list-style:none;padding:0;margin:0 0 22px;background:#fff;border:1px solid var(--line);border-radius:16px}
+ul.points li{padding:12px 16px 12px 42px;border-bottom:1px solid var(--line);position:relative;font-size:.95rem}
+ul.points li:last-child{border-bottom:none}
+ul.points li::before{content:"✓";position:absolute;left:16px;top:12px;color:var(--leaf);font-weight:900}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 18px;box-shadow:0 10px 30px rgba(23,62,52,.07)}
+.card h2{font-size:1.05rem;margin:0 0 4px}
+.card .sub{font-size:.85rem;color:var(--muted);margin:0 0 16px}
+label{display:block;font-size:.85rem;font-weight:700;margin:0 0 6px}
+input{width:100%;font-size:1rem;padding:13px 14px;border:2px solid var(--line);border-radius:12px;margin:0 0 14px;font-family:inherit}
+input:focus{outline:none;border-color:var(--leaf)}
+.btn{width:100%;font-size:1rem;font-weight:800;padding:15px;border-radius:999px;border:none;color:#fff;background:var(--forest);cursor:pointer}
+.btn:disabled{opacity:.6;cursor:wait}
+.switch{display:block;margin:14px auto 0;background:none;border:none;color:var(--green);font-weight:700;font-size:.9rem;cursor:pointer;text-decoration:underline}
+.msg{font-size:.9rem;margin:12px 0 0;min-height:1.2em}
+.msg.err{color:#b4352f}
+.who{font-size:.9rem;margin:0 0 14px;padding:10px 12px;background:#f2f6ee;border-radius:10px;word-break:break-all}
+.small{font-size:.78rem;color:var(--muted);margin:14px 0 0}
+.foot{font-size:.8rem;margin-top:22px;text-align:center}
+.foot a{color:var(--muted)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">HOME SUCCESS ACADEMY</div>
+  <h1>在宅で積み上がるスキルを、<br>1つずつ手を動かして学ぶ講座</h1>
+  <p class="price"><b>29,800</b><span>円（税込）・買い切り</span></p>
+  <p class="note">月額・追加料金はかかりません。一度の購入で、期限なく読めます。</p>
+  <ul class="points">
+    <li>全7コース・71教材（基礎／画像編集／ホームページ・LP制作／SNS／ライティング／AI／コンテンツ販売）</li>
+    <li>各教材に、動画・テキスト・記入シート・チェックリスト</li>
+    <li>決済が終わったら、すぐに全教材が開きます</li>
+  </ul>
+
+  <!-- まだログインしていない人：登録 or ログイン → そのまま決済へ -->
+  <section class="card" id="formCard" hidden>
+    <h2 id="formTitle">メールアドレスで登録して購入</h2>
+    <p class="sub" id="formSub">登録するとすぐに決済画面へ進みます（確認メールはありません）</p>
+    <form id="form">
+      <label for="email">メールアドレス</label>
+      <input id="email" type="email" autocomplete="email" required placeholder="you@example.com">
+      <label for="password">パスワード（6文字以上）</label>
+      <input id="password" type="password" autocomplete="new-password" required minlength="6" placeholder="ログインに使うパスワード">
+      <button class="btn" id="submit" type="submit">登録して購入へ進む</button>
+    </form>
+    <button class="switch" id="switch" type="button">すでに登録している方はこちら（ログイン）</button>
+    <p class="msg" id="msg" role="status" aria-live="polite"></p>
+  </section>
+
+  <!-- ログイン済みで未購入：ボタン1つで決済へ -->
+  <section class="card" id="buyCard" hidden>
+    <h2>購入へ進む</h2>
+    <p class="who" id="who"></p>
+    <button class="btn" id="buy" type="button">29,800円で購入する</button>
+    <button class="switch" id="other" type="button">別のメールアドレスで購入する</button>
+    <p class="msg" id="buyMsg" role="status" aria-live="polite"></p>
+  </section>
+
+  <!-- 購入済み -->
+  <section class="card" id="paidCard" hidden>
+    <h2>購入済みです</h2>
+    <p class="sub">全7コース・71教材をご覧いただけます。</p>
+    <a class="btn" href="index.html" style="display:block;text-align:center;text-decoration:none">学習ホームへ</a>
+  </section>
+
+  <p class="small">決済は Stripe の安全な決済画面で行います（クレジットカード）。カード情報はこのサイトには保存されません。<br>※ 収入には個人差があり、成果を保証するものではありません。</p>
+  <p class="foot"><a href="index.html">学習ホーム（無料の基礎編はこちら）</a>　<a href="tokushoho.html">特定商取引法に基づく表記</a></p>
+</main>
+
+<script>
+window.addEventListener('DOMContentLoaded', async () => {
+  const $ = (id) => document.getElementById(id);
+  const sb = window.HSA && HSA.sb;
+  let mode = 'signup';
+  const setMsg = (el, t, err) => { el.textContent = t || ''; el.className = 'msg' + (err ? ' err' : ''); };
+
+  function show(id) { ['formCard', 'buyCard', 'paidCard'].forEach(c => $(c).hidden = c !== id); }
+
+  function setMode(m) {
+    mode = m;
+    $('formTitle').textContent = m === 'signup' ? 'メールアドレスで登録して購入' : 'ログインして購入';
+    $('formSub').textContent = m === 'signup' ? '登録するとすぐに決済画面へ進みます（確認メールはありません）' : '登録したメールアドレスとパスワードを入れてください';
+    $('submit').textContent = m === 'signup' ? '登録して購入へ進む' : 'ログインして購入へ進む';
+    $('switch').textContent = m === 'signup' ? 'すでに登録している方はこちら（ログイン）' : 'はじめての方はこちら（新規登録）';
+    $('password').autocomplete = m === 'signup' ? 'new-password' : 'current-password';
+    setMsg($('msg'), '');
+  }
+
+  // 決済画面へ（購入済みなら学習ホームへ）
+  async function goCheckout(msgEl) {
+    setMsg(msgEl, '決済画面を開いています…');
+    try {
+      const profile = await HSA.getProfile();
+      if (HSA.hasPurchased(profile)) { show('paidCard'); return; }
+      await HSA.startCheckout();
+    } catch (e) {
+      setMsg(msgEl, '決済画面を開けませんでした。通信を確認して、もう一度お試しください。', true);
+    }
+  }
+
+  async function render() {
+    if (!sb) { show('formCard'); setMsg($('msg'), '会員機能へ接続できませんでした。再読み込みしてください。', true); $('submit').disabled = true; return; }
+    const s = await HSA.getSession().catch(() => null);
+    if (!s) { show('formCard'); return; }
+    let profile = null;
+    try { profile = await HSA.getProfile(); } catch (_) {}
+    if (HSA.hasPurchased(profile)) { show('paidCard'); return; }
+    $('who').textContent = s.user.email + ' で購入します';
+    show('buyCard');
+  }
+
+  $('switch').addEventListener('click', () => setMode(mode === 'signup' ? 'login' : 'signup'));
+  $('other').addEventListener('click', async () => { await sb.auth.signOut(); setMode('signup'); show('formCard'); });
+  $('buy').addEventListener('click', async () => { $('buy').disabled = true; await goCheckout($('buyMsg')); $('buy').disabled = false; });
+
+  $('form').addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    const email = $('email').value.trim(), password = $('password').value;
+    $('submit').disabled = true;
+    try {
+      if (mode === 'signup') {
+        const { data, error } = await sb.auth.signUp({ email, password });
+        // すでに登録済みのアドレス：同じパスワードならそのままログインして決済へ
+        if (error && /already registered|already exists/i.test(error.message || '')) {
+          const r = await sb.auth.signInWithPassword({ email, password });
+          if (!r.error) { await goCheckout($('msg')); return; }
+          setMode('login'); $('email').value = email;
+          setMsg($('msg'), 'このメールアドレスは登録済みです。登録したときのパスワードでログインしてください。', true);
+          return;
+        }
+        if (error) throw error;
+        if (!data.session) {
+          setMode('login'); $('email').value = email;
+          setMsg($('msg'), 'このメールアドレスは登録済みです。パスワードを入れてログインしてください。', true);
+          return;
+        }
+      } else {
+        const { error } = await sb.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+      }
+      await goCheckout($('msg'));
+    } catch (e) {
+      const t = /Invalid login/i.test(e.message || '') ? 'メールアドレスかパスワードが違います。'
+        : /Password should/i.test(e.message || '') ? 'パスワードは6文字以上にしてください。'
+        : (e.message || 'うまくいきませんでした。もう一度お試しください。');
+      setMsg($('msg'), t, true);
+    } finally {
+      $('submit').disabled = false;
+    }
+  });
+
+  setMode('signup');
+  render();
+});
+</script>
+</body>
+</html>

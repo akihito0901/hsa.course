@@ -11,7 +11,7 @@ for(const api of ['checkout','webhook','admin-students']){
 if(path.dirname(out)!==root||path.basename(out)!=='public')throw Error('Invalid output directory');
 fs.rmSync(out,{recursive:true,force:true});
 fs.mkdirSync(out,{recursive:true});
-for(const file of ['index.html','login.html','admin.html','tokushoho.html'])fs.copyFileSync(file,path.join(out,file));
+for(const file of ['index.html','login.html','admin.html','tokushoho.html','buy.html'])fs.copyFileSync(file,path.join(out,file));
 // fs.cpSync は Windows（Node 24・日本語のパス）で落ちたので、1ファイルずつコピーする
 const copyDir=(src,dst)=>{fs.mkdirSync(dst,{recursive:true});for(const e of fs.readdirSync(src,{withFileTypes:true})){const a=path.join(src,e.name),b=path.join(dst,e.name);e.isDirectory()?copyDir(a,b):fs.copyFileSync(a,b);}};
 for(const dir of ['assets','lessons','images'])copyDir(dir,path.join(out,dir));
